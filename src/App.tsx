@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import AboutPage from './AboutPage'
 import ServicePage from './ServicePage'
+import SpecialistsPage from './SpecialistsPage'
 import {
   Menu,
   X,
@@ -120,7 +121,7 @@ function App() {
   // Navigation states
   const [activeDropdown, setActiveDropdown] = useState<'pages' | 'services' | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'service'>('home')
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'service' | 'specialists'>('home')
   const [currentServiceId, setCurrentServiceId] = useState('mental-health')
   
   // Selected Service in Service Showcase
@@ -154,7 +155,7 @@ function App() {
     }
   }
 
-  const navigateToPage = (page: 'home' | 'about' | 'service', serviceId?: string) => {
+  const navigateToPage = (page: 'home' | 'about' | 'service' | 'specialists', serviceId?: string) => {
     setCurrentPage(page)
     if (serviceId) {
       setCurrentServiceId(serviceId)
@@ -336,7 +337,7 @@ function App() {
                     About Us
                   </button>
                   <button
-                    onClick={() => navigateToHomeSection('specialists')}
+                    onClick={() => navigateToPage('specialists')}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
                     Our Team
@@ -398,7 +399,7 @@ function App() {
 
             {/* Specialist link */}
             <button
-              onClick={() => navigateToHomeSection('specialists')}
+              onClick={() => navigateToPage('specialists')}
               className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
             >
               Specialists
@@ -451,7 +452,7 @@ function App() {
                   About Us
                 </button>
                 <button
-                  onClick={() => navigateToHomeSection('specialists')}
+                  onClick={() => navigateToPage('specialists')}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
                   Our Team
@@ -493,7 +494,7 @@ function App() {
               </div>
 
               <button
-                onClick={() => navigateToHomeSection('specialists')}
+                onClick={() => navigateToPage('specialists')}
                 className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
               >
                 Specialists
@@ -528,6 +529,11 @@ function App() {
             const service = SERVICES.find((item) => item.id === currentServiceId)
             return service ? service.id === 'therapy' ? specialist.id === 'elena-rostova' || specialist.id === 'sarah-jenkins' : service.id === 'physical-health' ? specialist.id === 'marcus-vance' : specialist.id === 'sarah-jenkins' : true
           })}
+          onBookAppointment={handleBookAppointment}
+        />
+      ) : currentPage === 'specialists' ? (
+        <SpecialistsPage
+          specialists={SPECIALISTS}
           onBookAppointment={handleBookAppointment}
         />
       ) : (
