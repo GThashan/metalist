@@ -3,6 +3,7 @@ import AboutPage from './AboutPage'
 import ServicePage from './ServicePage'
 import SpecialistsPage from './SpecialistsPage'
 import ContactPage from './ContactPage'
+import heroImage from './assets/hero.jpg'
 import {
   Menu,
   X,
@@ -736,7 +737,15 @@ function App() {
       ) : (
         <>
       {/* Hero Section */}
-      <section className="relative bg-[#f7f0e5] py-16 md:py-24 overflow-hidden border-b border-[#E1D8CC]/40">
+      <section
+        className="relative py-16 md:py-24 overflow-hidden border-b border-[#E1D8CC]/40"
+        style={{
+          backgroundImage: `linear-gradient(120deg, rgba(247, 240, 229, 0.9) 0%, rgba(247, 240, 229, 0.82) 45%, rgba(247, 240, 229, 0.74) 100%), url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'normal',
+        }}
+      >
         <div className="absolute top-[10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-[#C76B3D]/5 blur-3xl pointer-events-none" />
         <div className="absolute bottom-[5%] left-[-5%] w-[35%] h-[35%] rounded-full bg-[#843519]/5 blur-3xl pointer-events-none" />
 
@@ -744,18 +753,18 @@ function App() {
           
           {/* Hero text content */}
           <div className="md:col-span-7 space-y-6 md:pr-6">
-            <div className="inline-flex items-center gap-2 bg-[#C76B3D]/10 border border-[#C76B3D]/20 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-[#C76B3D]">
+            <div className="inline-flex items-center gap-2 bg-white/80 border border-[#C76B3D]/20 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.25em] text-[#C76B3D] shadow-sm backdrop-blur-sm">
               <Heart className="w-3.5 h-3.5" />
-              <span>Certified Mental Health Experts</span>
+              <span>Support For Lasting Wellness</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#333333] leading-[1.08] tracking-tight">
-              Begin Your Journey to <br />
-              <span className="text-[#C76B3D] italic font-serif">Inner Balance</span> & Healing
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#333333] leading-[1.03] tracking-tight max-w-3xl">
+              Boost Mind Clarity <br />
+              <span className="text-[#C76B3D] italic font-serif">and Wellness</span>
             </h1>
             
-            <p className="text-base sm:text-lg text-slate-600 max-w-xl font-light leading-relaxed">
-              Mentalist provides empathetic, highly clinical therapy programs to guide you out of anxiety, burnout, and relationship struggles. Meet our licensed counselors today.
+            <p className="text-base sm:text-lg text-slate-700 max-w-xl font-light leading-relaxed">
+              It helps you reduce mental clutter, improve decision-making, and stay more present in daily life with gentle, expert-led support.
             </p>
             
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -763,42 +772,44 @@ function App() {
                 onClick={openBookingModal}
                 className="px-6 py-3.5 rounded-full bg-[#C76B3D] hover:bg-[#843519] text-[#f7f0e5] font-semibold text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/20 hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                Schedule First Session
+                Book Appointment
               </button>
               <button
                 onClick={() => scrollTo(servicesSectionRef)}
-                className="px-6 py-3.5 rounded-full border border-stone-300 bg-white/50 backdrop-blur-sm hover:border-brand-primary text-slate-700 hover:text-brand-primary font-semibold text-sm transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-stone-300 bg-white/70 backdrop-blur-sm hover:border-brand-primary text-slate-700 hover:text-brand-primary font-semibold text-sm transition-all duration-300"
               >
-                Explore Clinical Services
+                <span>Explore Services</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
             
-            {/* Quick Metrics */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-[#E1D8CC]/60 max-w-lg">
-              <div className="space-y-1">
-                <div className="text-3xl font-bold font-serif text-[#333333]">12+</div>
-                <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Specialists</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-3xl font-bold font-serif text-[#333333]">99%</div>
-                <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Satisfaction</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-3xl font-bold font-serif text-[#333333]">2K+</div>
-                <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Happy Clients</div>
-              </div>
+            <div className="grid sm:grid-cols-3 gap-3 pt-4 max-w-2xl">
+              {[
+                { title: 'Calm Your Mind', text: 'Reduce stress with tailored emotional support.' },
+                { title: 'Balance Your Life', text: 'Create healthier routines and stronger resilience.' },
+                { title: 'Clearer Focus', text: 'Build practical strategies for everyday well-being.' },
+              ].map((item) => (
+                <div key={item.title} className="rounded-2xl border border-white/70 bg-white/70 p-3 shadow-sm backdrop-blur-sm">
+                  <h3 className="text-sm font-semibold text-slate-800">{item.title}</h3>
+                  <p className="mt-1 text-[11px] leading-relaxed text-slate-600">{item.text}</p>
+                </div>
+              ))}
             </div>
           </div>
           
           {/* Hero Illustration Container */}
           <div className="md:col-span-5 relative flex justify-center">
-            <div className="absolute inset-0 bg-[#C76B3D]/5 rounded-[3rem] rotate-3 scale-95 border border-[#C76B3D]/10" />
-            <div className="bg-white/95 border border-[#E1D8CC] p-4 rounded-[3rem] shadow-xl relative z-10 max-w-sm sm:max-w-md">
+            <div className="absolute inset-0 bg-[#C76B3D]/10 rounded-[3rem] rotate-6 scale-95 border border-[#C76B3D]/10" />
+            <div className="bg-white/95 border border-[#E1D8CC] p-4 rounded-[3rem] shadow-xl relative z-10 max-w-sm sm:max-w-md w-full">
               <img
-                src="/mental_health_hero.png"
+                src={heroImage}
                 alt="Mental health support vector"
                 className="w-full h-auto rounded-[2.2rem] object-cover"
               />
+              <div className="absolute bottom-8 left-8 right-8 rounded-2xl border border-white/60 bg-white/85 px-4 py-3 shadow-lg backdrop-blur-sm">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#C76B3D]">Expert Therapy</p>
+                <h3 className="mt-1 text-lg font-semibold text-slate-800">Guiding you toward healing</h3>
+              </div>
             </div>
           </div>
         </div>
