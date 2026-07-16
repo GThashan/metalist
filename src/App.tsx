@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import AboutPage from './AboutPage'
 import ServicePage from './ServicePage'
 import SpecialistsPage from './SpecialistsPage'
+import ContactPage from './ContactPage'
 import {
   Menu,
   X,
@@ -121,7 +122,7 @@ function App() {
   // Navigation states
   const [activeDropdown, setActiveDropdown] = useState<'pages' | 'services' | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'service' | 'specialists'>('home')
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'service' | 'specialists' | 'contact'>('home')
   const [currentServiceId, setCurrentServiceId] = useState('mental-health')
   
   // Selected Service in Service Showcase
@@ -156,7 +157,7 @@ function App() {
     }
   }
 
-  const navigateToPage = (page: 'home' | 'about' | 'service' | 'specialists', serviceId?: string) => {
+  const navigateToPage = (page: 'home' | 'about' | 'service' | 'specialists' | 'contact', serviceId?: string) => {
     setCurrentPage(page)
     if (serviceId) {
       setCurrentServiceId(serviceId)
@@ -525,6 +526,12 @@ function App() {
                     Our Team
                   </button>
                   <button
+                    onClick={() => navigateToPage('contact')}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                  >
+                    Contact Us
+                  </button>
+                  <button
                     onClick={() => navigateToHomeSection('reviews')}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
@@ -589,7 +596,7 @@ function App() {
 
             {/* Contact Link */}
             <button
-              onClick={() => navigateToHomeSection('booking')}
+              onClick={() => navigateToPage('contact')}
               className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
             >
               Contact
@@ -640,6 +647,12 @@ function App() {
                   Our Team
                 </button>
                 <button
+                  onClick={() => navigateToPage('contact')}
+                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                >
+                  Contact Us
+                </button>
+                <button
                   onClick={() => navigateToHomeSection('reviews')}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
@@ -683,7 +696,7 @@ function App() {
               </button>
               
               <button
-                onClick={() => navigateToHomeSection('booking')}
+                onClick={() => navigateToPage('contact')}
                 className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
               >
                 Contact
@@ -704,6 +717,8 @@ function App() {
 
       {currentPage === 'about' ? (
         <AboutPage onBookAppointment={handleBookAppointment} />
+      ) : currentPage === 'contact' ? (
+        <ContactPage onBookAppointment={handleBookAppointment} />
       ) : currentPage === 'service' ? (
         <ServicePage
           service={SERVICES.find((service) => service.id === currentServiceId) ?? SERVICES[0]}
@@ -1346,6 +1361,7 @@ function App() {
             <div className="flex flex-col gap-2.5 text-xs text-slate-400 font-light">
               <button onClick={() => navigateToPage('about')} className="hover:text-brand-primary text-left transition-colors">About Us</button>
               <button onClick={() => navigateToHomeSection('specialists')} className="hover:text-brand-primary text-left transition-colors">Meet Our Team</button>
+              <button onClick={() => navigateToPage('contact')} className="hover:text-brand-primary text-left transition-colors">Contact Us</button>
               <button onClick={() => navigateToHomeSection('reviews')} className="hover:text-brand-primary text-left transition-colors">Client reviews</button>
               <a href="#" className="hover:text-brand-primary transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-brand-primary transition-colors">Terms of Services</a>
