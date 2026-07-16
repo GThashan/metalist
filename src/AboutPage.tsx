@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import {
   ChevronDown,
   ChevronUp,
@@ -9,10 +9,10 @@ import {
   Heart,
   Brain,
   Users,
-  Award,
+  
   ShieldCheck,
   Lightbulb,
-  Target,
+  
 } from 'lucide-react'
 
 // ── Feature icon blocks for the "Strengthen Your Mind" section ─────────────
