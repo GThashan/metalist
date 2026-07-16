@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import AboutPage from './AboutPage'
 import {
   Menu,
   X,
@@ -118,6 +119,7 @@ function App() {
   // Navigation states
   const [activeDropdown, setActiveDropdown] = useState<'pages' | 'services' | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home')
   
   // Selected Service in Service Showcase
   const [selectedServiceTab, setSelectedServiceTab] = useState('mental-health')
@@ -148,6 +150,20 @@ function App() {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+
+  const navigateToPage = (page: 'home' | 'about') => {
+    setCurrentPage(page)
+    setIsMobileMenuOpen(false)
+    setActiveDropdown(null)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleBookAppointment = () => {
+    setCurrentPage('home')
+    setTimeout(() => {
+      scrollTo(appointmentFormRef)
+    }, 50)
   }
 
   // Handle Form Submission
@@ -262,7 +278,7 @@ function App() {
           <nav className="hidden lg:flex items-center gap-8">
             {/* Home link */}
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => navigateToPage('home')}
               className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
             >
               Home
@@ -286,7 +302,7 @@ function App() {
                   className="absolute left-0 mt-3 w-48 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
                 >
                   <button
-                    onClick={() => scrollTo(aboutSectionRef)}
+                    onClick={() => navigateToPage('about')}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
                     About Us
@@ -396,11 +412,7 @@ function App() {
           <div className="lg:hidden border-t border-brand-border bg-white py-4 px-6 space-y-4 animate-slideDown">
             <div className="flex flex-col space-y-3">
               <button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                  setIsMobileMenuOpen(false)
-                }}
-                className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
+                  onClick={() => navigateToPage('home')}
               >
                 Home
               </button>
@@ -408,7 +420,7 @@ function App() {
               <div className="border-t border-stone-100 my-1 pt-2">
                 <span className="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">Pages</span>
                 <button
-                  onClick={() => scrollTo(aboutSectionRef)}
+                  onClick={() => navigateToPage('about')}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
                   About Us
@@ -485,6 +497,10 @@ function App() {
         )}
       </header>
 
+      {currentPage === 'about' ? (
+        <AboutPage onBookAppointment={handleBookAppointment} />
+      ) : (
+        <>
       {/* Hero Section */}
       <section className="relative bg-[#f7f0e5] py-16 md:py-24 overflow-hidden border-b border-[#E1D8CC]/40">
         <div className="absolute top-[10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-[#C76B3D]/5 blur-3xl pointer-events-none" />
@@ -1055,6 +1071,9 @@ function App() {
             </div>
           </div>
         </div>
+      )}
+
+        </>
       )}
 
       {/* Footer */}
