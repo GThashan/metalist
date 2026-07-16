@@ -138,6 +138,7 @@ function App() {
   const [formMsg, setFormMsg] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [bookingSuccessData, setBookingSuccessData] = useState<any>(null)
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
   
   // Custom scrolling references
   const appointmentFormRef = useRef<HTMLDivElement>(null)
@@ -165,15 +166,23 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const openBookingModal = () => {
+    setIsBookingModalOpen(true)
+    setIsMobileMenuOpen(false)
+    setActiveDropdown(null)
+  }
+
   const navigateToHomeSection = (section: 'specialists' | 'booking' | 'reviews' | 'about' | 'services') => {
+    if (section === 'booking') {
+      openBookingModal()
+      return
+    }
+
     setCurrentPage('home')
     setTimeout(() => {
       switch (section) {
         case 'specialists':
           scrollTo(specialistSectionRef)
-          break
-        case 'booking':
-          scrollTo(appointmentFormRef)
           break
         case 'reviews':
           scrollTo(reviewSectionRef)
@@ -189,10 +198,7 @@ function App() {
   }
 
   const handleBookAppointment = () => {
-    setCurrentPage('home')
-    setTimeout(() => {
-      scrollTo(appointmentFormRef)
-    }, 50)
+    openBookingModal()
   }
 
   // Handle Form Submission
@@ -223,6 +229,7 @@ function App() {
       })
       
       setIsSubmitting(false)
+      setIsBookingModalOpen(false)
       
       // Reset form fields
       setFormName('')
@@ -234,8 +241,183 @@ function App() {
     }, 1200)
   }
 
+  const renderBookingModal = () => (
+    <div
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      onClick={() => setIsBookingModalOpen(false)}
+    >
+      <div
+        className="bg-white border border-[#E1D8CC] rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={() => setIsBookingModalOpen(false)}
+          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-5 space-y-6">
+            <span className="text-xs uppercase tracking-widest text-[#C76B3D] font-bold block">Start Healing</span>
+            <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
+              Schedule a Consultation at Mentalist
+            </h2>
+            <p className="text-slate-600 text-sm leading-relaxed font-light">
+              Complete this form to coordinate a consultation session with our licensed specialists.
+            </p>
+
+            <div className="space-y-4 pt-4 border-t border-stone-150">
+              <div className="flex gap-3.5 items-center">
+                <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-xs">HIPAA Compliant & Confidential</h4>
+                  <p className="text-[10px] text-slate-500">Your health data is secure and protected under strict codes.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-3.5 items-center">
+                <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-xs">Flexible Session Types</h4>
+                  <p className="text-[10px] text-slate-500">We offer both secure virtual telehealth and in-office clinic visits.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-lg">
+            <form onSubmit={handleBookingSubmit} className="space-y-5">
+              <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-brand-primary" />
+                <span>Request Booking Slot</span>
+              </h3>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                    placeholder="Your name"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={formEmail}
+                    onChange={(e) => setFormEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">Phone Number *</label>
+                  <input
+                    type="tel"
+                    required
+                    value={formPhone}
+                    onChange={(e) => setFormPhone(e.target.value)}
+                    placeholder="(555) 000-0000"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">Select Service category *</label>
+                  <select
+                    value={formService}
+                    onChange={(e) => setFormService(e.target.value)}
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                  >
+                    {SERVICES.map(s => (
+                      <option key={s.id} value={s.id}>{s.title}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-4">
+                <div className="space-y-1.5 sm:col-span-1">
+                  <label className="text-xs font-semibold text-slate-600 block">Preferred Doctor *</label>
+                  <select
+                    value={formSpecialist}
+                    onChange={(e) => setFormSpecialist(e.target.value)}
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                  >
+                    {SPECIALISTS.map(spec => (
+                      <option key={spec.id} value={spec.id}>{spec.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">Pick Date *</label>
+                  <input
+                    type="date"
+                    required
+                    value={formDate}
+                    onChange={(e) => setFormDate(e.target.value)}
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">Pick Time Slot *</label>
+                  <input
+                    type="time"
+                    required
+                    value={formTime}
+                    onChange={(e) => setFormTime(e.target.value)}
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-600 block">Short details / notes (Optional)</label>
+                <textarea
+                  rows={3}
+                  value={formMsg}
+                  onChange={(e) => setFormMsg(e.target.value)}
+                  placeholder="Briefly describe what you would like to address..."
+                  className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full bg-[#C76B3D] hover:bg-[#843519] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+              >
+                {isSubmitting ? 'Securing Slot...' : 'Submit Appointment Request'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-700 antialiased font-sans">
+      {isBookingModalOpen && renderBookingModal()}
       
       {/* Top Header Bar */}
       <div className="bg-[#333333] text-[#f7f0e5] py-2.5 px-6 text-sm hidden lg:block border-b border-stone-800">
@@ -563,7 +745,7 @@ function App() {
             
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
-                onClick={() => scrollTo(appointmentFormRef)}
+                onClick={openBookingModal}
                 className="px-6 py-3.5 rounded-full bg-[#C76B3D] hover:bg-[#843519] text-[#f7f0e5] font-semibold text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/20 hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Schedule First Session
@@ -741,7 +923,7 @@ function App() {
                   <button
                     onClick={() => {
                       setFormService(activeSrv.id)
-                      navigateToPage('service', activeSrv.id)
+                      openBookingModal()
                     }}
                     className="w-full bg-[#333333] hover:bg-brand-primary text-[#f7f0e5] py-2.5 rounded-xl font-medium text-xs transition-colors shadow"
                   >
@@ -813,7 +995,7 @@ function App() {
                   <button
                     onClick={() => {
                       setFormSpecialist(spec.id)
-                      scrollTo(appointmentFormRef)
+                      openBookingModal()
                     }}
                     className="w-full bg-[#f7f0e5] border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary text-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
                   >
