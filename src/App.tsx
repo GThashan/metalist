@@ -127,7 +127,7 @@ function App() {
   const [currentServiceId, setCurrentServiceId] = useState('mental-health')
   
   // Selected Service in Service Showcase
-  const [selectedServiceTab, setSelectedServiceTab] = useState('mental-health')
+  const [selectedServiceTab] = useState('mental-health')
 
   // Appointment Form States
   const [formName, setFormName] = useState('')
