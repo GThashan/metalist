@@ -1,10 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Outfit", sans-serif;
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede9fe;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
+  --font-serif: "Fraunces", serif;
+  --font-sans: "DM Sans", sans-serif;
+  
+  --color-brand-primary: #C76B3D;
+  --color-brand-secondary: #843519;
+  --color-brand-cream: #F7F0E5;
+  --color-brand-charcoal: #333333;
+  --color-brand-text: #636363;
+  --color-brand-border: #E1D8CC;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-brand-text);
+    background-color: #ffffff;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-brand-charcoal);
+    font-weight: 500;
+  }
 }
