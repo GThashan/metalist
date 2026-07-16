@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import AboutPage from './AboutPage'
+import ServicePage from './ServicePage'
 import {
   Menu,
   X,
@@ -119,7 +120,8 @@ function App() {
   // Navigation states
   const [activeDropdown, setActiveDropdown] = useState<'pages' | 'services' | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home')
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'service'>('home')
+  const [currentServiceId, setCurrentServiceId] = useState('mental-health')
   
   // Selected Service in Service Showcase
   const [selectedServiceTab, setSelectedServiceTab] = useState('mental-health')
@@ -152,11 +154,37 @@ function App() {
     }
   }
 
-  const navigateToPage = (page: 'home' | 'about') => {
+  const navigateToPage = (page: 'home' | 'about' | 'service', serviceId?: string) => {
     setCurrentPage(page)
+    if (serviceId) {
+      setCurrentServiceId(serviceId)
+    }
     setIsMobileMenuOpen(false)
     setActiveDropdown(null)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const navigateToHomeSection = (section: 'specialists' | 'booking' | 'reviews' | 'about' | 'services') => {
+    setCurrentPage('home')
+    setTimeout(() => {
+      switch (section) {
+        case 'specialists':
+          scrollTo(specialistSectionRef)
+          break
+        case 'booking':
+          scrollTo(appointmentFormRef)
+          break
+        case 'reviews':
+          scrollTo(reviewSectionRef)
+          break
+        case 'about':
+          scrollTo(aboutSectionRef)
+          break
+        case 'services':
+          scrollTo(servicesSectionRef)
+          break
+      }
+    }, 50)
   }
 
   const handleBookAppointment = () => {
@@ -260,7 +288,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigateToPage('home')}>
             <div className="w-10 h-10 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:bg-[#843519] transition-colors">
               M
             </div>
@@ -308,13 +336,13 @@ function App() {
                     About Us
                   </button>
                   <button
-                    onClick={() => scrollTo(specialistSectionRef)}
+                    onClick={() => navigateToHomeSection('specialists')}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
                     Our Team
                   </button>
                   <button
-                    onClick={() => scrollTo(reviewSectionRef)}
+                    onClick={() => navigateToHomeSection('reviews')}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
                     Client Review
@@ -342,8 +370,7 @@ function App() {
                 >
                   <button
                     onClick={() => {
-                      setSelectedServiceTab('mental-health')
-                      scrollTo(servicesSectionRef)
+                      navigateToPage('service', 'mental-health')
                     }}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
@@ -351,8 +378,7 @@ function App() {
                   </button>
                   <button
                     onClick={() => {
-                      setSelectedServiceTab('physical-health')
-                      scrollTo(servicesSectionRef)
+                      navigateToPage('service', 'physical-health')
                     }}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
@@ -360,8 +386,7 @@ function App() {
                   </button>
                   <button
                     onClick={() => {
-                      setSelectedServiceTab('therapy')
-                      scrollTo(servicesSectionRef)
+                      navigateToPage('service', 'therapy')
                     }}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
@@ -373,7 +398,7 @@ function App() {
 
             {/* Specialist link */}
             <button
-              onClick={() => scrollTo(specialistSectionRef)}
+              onClick={() => navigateToHomeSection('specialists')}
               className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
             >
               Specialists
@@ -381,7 +406,7 @@ function App() {
 
             {/* Contact Link */}
             <button
-              onClick={() => scrollTo(appointmentFormRef)}
+              onClick={() => navigateToHomeSection('booking')}
               className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
             >
               Contact
@@ -391,7 +416,7 @@ function App() {
           {/* Appointment button CTA */}
           <div className="hidden lg:block">
             <button
-              onClick={() => scrollTo(appointmentFormRef)}
+              onClick={() => navigateToHomeSection('booking')}
               className="bg-[#C76B3D] hover:bg-[#843519] text-white px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/10 hover:shadow-lg hover:shadow-[#843519]/25 transform hover:-translate-y-0.5"
             >
               Book Appointment
@@ -426,13 +451,13 @@ function App() {
                   About Us
                 </button>
                 <button
-                  onClick={() => scrollTo(specialistSectionRef)}
+                  onClick={() => navigateToHomeSection('specialists')}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
                   Our Team
                 </button>
                 <button
-                  onClick={() => scrollTo(reviewSectionRef)}
+                  onClick={() => navigateToHomeSection('reviews')}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
                   Client Review
@@ -443,8 +468,7 @@ function App() {
                 <span className="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">Services</span>
                 <button
                   onClick={() => {
-                    setSelectedServiceTab('mental-health')
-                    scrollTo(servicesSectionRef)
+                    navigateToPage('service', 'mental-health')
                   }}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
@@ -452,8 +476,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
-                    setSelectedServiceTab('physical-health')
-                    scrollTo(servicesSectionRef)
+                    navigateToPage('service', 'physical-health')
                   }}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
@@ -461,8 +484,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
-                    setSelectedServiceTab('therapy')
-                    scrollTo(servicesSectionRef)
+                    navigateToPage('service', 'therapy')
                   }}
                   className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
                 >
@@ -471,14 +493,14 @@ function App() {
               </div>
 
               <button
-                onClick={() => scrollTo(specialistSectionRef)}
+                onClick={() => navigateToHomeSection('specialists')}
                 className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
               >
                 Specialists
               </button>
               
               <button
-                onClick={() => scrollTo(appointmentFormRef)}
+                onClick={() => navigateToHomeSection('booking')}
                 className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
               >
                 Contact
@@ -487,7 +509,7 @@ function App() {
             
             <div className="pt-2">
               <button
-                onClick={() => scrollTo(appointmentFormRef)}
+                onClick={() => navigateToHomeSection('booking')}
                 className="w-full text-center bg-[#C76B3D] text-white py-3 rounded-xl font-medium shadow-md shadow-[#C76B3D]/10"
               >
                 Book Appointment
@@ -499,6 +521,15 @@ function App() {
 
       {currentPage === 'about' ? (
         <AboutPage onBookAppointment={handleBookAppointment} />
+      ) : currentPage === 'service' ? (
+        <ServicePage
+          service={SERVICES.find((service) => service.id === currentServiceId) ?? SERVICES[0]}
+          specialists={SPECIALISTS.filter((specialist) => {
+            const service = SERVICES.find((item) => item.id === currentServiceId)
+            return service ? service.id === 'therapy' ? specialist.id === 'elena-rostova' || specialist.id === 'sarah-jenkins' : service.id === 'physical-health' ? specialist.id === 'marcus-vance' : specialist.id === 'sarah-jenkins' : true
+          })}
+          onBookAppointment={handleBookAppointment}
+        />
       ) : (
         <>
       {/* Hero Section */}
@@ -662,7 +693,7 @@ function App() {
             {SERVICES.map((srv) => (
               <button
                 key={srv.id}
-                onClick={() => setSelectedServiceTab(srv.id)}
+                onClick={() => navigateToPage('service', srv.id)}
                 className={`px-5 py-3 rounded-full font-medium text-sm transition-all cursor-pointer ${
                   selectedServiceTab === srv.id
                     ? 'bg-brand-primary text-white shadow-md'
@@ -704,7 +735,7 @@ function App() {
                   <button
                     onClick={() => {
                       setFormService(activeSrv.id)
-                      scrollTo(appointmentFormRef)
+                      navigateToPage('service', activeSrv.id)
                     }}
                     className="w-full bg-[#333333] hover:bg-brand-primary text-[#f7f0e5] py-2.5 rounded-xl font-medium text-xs transition-colors shadow"
                   >
@@ -1125,9 +1156,9 @@ function App() {
           <div className="space-y-3.5">
             <h4 className="font-serif font-semibold text-[#f7f0e5] text-sm">Company Pages</h4>
             <div className="flex flex-col gap-2.5 text-xs text-slate-400 font-light">
-              <button onClick={() => scrollTo(aboutSectionRef)} className="hover:text-brand-primary text-left transition-colors">About Us</button>
-              <button onClick={() => scrollTo(specialistSectionRef)} className="hover:text-brand-primary text-left transition-colors">Meet Our Team</button>
-              <button onClick={() => scrollTo(reviewSectionRef)} className="hover:text-brand-primary text-left transition-colors">Client reviews</button>
+              <button onClick={() => navigateToPage('about')} className="hover:text-brand-primary text-left transition-colors">About Us</button>
+              <button onClick={() => navigateToHomeSection('specialists')} className="hover:text-brand-primary text-left transition-colors">Meet Our Team</button>
+              <button onClick={() => navigateToHomeSection('reviews')} className="hover:text-brand-primary text-left transition-colors">Client reviews</button>
               <a href="#" className="hover:text-brand-primary transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-brand-primary transition-colors">Terms of Services</a>
             </div>
@@ -1137,9 +1168,9 @@ function App() {
           <div className="space-y-3.5">
             <h4 className="font-serif font-semibold text-[#f7f0e5] text-sm">Our Services</h4>
             <div className="flex flex-col gap-2.5 text-xs text-slate-400 font-light">
-              <button onClick={() => { setSelectedServiceTab('mental-health'); scrollTo(servicesSectionRef) }} className="hover:text-brand-primary text-left transition-colors">Mental Health Support</button>
-              <button onClick={() => { setSelectedServiceTab('physical-health'); scrollTo(servicesSectionRef) }} className="hover:text-brand-primary text-left transition-colors">Physical Health Sync</button>
-              <button onClick={() => { setSelectedServiceTab('therapy'); scrollTo(servicesSectionRef) }} className="hover:text-brand-primary text-left transition-colors">Individual & Group Psychotherapy</button>
+              <button onClick={() => navigateToPage('service', 'mental-health')} className="hover:text-brand-primary text-left transition-colors">Mental Health Support</button>
+              <button onClick={() => navigateToPage('service', 'physical-health')} className="hover:text-brand-primary text-left transition-colors">Physical Health Sync</button>
+              <button onClick={() => navigateToPage('service', 'therapy')} className="hover:text-brand-primary text-left transition-colors">Individual & Group Psychotherapy</button>
               <a href="#" className="hover:text-brand-primary transition-colors">Trauma (EMDR) Care</a>
             </div>
           </div>
