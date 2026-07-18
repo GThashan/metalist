@@ -4,6 +4,7 @@ import ServicePage from './ServicePage'
 import SpecialistsPage from './SpecialistsPage'
 import ContactPage from './ContactPage'
 import heroImage from './assets/hero.jpg'
+import logoImage from './assets/logo.png'
 import {
   Menu,
   X,
@@ -474,15 +475,16 @@ function App() {
           
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigateToPage('home')}>
-            <div className="w-10 h-10 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:bg-[#843519] transition-colors">
-              M
-            </div>
+            {/* <div className="w-10 h-10 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:bg-[#843519] transition-colors">
+              
+            </div> */}
+            <img src={logoImage} alt="Insight Logo" className="w-10 h-10" />
             <div>
               <span className="font-serif font-bold text-2xl tracking-tight text-[#333333] group-hover:text-brand-primary transition-colors">
-                Mentalist
+                Insight
               </span>
               <span className="block text-[10px] uppercase tracking-widest text-[#C76B3D] font-semibold -mt-1">
-                Psychology Center
+                counseling organization
               </span>
             </div>
           </div>
