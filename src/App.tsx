@@ -5,6 +5,9 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
+import profile from "./assets/profiel.jpg";
+import profile1 from "./assets/profile1.jpg";
+import profile2 from "./assets/profile2.jpg";
 import {
   Menu,
   X,
@@ -17,7 +20,7 @@ import {
   Star,
   Check,
   Heart,
-  ArrowRight,
+  
   Award,
   ShieldCheck,
   ThumbsUp,
@@ -36,8 +39,7 @@ const SPECIALISTS = [
     role: "Clinical Psychologist",
     rating: 5,
     reviews: 124,
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400",
+    image: profile,
     specialties: [
       "Anxiety & Depression",
       "Cognitive Behavioral Therapy (CBT)",
@@ -52,7 +54,7 @@ const SPECIALISTS = [
     rating: 5,
     reviews: 98,
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400",
+      profile1,
     specialties: [
       "Neurodevelopmental Conditions",
       "Physical Health Sync",
@@ -66,8 +68,8 @@ const SPECIALISTS = [
     role: "Family & Marriage Therapist",
     rating: 5,
     reviews: 147,
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=400",
+    image: profile2,
+      
     specialties: [
       "Relationship Counseling",
       "PTSD & Trauma Recovery",
@@ -1050,8 +1052,8 @@ function App() {
 
 </section>
 {/* Founder's Message Section - Prasad Wijesundara */}
-<section className="py-20 bg-[#0D5ADB] border-b border-[#1a3a5c] m-7 rounded-3xl shadow-lg relative overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6">
+<section className="py-7 bg-[#0D5ADB] border-b border-[#1a3a5c] m-7 rounded-3xl shadow-lg relative overflow-hidden">
+  <div className="max-w-7xl mx-auto">
     {/* 4-Part Grid Layout */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
       
@@ -1059,9 +1061,9 @@ function App() {
       <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
         <div className="relative">
           <div className="absolute -inset-3 rounded-full border border-white/10" />
-          <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
+          <div className="w-70 h-70 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
             <img
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400"
+              src={profile}
               alt="Prasad Wijesundara"
               className="w-full h-full object-cover"
             />
@@ -1079,7 +1081,7 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
             Prasad Wijesundara
           </h2>
-          <p className="text-[#FFB347] font-medium text-xs tracking-wider uppercase">
+          <p className="text-white font-medium text-xs tracking-wider uppercase">
             Founder | Psychological Counselor & Psychotherapist
           </p>
           <p className="text-white/70 leading-relaxed text-sm">
@@ -1117,7 +1119,7 @@ function App() {
         <div className="flex flex-col items-center gap-4">
           <button
             onClick={openBookingModal}
-            className="inline-flex items-center gap-2 bg-[#FFB347] hover:bg-[#e69f3a] text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
+            className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
           >
             <span>Book With Prasad →</span>
           </button>
@@ -1131,100 +1133,9 @@ function App() {
   </div>
 </section>
 
-          {/* About Us section */}
-          <section ref={aboutSectionRef} id="about" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-              {/* About Artwork */}
-              <div className="relative flex justify-center order-2 md:order-1">
-                <div className="absolute inset-0 bg-[#843519]/5 rounded-[3rem] -rotate-3 scale-95 border border-[#843519]/10" />
-                <div className="bg-white/95 border border-stone-200 p-4 rounded-[3rem] shadow-xl relative z-10 max-w-sm">
-                  <img
-                    src="/mindfulness_about.png"
-                    alt="Serene circular artwork"
-                    className="w-full h-auto rounded-[2.2rem] object-cover"
-                  />
-                </div>
-              </div>
+          
 
-              {/* About copy */}
-              <div className="space-y-6 order-1 md:order-2">
-                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
-                  About Our Clinic
-                </span>
-
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333] leading-tight">
-                  We Advocate for Your Holistic Mind & Body Balance
-                </h2>
-
-                <p className="text-slate-600 leading-relaxed font-light">
-                  At Mentalist, we combine clinical psychiatric excellence with
-                  compassionate, behavioral counseling. We believe mental
-                  well-being is not a luxury, but the baseline foundation of a
-                  thriving, fulfilling life.
-                </p>
-
-                {/* Principles */}
-                <div className="space-y-3.5 pt-2">
-                  <div className="flex gap-3">
-                    <div className="w-6 h-6 rounded-full bg-[#0057B8] flex items-center justify-center text-white shrink-0">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">
-                        Evidence-Based Treatment Plans
-                      </h4>
-                      <p className="text-xs text-slate-500">
-                        Every session is backed by proven psychological
-                        strategies (CBT, ACT, EMDR).
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="w-6 h-6 rounded-full bg-[#0057B8] flex items-center justify-center text-white shrink-0">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">
-                        Absolute Confidentiality & Care
-                      </h4>
-                      <p className="text-xs text-slate-500">
-                        A secure environment where you are fully respected and
-                        heard.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <div className="w-6 h-6 rounded-full bg-[#0057B8] flex items-center justify-center text-white shrink-0">
-                      <Check className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-slate-800 text-sm">
-                        Multidisciplinary Collaboration
-                      </h4>
-                      <p className="text-xs text-slate-500">
-                        Neurology, physical fitness sync, and psychological
-                        support in one center.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-4">
-                  <button
-                    onClick={() => scrollTo(specialistSectionRef)}
-                    className="inline-flex items-center gap-2 group text-sm font-bold text-brand-primary hover:text-brand-secondary transition-colors"
-                  >
-                    <span>Meet Our Professional Team</span>
-                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Services Grid Section */}
+          
           <section
             ref={servicesSectionRef}
             id="services"
@@ -1233,7 +1144,7 @@ function App() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-6">
               <div className="mx-auto mb-12 max-w-3xl text-center">
-                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-[#C76B3D]">
+                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
                   Tailored specialties
                 </span>
                 <h2 className="text-3xl font-serif text-[#333333] sm:text-4xl md:text-5xl">
@@ -1255,8 +1166,8 @@ function App() {
                     }}
                     className={`rounded-full px-5 py-3 text-sm font-medium transition-all duration-300 ${
                       selectedServiceTab === srv.id
-                        ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20"
-                        : "border border-stone-200 bg-white text-slate-600 hover:border-brand-primary hover:text-brand-primary"
+                        ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
+                        : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
                     }`}
                   >
                     {srv.title}
@@ -1287,7 +1198,7 @@ function App() {
                           {activeSrv.bullets.map((bullet, idx) => (
                             <div
                               key={idx}
-                              className="flex items-start gap-2 rounded-2xl border border-[#E1D8CC]/60 bg-[#F8F4EE] p-3"
+                              className="flex items-start gap-2 rounded-2xl border border-[#E1D8CC]/60 bg-brand-primary/10 p-3"
                             >
                               <div className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-primary" />
                               <span className="text-sm text-slate-700">
@@ -1298,7 +1209,7 @@ function App() {
                         </div>
                       </div>
 
-                      <div className="rounded-[1.75rem] border border-[#E1D8CC] bg-[linear-gradient(180deg,_#f7f0e5_0%,_#fffdf9_100%)] p-6 shadow-sm">
+                      <div className="rounded-[1.75rem] border border-[#E1D8CC] bg-[linear-gradient(180deg,_brand-primary_0%,_#fffdf9_100%)] p-6 shadow-sm">
                         <div className="mb-5 flex items-center justify-between">
                           <div>
                             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-primary">
@@ -1355,12 +1266,12 @@ function App() {
           <section
             ref={specialistSectionRef}
             id="specialists"
-            className="py-20 bg-white"
+            className="py-20 bg-brand-primary/10"
           >
             <div className="max-w-7xl mx-auto px-6">
               {/* Header */}
               <div className="text-center max-w-xl mx-auto space-y-4 mb-14">
-                <span className="text-xs uppercase tracking-widest text-[#C76B3D] font-bold block">
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Professional Care
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
@@ -1436,7 +1347,7 @@ function App() {
                           setFormSpecialist(spec.id);
                           openBookingModal();
                         }}
-                        className="w-full bg-[#f7f0e5] border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary text-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
+                        className="w-full bg-brand-primary text-white border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
                       >
                         Request Booking
                       </button>
@@ -1451,20 +1362,20 @@ function App() {
           <section
             ref={reviewSectionRef}
             id="reviews"
-            className="py-20 bg-slate-50 border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
+            className="py-20 bg-brand-primary border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-[#f7f0e5]/30 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full bg-brand-primary pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               {/* Header */}
               <div className="text-center max-w-xl mx-auto space-y-4 mb-14">
-                <span className="text-xs uppercase tracking-widest text-[#C76B3D] font-bold block">
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Patient Testimonials
                 </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-black">
                   Clinical Reviews & Feedback
                 </h2>
-                <p className="text-slate-500 text-sm font-light">
+                <p className="text-black text-sm font-light">
                   Read how our personalized behavioral approaches helped clients
                   navigate life transitions.
                 </p>
