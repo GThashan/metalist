@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import AboutPage from "./AboutPage";
 import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
@@ -15,8 +15,6 @@ import {
   Calendar,
   Clock,
   Phone,
-  Mail,
-  MapPin,
   Star,
   Check,
   Heart,
@@ -29,6 +27,8 @@ import {
   Users,
   MessageCircle,
   Sparkles,
+  Moon,
+  Sun,
 } from "lucide-react";
 
 // Mock Data
@@ -171,6 +171,15 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingSuccessData, setBookingSuccessData] = useState<any>(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   // Custom scrolling references
   const appointmentFormRef = useRef<HTMLDivElement>(null);
@@ -287,13 +296,13 @@ function App() {
       onClick={() => setIsBookingModalOpen(false)}
     >
       <div
-        className="bg-white border border-[#E1D8CC] rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+        className="bg-white dark:bg-[#111827] border border-[#E1D8CC] dark:border-slate-800 rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={() => setIsBookingModalOpen(false)}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+          className="absolute top-4 right-4 p-2 text-slate-400 dark:text-slate-300 hover:text-slate-600 dark:text-slate-300 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -303,38 +312,38 @@ function App() {
             <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
               Start Healing
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] dark:text-[#F8FAFC] leading-tight">
               Schedule a Consultation at Mentalist
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed font-light">
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-light">
               Complete this form to coordinate a consultation session with our
               licensed specialists.
             </p>
 
             <div className="space-y-4 pt-4 border-t border-stone-150">
               <div className="flex gap-3.5 items-center">
-                <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-brand-cream dark:bg-[#0B1121] text-[#C76B3D] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-800 text-xs">
+                  <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-xs">
                     HIPAA Compliant & Confidential
                   </h4>
-                  <p className="text-[10px] text-slate-500">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-300">
                     Your health data is secure and protected under strict codes.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-3.5 items-center">
-                <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-brand-cream dark:bg-[#0B1121] text-[#C76B3D] flex items-center justify-center shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-800 text-xs">
+                  <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-xs">
                     Flexible Session Types
                   </h4>
-                  <p className="text-[10px] text-slate-500">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-300">
                     We offer both secure virtual telehealth and in-office clinic
                     visits.
                   </p>
@@ -343,16 +352,16 @@ function App() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-lg">
+          <div className="lg:col-span-7 bg-slate-50 dark:bg-[#111827] border border-stone-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg">
             <form onSubmit={handleBookingSubmit} className="space-y-5">
-              <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 border-b border-stone-200 dark:border-slate-800 pb-3 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-brand-primary" />
                 <span>Request Booking Slot</span>
               </h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Full Name *
                   </label>
                   <input
@@ -361,12 +370,12 @@ function App() {
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
                     placeholder="Your name"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Email Address *
                   </label>
                   <input
@@ -375,14 +384,14 @@ function App() {
                     value={formEmail}
                     onChange={(e) => setFormEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Phone Number *
                   </label>
                   <input
@@ -391,18 +400,18 @@ function App() {
                     value={formPhone}
                     onChange={(e) => setFormPhone(e.target.value)}
                     placeholder="(555) 000-0000"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Select Service category *
                   </label>
                   <select
                     value={formService}
                     onChange={(e) => setFormService(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                   >
                     {SERVICES.map((s) => (
                       <option key={s.id} value={s.id}>
@@ -415,13 +424,13 @@ function App() {
 
               <div className="grid sm:grid-cols-3 gap-4">
                 <div className="space-y-1.5 sm:col-span-1">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Preferred Doctor *
                   </label>
                   <select
                     value={formSpecialist}
                     onChange={(e) => setFormSpecialist(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
                   >
                     {SPECIALISTS.map((spec) => (
                       <option key={spec.id} value={spec.id}>
@@ -432,7 +441,7 @@ function App() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Pick Date *
                   </label>
                   <input
@@ -440,12 +449,12 @@ function App() {
                     required
                     value={formDate}
                     onChange={(e) => setFormDate(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
+                  <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                     Pick Time Slot *
                   </label>
                   <input
@@ -453,13 +462,13 @@ function App() {
                     required
                     value={formTime}
                     onChange={(e) => setFormTime(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                    className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-600 block">
+                <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                   Short details / notes (Optional)
                 </label>
                 <textarea
@@ -467,7 +476,7 @@ function App() {
                   value={formMsg}
                   onChange={(e) => setFormMsg(e.target.value)}
                   placeholder="Briefly describe what you would like to address..."
-                  className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all resize-none"
+                  className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all resize-none"
                 />
               </div>
 
@@ -490,118 +499,22 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-brand-cream text-brand-text antialiased font-sans">
+    <div className="min-h-screen bg-brand-cream dark:bg-[#0B1121] text-brand-text dark:text-slate-300 antialiased font-sans">
       {isBookingModalOpen && renderBookingModal()}
 
-      {/* Top Header Bar */}
-      <div className="bg-brand-charcoal text-white py-2.5 px-6 text-sm hidden lg:block border-b border-stone-800">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <MapPin className="w-4 h-4 text-brand-primary" />
-              25 Main St, NY 10001
-            </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Mail className="w-4 h-4 text-brand-primary" />
-              contact@mentalist.com
-            </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Phone className="w-4 h-4 text-brand-primary" />
-              +1 (555) 321-7890
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-xs opacity-75">Follow Us:</span>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://facebook.com"
-                aria-label="Facebook"
-                className="hover:text-brand-primary transition-colors"
-              >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://twitter.com"
-                aria-label="Twitter / X"
-                className="hover:text-brand-primary transition-colors"
-              >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              <a
-                href="https://instagram.com"
-                aria-label="Instagram"
-                className="hover:text-brand-primary transition-colors"
-              >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-              <a
-                href="https://linkedin.com"
-                aria-label="LinkedIn"
-                className="hover:text-brand-primary transition-colors"
-              >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Main Header / Navigation */}
-      <header className="sticky top-0 z-50 bg-white border-b border-[#E1D8CC]/60 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <div className="fixed top-0 z-50 w-full transition-all duration-300">
+        <header className="w-full bg-white/30 dark:bg-[#111827]/40 backdrop-blur-lg border-b border-white/20 dark:border-slate-700/60 shadow-sm transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 h-16 flex justify-between items-center">
           {/* Logo */}
           <div
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => navigateToPage("home")}
           >
-            {/* <div className="w-10 h-10 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:bg-[#843519] transition-colors">
-              
-            </div> */}
             <img src={logoImage} alt="Insight Logo" className="w-10 h-10" />
             <div>
-              <span className="font-serif font-bold text-2xl tracking-tight text-[#333333] group-hover:text-brand-primary transition-colors">
+              <span className="font-serif font-bold text-2xl tracking-tight text-[#333333] dark:text-[#F8FAFC] group-hover:text-brand-primary transition-colors">
                 Insight
               </span>
               <span className="block text-[10px] uppercase tracking-widest text-brand-primary font-semibold -mt-1">
@@ -615,7 +528,7 @@ function App() {
             {/* Home link */}
             <button
               onClick={() => navigateToPage("home")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-primary"
             >
               <Home className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
               <span>Home</span>
@@ -628,7 +541,7 @@ function App() {
                 onClick={() =>
                   setActiveDropdown(activeDropdown === "pages" ? null : "pages")
                 }
-                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
+                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-primary focus:outline-none"
               >
                 <Info className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
                 <span>Pages</span>
@@ -641,29 +554,29 @@ function App() {
               {activeDropdown === "pages" && (
                 <div
                   onMouseLeave={() => setActiveDropdown(null)}
-                  className="absolute left-0 mt-3 w-48 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
+                  className="absolute left-0 mt-3 w-48 bg-white/90 dark:bg-[#111827]/90 backdrop-blur-md border border-brand-border/50 rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
                 >
                   <button
                     onClick={() => navigateToPage("about")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     About Us
                   </button>
                   <button
                     onClick={() => navigateToPage("specialists")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     Our Team
                   </button>
                   <button
                     onClick={() => navigateToPage("contact")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     Contact Us
                   </button>
                   <button
                     onClick={() => navigateToHomeSection("reviews")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     Client Review
                   </button>
@@ -680,7 +593,7 @@ function App() {
                     activeDropdown === "services" ? null : "services",
                   )
                 }
-                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
+                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-primary focus:outline-none"
               >
                 <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
                 <span>Services</span>
@@ -693,13 +606,13 @@ function App() {
               {activeDropdown === "services" && (
                 <div
                   onMouseLeave={() => setActiveDropdown(null)}
-                  className="absolute left-0 mt-3 w-56 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
+                  className="absolute left-0 mt-3 w-56 bg-white/90 dark:bg-[#111827]/90 backdrop-blur-md border border-brand-border/50 rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
                 >
                   <button
                     onClick={() => {
                       navigateToPage("service", "mental-health");
                     }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     Mental Health
                   </button>
@@ -707,7 +620,7 @@ function App() {
                     onClick={() => {
                       navigateToPage("service", "physical-health");
                     }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     Physical Health
                   </button>
@@ -715,7 +628,7 @@ function App() {
                     onClick={() => {
                       navigateToPage("service", "therapy");
                     }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-secondary transition-colors"
                   >
                     Therapy
                   </button>
@@ -726,7 +639,7 @@ function App() {
             {/* Specialist link */}
             <button
               onClick={() => navigateToPage("specialists")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-primary"
             >
               <Users className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
               <span>Specialists</span>
@@ -735,85 +648,100 @@ function App() {
             {/* Contact Link */}
             <button
               onClick={() => navigateToPage("contact")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:hover:bg-[#0B1121] hover:text-brand-primary"
             >
               <Phone className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
               <span>Contact</span>
             </button>
           </nav>
 
-          {/* Appointment button CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://wa.me/15553217890"
-              target="_blank"
-              rel="noreferrer"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="h-5 w-5" />
-            </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Appointment button CTA */}
+            <div className="hidden lg:flex items-center gap-3">
+              <a
+                href="https://wa.me/15553217890"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="h-5 w-5" />
+              </a>
+              <button
+                onClick={() => navigateToHomeSection("booking")}
+                className="whitespace-nowrap flex items-center justify-center h-11 rounded-full bg-brand-primary px-6 text-sm font-medium text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90 hover:shadow-lg"
+              >
+                Book Appointment
+              </button>
+            </div>
+
+            {/* Dark Mode Toggle */}
             <button
-              onClick={() => navigateToHomeSection("booking")}
-              className="rounded-full bg-[#0D5ADB] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#C76B3D]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A3D91] hover:shadow-lg hover:shadow-[#843519]/25"
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="group relative flex items-center justify-center rounded-full p-2.5 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 shadow-sm bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 focus:outline-none ring-1 ring-slate-200 dark:ring-slate-700"
+              aria-label="Toggle Dark Mode"
             >
-              Book Appointment
+              {isDarkMode ? (
+                <Sun className="h-4 w-4 transition-transform duration-300 text-amber-400 group-hover:scale-110" />
+              ) : (
+                <Moon className="h-4 w-4 transition-transform duration-300 text-indigo-600 group-hover:scale-110" />
+              )}
+            </button>
+
+            {/* Mobile menu trigger */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-2 text-[#333333] dark:text-[#F8FAFC] hover:text-brand-primary transition-colors focus:outline-none"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
-
-          {/* Mobile menu trigger */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-[#333333] hover:text-brand-primary transition-colors focus:outline-none"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
         </div>
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-brand-border bg-white py-4 px-6 space-y-4 animate-slideDown">
+          <div className="lg:hidden border-t border-brand-border/50 dark:border-slate-700/50 bg-transparent py-4 px-6 space-y-4 animate-slideDown">
             <div className="flex flex-col space-y-3">
               <button
                 onClick={() => navigateToPage("home")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 dark:text-slate-200 transition-all duration-300 hover:bg-brand-cream dark:bg-[#0B1121] hover:text-brand-primary"
               >
                 <Home className="h-4 w-4" />
                 <span>Home</span>
               </button>
 
               <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
+                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-300">
                   Pages
                 </span>
                 <button
                   onClick={() => navigateToPage("about")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Info className="h-4 w-4" />
                   <span>About Us</span>
                 </button>
                 <button
                   onClick={() => navigateToPage("specialists")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Users className="h-4 w-4" />
                   <span>Our Team</span>
                 </button>
                 <button
                   onClick={() => navigateToPage("contact")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Phone className="h-4 w-4" />
                   <span>Contact Us</span>
                 </button>
                 <button
                   onClick={() => navigateToHomeSection("reviews")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Heart className="h-4 w-4" />
                   <span>Client Review</span>
@@ -821,14 +749,14 @@ function App() {
               </div>
 
               <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
+                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-300">
                   Services
                 </span>
                 <button
                   onClick={() => {
                     navigateToPage("service", "mental-health");
                   }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Sparkles className="h-4 w-4" />
                   <span>Mental Health Support</span>
@@ -837,7 +765,7 @@ function App() {
                   onClick={() => {
                     navigateToPage("service", "physical-health");
                   }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Sparkles className="h-4 w-4" />
                   <span>Physical Health Sync</span>
@@ -846,7 +774,7 @@ function App() {
                   onClick={() => {
                     navigateToPage("service", "therapy");
                   }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 dark:text-slate-300 transition-all duration-300 hover:text-brand-primary"
                 >
                   <Sparkles className="h-4 w-4" />
                   <span>Psychotherapy & Counseling</span>
@@ -855,7 +783,7 @@ function App() {
 
               <button
                 onClick={() => navigateToPage("specialists")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:bg-[#0B1121] hover:text-brand-primary"
               >
                 <Users className="h-4 w-4" />
                 <span>Specialists</span>
@@ -863,7 +791,7 @@ function App() {
 
               <button
                 onClick={() => navigateToPage("contact")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] dark:text-[#F8FAFC] transition-all duration-300 hover:bg-brand-cream dark:bg-[#0B1121] hover:text-brand-primary"
               >
                 <Phone className="h-4 w-4" />
                 <span>Contact</span>
@@ -889,7 +817,8 @@ function App() {
             </div>
           </div>
         )}
-      </header>
+        </header>
+      </div>
 
       {currentPage === "about" ? (
         <AboutPage onBookAppointment={handleBookAppointment} />
@@ -925,7 +854,7 @@ function App() {
         <>
           {/* Hero Section */}
           <section
-  className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-16 md:py-24"
+  className="relative overflow-hidden border-b border-[#E1D8CC] dark:border-slate-800/40 pt-28 pb-16 md:pt-36 md:pb-24"
   style={{
     backgroundImage: `
       linear-gradient(
@@ -950,7 +879,7 @@ function App() {
       {/* Left Content */}
       <div className="space-y-6">
 
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
+        <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white dark:bg-[#111827]/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
           <Heart className="h-3.5 w-3.5" />
           <span>Support for lasting wellness</span>
         </div>
@@ -1022,14 +951,14 @@ function App() {
 
             <div
               key={item.title}
-              className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-md"
+              className="rounded-2xl border border-white/70 bg-white dark:bg-[#111827]/75 p-3 shadow-sm backdrop-blur-md"
             >
 
-              <h3 className="text-sm font-semibold text-slate-800">
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                 {item.title}
               </h3>
 
-              <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
+              <p className="mt-1 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
                 {item.text}
               </p>
 
@@ -1068,11 +997,11 @@ function App() {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute top-0 right-0 w-8 h-8 bg-white/5 rounded-full -mr-2 -mt-2 z-0" />
-          <div className="absolute bottom-0 left-0 w-6 h-6 bg-white/5 rounded-full -ml-2 -mb-2 z-0" />
+          <div className="absolute top-0 right-0 w-8 h-8 bg-white dark:bg-[#111827]/5 rounded-full -mr-2 -mt-2 z-0" />
+          <div className="absolute bottom-0 left-0 w-6 h-6 bg-white dark:bg-[#111827]/5 rounded-full -ml-2 -mb-2 z-0" />
         </div>
         {/* Separator Line */}
-        <div className="hidden md:block w-px h-16 bg-white/10 mt-6" />
+        <div className="hidden md:block w-px h-16 bg-white dark:bg-[#111827]/10 mt-6" />
       </div>
 
       {/* PART 2: Name & Title */}
@@ -1089,7 +1018,7 @@ function App() {
           </p>
         </div>
         {/* Separator Line */}
-        <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
+        <div className="hidden md:block w-px h-16 bg-white dark:bg-[#111827]/10 mt-6 mx-auto md:mx-0" />
       </div>
 
       {/* PART 3: Service List */}
@@ -1111,7 +1040,7 @@ function App() {
           ))}
         </div>
         {/* Separator Line */}
-        <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
+        <div className="hidden md:block w-px h-16 bg-white dark:bg-[#111827]/10 mt-6 mx-auto md:mx-0" />
       </div>
 
       {/* PART 4: CTA Button */}
@@ -1119,7 +1048,7 @@ function App() {
         <div className="flex flex-col items-center gap-4">
           <button
             onClick={openBookingModal}
-            className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
+            className="inline-flex items-center gap-2 bg-white dark:bg-[#1E293B] hover:bg-black dark:hover:bg-slate-800 text-[#0A2647] dark:text-white px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center border dark:border-slate-700"
           >
             <span>Book With Prasad →</span>
           </button>
@@ -1139,7 +1068,7 @@ function App() {
           <section
             ref={servicesSectionRef}
             id="services"
-            className="relative overflow-hidden border-t border-b border-[#E1D8CC]/40 bg-[linear-gradient(180deg,rgba(247,240,229,0.45),rgba(255,255,255,0.95))] py-20"
+            className="relative overflow-hidden border-t border-b border-[#E1D8CC] dark:border-slate-800/40 bg-[linear-gradient(180deg,rgba(247,240,229,0.45),rgba(255,255,255,0.95))] dark:bg-none py-20"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-6">
@@ -1147,10 +1076,10 @@ function App() {
                 <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
                   Tailored specialties
                 </span>
-                <h2 className="text-3xl font-serif text-[#333333] sm:text-4xl md:text-5xl">
+                <h2 className="text-3xl font-serif text-[#333333] dark:text-[#F8FAFC] sm:text-4xl md:text-5xl">
                   Clinical Services & Programs
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-slate-500 sm:text-base">
+                <p className="mt-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400 dark:text-slate-300 sm:text-base">
                   We combine evidence-based support with compassionate guidance
                   for adults, couples, and families navigating change.
                 </p>
@@ -1175,7 +1104,7 @@ function App() {
                 ))}
               </div>
 
-              <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12">
+              <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#E1D8CC] dark:border-slate-800 bg-white dark:bg-[#111827]/95 p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12">
                 {SERVICES.filter((s) => s.id === selectedServiceTab).map(
                   (activeSrv) => (
                     <div
@@ -1183,14 +1112,14 @@ function App() {
                       className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center"
                     >
                       <div className="space-y-6">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-brand-cream px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-brand-cream dark:bg-[#0B1121] px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
                           <Award className="h-3.5 w-3.5" />
                           <span>Focused care</span>
                         </div>
-                        <h3 className="text-2xl font-serif text-[#333333] sm:text-3xl">
+                        <h3 className="text-2xl font-serif text-[#333333] dark:text-[#F8FAFC] sm:text-3xl">
                           {activeSrv.title}
                         </h3>
-                        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+                        <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base">
                           {activeSrv.description}
                         </p>
 
@@ -1198,10 +1127,10 @@ function App() {
                           {activeSrv.bullets.map((bullet, idx) => (
                             <div
                               key={idx}
-                              className="flex items-start gap-2 rounded-2xl border border-[#E1D8CC]/60 bg-brand-primary/10 p-3"
+                              className="flex items-start gap-2 rounded-2xl border border-[#E1D8CC] dark:border-slate-800/60 bg-brand-primary/10 p-3"
                             >
                               <div className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-primary" />
-                              <span className="text-sm text-slate-700">
+                              <span className="text-sm text-slate-700 dark:text-slate-200">
                                 {bullet}
                               </span>
                             </div>
@@ -1209,13 +1138,13 @@ function App() {
                         </div>
                       </div>
 
-                      <div className="rounded-[1.75rem] border border-[#E1D8CC] bg-[linear-gradient(180deg,_brand-primary_0%,_#fffdf9_100%)] p-6 shadow-sm">
+                      <div className="rounded-[1.75rem] border border-[#E1D8CC] dark:border-slate-800 bg-[linear-gradient(180deg,_brand-primary_0%,_#fffdf9_100%)] dark:bg-none p-6 shadow-sm">
                         <div className="mb-5 flex items-center justify-between">
                           <div>
                             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-primary">
                               Next step
                             </p>
-                            <h4 className="mt-1 text-lg font-semibold text-slate-800">
+                            <h4 className="mt-1 text-lg font-semibold text-slate-800 dark:text-slate-100">
                               Personalized consultation
                             </h4>
                           </div>
@@ -1225,20 +1154,20 @@ function App() {
                         </div>
 
                         <div className="space-y-3">
-                          <div className="rounded-2xl border border-white/70 bg-white/80 p-4">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
+                          <div className="rounded-2xl border border-white/70 bg-white dark:bg-[#111827]/80 p-4">
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 dark:text-slate-300">
                               Why clients choose this
                             </p>
-                            <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                            <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                               Tailored support, expert guidance, and a clear
                               plan for progress from your first session onward.
                             </p>
                           </div>
-                          <div className="rounded-2xl border border-[#E1D8CC]/60 bg-white/70 p-4">
-                            <p className="text-sm font-semibold text-slate-800">
+                          <div className="rounded-2xl border border-[#E1D8CC] dark:border-slate-800/60 bg-white dark:bg-[#111827]/70 p-4">
+                            <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">
                               Ready to begin?
                             </p>
-                            <p className="mt-1 text-sm text-slate-600">
+                            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
                               Book a consultation and we’ll help you choose the
                               right path.
                             </p>
@@ -1250,7 +1179,7 @@ function App() {
                             setFormService(activeSrv.id);
                             openBookingModal();
                           }}
-                          className="mt-6 w-full rounded-xl bg-[#333333] px-4 py-3 text-sm font-semibold text-[#f7f0e5] transition-colors duration-300 hover:bg-brand-primary"
+                          className="mt-6 w-full rounded-xl bg-[#333333] dark:bg-brand-primary px-4 py-3 text-sm font-semibold text-[#f7f0e5] dark:text-[#333333] transition-colors duration-300 hover:bg-brand-primary"
                         >
                           Select & Book this service
                         </button>
@@ -1274,10 +1203,10 @@ function App() {
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Professional Care
                 </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333] dark:text-[#F8FAFC]">
                   Meet Our Licensed Specialists
                 </h2>
-                <p className="text-slate-500 text-sm font-light">
+                <p className="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm font-light">
                   Highly credentialed clinical leaders providing empathetic care
                   customized for you.
                 </p>
@@ -1288,7 +1217,7 @@ function App() {
                 {SPECIALISTS.map((spec) => (
                   <div
                     key={spec.id}
-                    className="bg-slate-50 border border-stone-200/60 rounded-3xl p-6 shadow-sm hover:border-brand-primary transition-all duration-300 flex flex-col justify-between"
+                    className="bg-slate-50 dark:bg-[#111827] border border-stone-200 dark:border-slate-800/60 rounded-3xl p-6 shadow-sm hover:border-brand-primary transition-all duration-300 flex flex-col justify-between"
                   >
                     <div className="space-y-4">
                       {/* Photo */}
@@ -1302,7 +1231,7 @@ function App() {
 
                       {/* Title */}
                       <div className="text-center space-y-1">
-                        <h3 className="text-lg font-bold text-slate-800">
+                        <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100">
                           {spec.name}
                         </h3>
                         <p className="text-xs text-brand-primary font-medium tracking-wide">
@@ -1317,13 +1246,13 @@ function App() {
                               className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
                             />
                           ))}
-                          <span className="text-[10px] text-slate-400 font-semibold ml-1">
+                          <span className="text-[10px] text-slate-400 dark:text-slate-300 font-semibold ml-1">
                             ({spec.reviews} Reviews)
                           </span>
                         </div>
                       </div>
 
-                      <p className="text-xs text-slate-500 leading-relaxed text-center font-light italic">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 leading-relaxed text-center font-light italic">
                         "{spec.bio}"
                       </p>
 
@@ -1332,7 +1261,7 @@ function App() {
                         {spec.specialties.map((specItem, idx) => (
                           <span
                             key={idx}
-                            className="bg-white px-2 py-0.5 rounded-full border border-stone-200 text-[10px] text-slate-600 font-medium"
+                            className="bg-white dark:bg-slate-800 px-2 py-0.5 rounded-full border border-stone-200 dark:border-slate-700 text-[10px] text-slate-600 dark:text-slate-200 font-medium"
                           >
                             {specItem}
                           </span>
@@ -1362,7 +1291,7 @@ function App() {
           <section
             ref={reviewSectionRef}
             id="reviews"
-            className="py-20 bg-brand-primary border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
+            className="py-20 bg-brand-primary border-t border-b border-[#E1D8CC] dark:border-slate-800/40 relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-full bg-brand-primary pointer-events-none" />
 
@@ -1386,7 +1315,7 @@ function App() {
                 {REVIEWS.map((rev, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-stone-200/50 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow"
+                    className="bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800/50 rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow"
                   >
                     <div className="space-y-3">
                       <div className="flex gap-0.5">
@@ -1397,21 +1326,21 @@ function App() {
                           />
                         ))}
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light italic">
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-light italic">
                         "{rev.text}"
                       </p>
                     </div>
 
                     <div className="flex justify-between items-center border-t border-slate-100 pt-3">
                       <div>
-                        <h4 className="font-semibold text-slate-800 text-xs">
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-xs">
                           {rev.name}
                         </h4>
-                        <span className="text-[10px] text-slate-400">
+                        <span className="text-[10px] text-slate-400 dark:text-slate-300">
                           {rev.location}
                         </span>
                       </div>
-                      <span className="text-[10px] text-slate-400 font-medium">
+                      <span className="text-[10px] text-slate-400 dark:text-slate-300 font-medium">
                         {rev.date}
                       </span>
                     </div>
@@ -1425,7 +1354,7 @@ function App() {
           <section
             ref={appointmentFormRef}
             id="booking"
-            className="py-20 bg-white"
+            className="py-20 bg-white dark:bg-[#111827]"
           >
             <div className="max-w-7xl mx-auto px-6">
               <div className="grid lg:grid-cols-12 gap-12 items-center max-w-5xl mx-auto">
@@ -1434,10 +1363,10 @@ function App() {
                   <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                     Start Healing
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
+                  <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] dark:text-[#F8FAFC] leading-tight">
                     Schedule a Consultation at Mentalist
                   </h2>
-                  <p className="text-slate-600 text-sm leading-relaxed font-light">
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-light">
                     Ready to take the first step? Complete this form to
                     coordinate a consultation session with our licensed
                     specialists.
@@ -1445,14 +1374,14 @@ function App() {
 
                   <div className="space-y-4 pt-4 border-t border-stone-150">
                     <div className="flex gap-3.5 items-center">
-                      <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-brand-cream dark:bg-[#0B1121] text-[#C76B3D] flex items-center justify-center shrink-0">
                         <ShieldCheck className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-800 text-xs">
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-xs">
                           HIPAA Compliant & Confidential
                         </h4>
-                        <p className="text-[10px] text-slate-500">
+                        <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-300">
                           Your health data is secure and protected under strict
                           codes.
                         </p>
@@ -1460,14 +1389,14 @@ function App() {
                     </div>
 
                     <div className="flex gap-3.5 items-center">
-                      <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-brand-cream dark:bg-[#0B1121] text-[#C76B3D] flex items-center justify-center shrink-0">
                         <Clock className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-800 text-xs">
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-xs">
                           Flexible Session Types
                         </h4>
-                        <p className="text-[10px] text-slate-500">
+                        <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-300">
                           We offer both secure virtual telehealth and in-office
                           clinic visits.
                         </p>
@@ -1475,14 +1404,14 @@ function App() {
                     </div>
 
                     <div className="flex gap-3.5 items-center">
-                      <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-brand-cream dark:bg-[#0B1121] text-[#C76B3D] flex items-center justify-center shrink-0">
                         <ThumbsUp className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-800 text-xs">
+                        <h4 className="font-semibold text-slate-800 dark:text-slate-100 text-xs">
                           No Obligation Verification
                         </h4>
-                        <p className="text-[10px] text-slate-500">
+                        <p className="text-[10px] text-slate-500 dark:text-slate-400 dark:text-slate-300">
                           Our intake specialist verifies your physical health
                           insurance coverage.
                         </p>
@@ -1492,16 +1421,16 @@ function App() {
                 </div>
 
                 {/* Appointment Form Card */}
-                <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-3xl p-6 sm:p-10 shadow-lg relative">
+                <div className="lg:col-span-7 bg-slate-50 dark:bg-[#111827] border border-stone-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-lg relative">
                   <form onSubmit={handleBookingSubmit} className="space-y-5">
-                    <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 border-b border-stone-200 dark:border-slate-800 pb-3 flex items-center gap-2">
                       <Calendar className="w-5 h-5 text-brand-primary" />
                       <span>Request Booking Slot</span>
                     </h3>
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Full Name *
                         </label>
                         <input
@@ -1510,12 +1439,12 @@ function App() {
                           value={formName}
                           onChange={(e) => setFormName(e.target.value)}
                           placeholder="Your name"
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                         />
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Email Address *
                         </label>
                         <input
@@ -1524,14 +1453,14 @@ function App() {
                           value={formEmail}
                           onChange={(e) => setFormEmail(e.target.value)}
                           placeholder="you@example.com"
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                         />
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Phone Number *
                         </label>
                         <input
@@ -1540,18 +1469,18 @@ function App() {
                           value={formPhone}
                           onChange={(e) => setFormPhone(e.target.value)}
                           placeholder="(555) 000-0000"
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                         />
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Select Service category *
                         </label>
                         <select
                           value={formService}
                           onChange={(e) => setFormService(e.target.value)}
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
                         >
                           {SERVICES.map((s) => (
                             <option key={s.id} value={s.id}>
@@ -1564,13 +1493,13 @@ function App() {
 
                     <div className="grid sm:grid-cols-3 gap-4">
                       <div className="space-y-1.5 sm:col-span-1">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Preferred Doctor *
                         </label>
                         <select
                           value={formSpecialist}
                           onChange={(e) => setFormSpecialist(e.target.value)}
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
                         >
                           {SPECIALISTS.map((spec) => (
                             <option key={spec.id} value={spec.id}>
@@ -1581,7 +1510,7 @@ function App() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Pick Date *
                         </label>
                         <input
@@ -1589,12 +1518,12 @@ function App() {
                           required
                           value={formDate}
                           onChange={(e) => setFormDate(e.target.value)}
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
                         />
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
+                        <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                           Pick Time Slot *
                         </label>
                         <input
@@ -1602,13 +1531,13 @@ function App() {
                           required
                           value={formTime}
                           onChange={(e) => setFormTime(e.target.value)}
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                          className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-semibold text-slate-600 block">
+                      <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block">
                         Short details / notes (Optional)
                       </label>
                       <textarea
@@ -1616,7 +1545,7 @@ function App() {
                         value={formMsg}
                         onChange={(e) => setFormMsg(e.target.value)}
                         placeholder="Briefly describe what you would like to address..."
-                        className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all resize-none"
+                        className="w-full bg-white dark:bg-[#111827] border border-stone-200 dark:border-slate-800 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all resize-none"
                       />
                     </div>
 
@@ -1640,10 +1569,10 @@ function App() {
           {/* Booking Confirmation modal overlay */}
           {bookingSuccessData && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-              <div className="bg-white border border-[#E1D8CC] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative animate-scaleUp">
+              <div className="bg-white dark:bg-[#111827] border border-[#E1D8CC] dark:border-slate-800 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative animate-scaleUp">
                 <button
                   onClick={() => setBookingSuccessData(null)}
-                  className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="absolute top-4 right-4 p-2 text-slate-400 dark:text-slate-300 hover:text-slate-600 dark:text-slate-300 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1654,10 +1583,10 @@ function App() {
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-serif font-bold text-slate-800">
+                    <h3 className="text-2xl font-serif font-bold text-slate-800 dark:text-slate-100">
                       Booking Confirmed!
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300 mt-1">
                       Your details have been successfully secured. ID:{" "}
                       <strong className="font-mono text-brand-primary">
                         {bookingSuccessData.bookingId}
@@ -1666,46 +1595,46 @@ function App() {
                   </div>
 
                   {/* Summary Card */}
-                  <div className="bg-[#f7f0e5] rounded-2xl p-5 text-left border border-[#E1D8CC]/40 text-sm space-y-3.5 my-6">
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
-                      <span className="text-xs text-slate-500">
+                  <div className="bg-[#f7f0e5] rounded-2xl p-5 text-left border border-[#E1D8CC] dark:border-slate-800/40 text-sm space-y-3.5 my-6">
+                    <div className="flex justify-between border-b border-stone-200 dark:border-slate-800/50 pb-2">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">
                         Intake Client
                       </span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-slate-800 dark:text-slate-100">
                         {bookingSuccessData.name}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
-                      <span className="text-xs text-slate-500">
+                    <div className="flex justify-between border-b border-stone-200 dark:border-slate-800/50 pb-2">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">
                         Service Category
                       </span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-slate-800 dark:text-slate-100">
                         {bookingSuccessData.service}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
-                      <span className="text-xs text-slate-500">
+                    <div className="flex justify-between border-b border-stone-200 dark:border-slate-800/50 pb-2">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">
                         Specialist Doctor
                       </span>
                       <span className="font-semibold text-[#843519]">
                         {bookingSuccessData.specialist}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
-                      <span className="text-xs text-slate-500">Date slot</span>
-                      <span className="font-semibold text-slate-800">
+                    <div className="flex justify-between border-b border-stone-200 dark:border-slate-800/50 pb-2">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">Date slot</span>
+                      <span className="font-semibold text-slate-800 dark:text-slate-100">
                         {bookingSuccessData.date}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-xs text-slate-500">Time slot</span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">Time slot</span>
+                      <span className="font-semibold text-slate-800 dark:text-slate-100">
                         {bookingSuccessData.time}
                       </span>
                     </div>
                   </div>
 
-                  <div className="text-xs text-slate-400 leading-normal max-w-sm mx-auto">
+                  <div className="text-xs text-slate-400 dark:text-slate-300 leading-normal max-w-sm mx-auto">
                     An confirmation email with intake verification guidelines
                     has been dispatched to{" "}
                     <strong>{bookingSuccessData.email}</strong>.
@@ -1714,7 +1643,7 @@ function App() {
                   <div className="pt-2">
                     <button
                       onClick={() => setBookingSuccessData(null)}
-                      className="w-full bg-[#333333] hover:bg-brand-primary text-white py-3 rounded-xl font-bold text-xs transition-colors"
+                      className="w-full bg-[#333333] dark:bg-brand-primary hover:bg-brand-primary text-white py-3 rounded-xl font-bold text-xs transition-colors"
                     >
                       Return to Homepage
                     </button>
@@ -1736,7 +1665,7 @@ function App() {
               <div className="w-9 h-9 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-lg shadow-sm">
                 M
               </div>
-              <span className="font-serif font-bold text-xl tracking-tight text-[#f7f0e5]">
+              <span className="font-serif font-bold text-xl tracking-tight text-[#f7f0e5] dark:text-[#333333]">
                 Mentalist
               </span>
             </div>
@@ -1749,7 +1678,7 @@ function App() {
               <a
                 href="https://facebook.com"
                 aria-label="Facebook"
-                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] dark:text-[#333333] flex items-center justify-center transition-colors"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -1767,7 +1696,7 @@ function App() {
               <a
                 href="https://twitter.com"
                 aria-label="Twitter / X"
-                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] dark:text-[#333333] flex items-center justify-center transition-colors"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -1781,7 +1710,7 @@ function App() {
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
-                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] dark:text-[#333333] flex items-center justify-center transition-colors"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -1801,7 +1730,7 @@ function App() {
               <a
                 href="https://linkedin.com"
                 aria-label="LinkedIn"
-                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] dark:text-[#333333] flex items-center justify-center transition-colors"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -1824,7 +1753,7 @@ function App() {
             <h4 className="font-serif font-semibold text-white text-sm">
               Company Pages
             </h4>
-            <div className="flex flex-col gap-2.5 text-xs text-slate-400 font-light">
+            <div className="flex flex-col gap-2.5 text-xs text-slate-400 dark:text-slate-300 font-light">
               <button
                 onClick={() => navigateToPage("about")}
                 className="hover:text-brand-primary text-left transition-colors"
@@ -1910,7 +1839,7 @@ function App() {
               <input
                 type="email"
                 placeholder="Your Mail Address"
-                className="bg-stone-800 border border-stone-700 text-[#f7f0e5] placeholder-stone-500 text-xs px-3.5 py-2.5 rounded-xl focus:border-brand-primary focus:outline-none w-full"
+                className="bg-stone-800 border border-stone-700 text-[#f7f0e5] dark:text-[#333333] placeholder-stone-500 text-xs px-3.5 py-2.5 rounded-xl focus:border-brand-primary focus:outline-none w-full"
               />
               <button
                 onClick={() => alert("Successfully Subscribed to newsletter!")}

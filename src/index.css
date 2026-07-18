@@ -1,43 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-serif: "Fraunces", serif;
   --font-sans: "DM Sans", sans-serif;
 
   /* Main Brand Colors */
-  --color-brand-primary: #0057B8;      /* Main medical blue */
-  --color-brand-secondary: #003B73;    /* Dark navy blue */
-  --color-brand-accent: #00A8E8;       /* Light blue accent */
+  --color-brand-primary: #3B82F6;      
+  --color-brand-secondary: #06B6D4;    
+  --color-brand-accent: #06B6D4;       
 
   /* Background Colors */
-  --color-brand-background: #F5FAFF;    /* Very light blue background */
-  --color-brand-white: #FFFFFF;
-  --color-brand-light: #EAF4FF;
+  --color-brand-background: #0B0F19;    
+  --color-brand-white: #111827;
+  --color-brand-cream: #0B0F19;
+  --color-brand-light: #111827;
 
   /* Text Colors */
-  --color-brand-charcoal: #1F2937;     /* Main heading */
-  --color-brand-text: #64748B;         /* Paragraph text */
+  --color-brand-charcoal: #F9FAFB;     
+  --color-brand-text: #9CA3AF;         
 
   /* Borders */
-  --color-brand-border: #D6E6F5;
+  --color-brand-border: rgba(255, 255, 255, 0.08);
 
   /* Success / WhatsApp Green */
-  --color-brand-success: #25D366;
+  --color-brand-success: #10B981;
 
   /* Card Shadow Color */
-  --color-brand-shadow: #CBDCF0;
+  --color-brand-shadow: rgba(0, 0, 0, 0.4);
 }
 
 @layer base {
   :root {
-    color-scheme: light;
+    color-scheme: light dark;
   }
 
   body {
     font-family: var(--font-sans);
     color: var(--color-brand-text);
-    background-color: var(--color-brand-cream);
+    background-color: var(--color-brand-background);
     line-height: 1.6;
   }
 
