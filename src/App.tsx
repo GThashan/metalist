@@ -3,7 +3,7 @@ import AboutPage from "./AboutPage";
 import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
-import heroImage from "./assets/hero.jpg";
+import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import {
   Menu,
@@ -21,8 +21,12 @@ import {
   Award,
   ShieldCheck,
   ThumbsUp,
+  Home,
+  Info,
+  Users,
+  MessageCircle,
+  Sparkles,
 } from "lucide-react";
-import { CalendarDays, MessageCircle } from "lucide-react";
 
 // Mock Data
 const SPECIALISTS = [
@@ -488,7 +492,7 @@ function App() {
       {isBookingModalOpen && renderBookingModal()}
 
       {/* Top Header Bar */}
-      <div className="bg-brand-charcoal text-brand-cream py-2.5 px-6 text-sm hidden lg:block border-b border-stone-800">
+      <div className="bg-brand-charcoal text-white py-2.5 px-6 text-sm hidden lg:block border-b border-stone-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
@@ -605,13 +609,14 @@ function App() {
           </div>
 
           {/* Desktop Navigation links */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-2">
             {/* Home link */}
             <button
               onClick={() => navigateToPage("home")}
-              className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
             >
-              Home
+              <Home className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <span>Home</span>
             </button>
 
             {/* Pages Dropdown */}
@@ -621,8 +626,9 @@ function App() {
                 onClick={() =>
                   setActiveDropdown(activeDropdown === "pages" ? null : "pages")
                 }
-                className="flex items-center gap-1 text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors focus:outline-none"
+                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
               >
+                <Info className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
                 <span>Pages</span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === "pages" ? "rotate-180" : ""}`}
@@ -672,8 +678,9 @@ function App() {
                     activeDropdown === "services" ? null : "services",
                   )
                 }
-                className="flex items-center gap-1 text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors focus:outline-none"
+                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
               >
+                <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
                 <span>Services</span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180" : ""}`}
@@ -717,25 +724,36 @@ function App() {
             {/* Specialist link */}
             <button
               onClick={() => navigateToPage("specialists")}
-              className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
             >
-              Specialists
+              <Users className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <span>Specialists</span>
             </button>
 
             {/* Contact Link */}
             <button
               onClick={() => navigateToPage("contact")}
-              className="text-[#333333] hover:text-brand-primary font-medium text-sm transition-colors py-2"
+              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
             >
-              Contact
+              <Phone className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <span>Contact</span>
             </button>
           </nav>
 
           {/* Appointment button CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="https://wa.me/15553217890"
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="h-5 w-5" />
+            </a>
             <button
               onClick={() => navigateToHomeSection("booking")}
-              className="bg-[#0D5ADB] hover:bg-[#0A3D91] text-white px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/10 hover:shadow-lg hover:shadow-[#843519]/25 transform hover:-translate-y-0.5"
+              className="rounded-full bg-[#0D5ADB] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#C76B3D]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A3D91] hover:shadow-lg hover:shadow-[#843519]/25"
             >
               Book Appointment
             </button>
@@ -758,87 +776,111 @@ function App() {
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-brand-border bg-white py-4 px-6 space-y-4 animate-slideDown">
             <div className="flex flex-col space-y-3">
-              <button onClick={() => navigateToPage("home")}>Home</button>
+              <button
+                onClick={() => navigateToPage("home")}
+                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              >
+                <Home className="h-4 w-4" />
+                <span>Home</span>
+              </button>
 
               <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">
+                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
                   Pages
                 </span>
                 <button
                   onClick={() => navigateToPage("about")}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  About Us
+                  <Info className="h-4 w-4" />
+                  <span>About Us</span>
                 </button>
                 <button
                   onClick={() => navigateToPage("specialists")}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  Our Team
+                  <Users className="h-4 w-4" />
+                  <span>Our Team</span>
                 </button>
                 <button
                   onClick={() => navigateToPage("contact")}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  Contact Us
+                  <Phone className="h-4 w-4" />
+                  <span>Contact Us</span>
                 </button>
                 <button
                   onClick={() => navigateToHomeSection("reviews")}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  Client Review
+                  <Heart className="h-4 w-4" />
+                  <span>Client Review</span>
                 </button>
               </div>
 
               <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">
+                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
                   Services
                 </span>
                 <button
                   onClick={() => {
                     navigateToPage("service", "mental-health");
                   }}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  Mental Health Support
+                  <Sparkles className="h-4 w-4" />
+                  <span>Mental Health Support</span>
                 </button>
                 <button
                   onClick={() => {
                     navigateToPage("service", "physical-health");
                   }}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  Physical Health Sync
+                  <Sparkles className="h-4 w-4" />
+                  <span>Physical Health Sync</span>
                 </button>
                 <button
                   onClick={() => {
                     navigateToPage("service", "therapy");
                   }}
-                  className="w-full text-left py-1.5 pl-3 text-sm text-slate-600 hover:text-brand-primary"
+                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
                 >
-                  Psychotherapy & Counseling
+                  <Sparkles className="h-4 w-4" />
+                  <span>Psychotherapy & Counseling</span>
                 </button>
               </div>
 
               <button
                 onClick={() => navigateToPage("specialists")}
-                className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
+                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
               >
-                Specialists
+                <Users className="h-4 w-4" />
+                <span>Specialists</span>
               </button>
 
               <button
                 onClick={() => navigateToPage("contact")}
-                className="w-full text-left py-1.5 text-base font-semibold text-[#333333] hover:text-brand-primary"
+                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
               >
-                Contact
+                <Phone className="h-4 w-4" />
+                <span>Contact</span>
               </button>
             </div>
 
-            <div className="pt-2">
+            <div className="flex items-center gap-3 pt-2">
+              <a
+                href="https://wa.me/15553217890"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="h-5 w-5" />
+              </a>
               <button
                 onClick={() => navigateToHomeSection("booking")}
-                className="w-full text-center bg-[#C76B3D] text-white py-3 rounded-xl font-medium shadow-md shadow-[#C76B3D]/10"
+                className="w-full rounded-xl bg-[#C76B3D] py-3 text-center font-medium text-white shadow-md shadow-[#C76B3D]/10"
               >
                 Book Appointment
               </button>
@@ -880,105 +922,133 @@ function App() {
       ) : (
         <>
           {/* Hero Section */}
-          <section className="relative overflow-hidden border-b border-[#E1D8CC]/40 bg-[linear-gradient(135deg,_rgba(224,242,254,0.98)_0%,_rgba(240,249,255,0.95)_100%)] py-16 md:py-24">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.16),_transparent_40%)]" />
-            <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-[#843519]/10 blur-3xl" />
+          <section
+  className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-16 md:py-24"
+  style={{
+    backgroundImage: `
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.15)100%,
+  rgba(255, 255, 255, 0.43) 100%,
+  rgba(255, 255, 255, 0) 100%
+      ),
+      url(${heroImage})
+    `,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Soft background effects */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
+  <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
 
-            <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary shadow-sm backdrop-blur-sm">
-                  <Heart className="h-3.5 w-3.5" />
-                  <span>Support for lasting wellness</span>
-                </div>
+  <div className="relative z-10 mx-auto max-w-7xl px-6">
+    <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
 
-                <div className="space-y-4">
-                  <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.03] tracking-tight text-[#333333] sm:text-5xl lg:text-6xl">
-                    Find calm,
-                    <span className="block text-brand-primary">
-                      clarity, and balance
-                    </span>
-                  </h1>
-                  <p className="max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
-                    Compassionate therapy and expert guidance for stress,
-                    anxiety, relationships, and everyday well-being.
-                  </p>
-                </div>
+      {/* Left Content */}
+      <div className="space-y-6">
 
-                <div className="flex flex-wrap items-center gap-4 pt-2">
-                  {/* Booking Button */}
-                  <button
-                    onClick={openBookingModal}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
-                  >
-                    <CalendarDays className="h-4 w-4" />
-                    <span>Book Your Session Now</span>
-                  </button>
+        <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
+          <Heart className="h-3.5 w-3.5" />
+          <span>Support for lasting wellness</span>
+        </div>
 
-                  {/* WhatsApp Button */}
-                  <a
-                    href="https://wa.me/947XXXXXXXX"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    <span>Chat on WhatsApp</span>
-                  </a>
-                </div>
 
-                <div className="grid gap-3 pt-2 sm:grid-cols-3">
-                  {[
-                    {
-                      title: "Calm Your Mind",
-                      text: "Reduce stress with tailored emotional support.",
-                    },
-                    {
-                      title: "Balance Your Life",
-                      text: "Create healthier routines and stronger resilience.",
-                    },
-                    {
-                      title: "Clearer Focus",
-                      text: "Build practical strategies for everyday well-being.",
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.title}
-                      className="rounded-2xl border border-white/70 bg-white/70 p-3 shadow-sm backdrop-blur-sm"
-                    >
-                      <h3 className="text-sm font-semibold text-slate-800">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
-                        {item.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+        <div className="space-y-4">
 
-              <div className="relative mx-auto w-full max-w-xl">
-                <div className="absolute inset-0 rotate-3 rounded-[2.5rem] border border-[#C76B3D]/10 bg-[#C76B3D]/10" />
-                <div className="relative overflow-hidden rounded-[2.5rem] border border-[#E1D8CC] bg-white/90 p-3 shadow-[0_25px_80px_rgba(132,53,25,0.15)]">
-                  <img
-                    src={heroImage}
-                    alt="Mental health support"
-                    className="h-[460px] w-full rounded-[1.8rem] object-cover"
-                  />
-                  <div className="absolute left-6 top-6 rounded-full border border-white/70 bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-primary shadow-sm">
-                    Expert care
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6 rounded-[1.4rem] border border-white/70 bg-white/85 p-4 shadow-lg backdrop-blur-sm">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-primary">
-                      Trusted therapy
-                    </p>
-                    <h3 className="mt-1 text-lg font-semibold text-slate-800">
-                      Compassionate support for every step
-                    </h3>
-                  </div>
-                </div>
-              </div>
+          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.03] tracking-tight text-[#333333] sm:text-5xl lg:text-6xl">
+            Find calm,
+            <span className="block text-blue-600">
+              clarity, and balance
+            </span>
+          </h1>
+
+
+          <p className="max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
+            Compassionate therapy and expert guidance for stress,
+            anxiety, relationships, and everyday well-being.
+          </p>
+
+        </div>
+
+
+        {/* Buttons */}
+        <div className="flex flex-wrap items-center gap-4 pt-2">
+
+          {/* Booking Button */}
+          <button
+            onClick={openBookingModal}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+          >
+            <Calendar className="h-4 w-4" />
+            <span>Book Your Session Now</span>
+          </button>
+
+
+          {/* WhatsApp Button */}
+          <a
+            href="https://wa.me/947XXXXXXXX"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span>Chat on WhatsApp</span>
+          </a>
+
+        </div>
+
+
+
+        {/* Feature Cards */}
+        <div className="grid gap-3 pt-2 sm:grid-cols-3">
+
+          {[
+            {
+              title: "Calm Your Mind",
+              text: "Reduce stress with tailored emotional support.",
+            },
+            {
+              title: "Balance Your Life",
+              text: "Create healthier routines and stronger resilience.",
+            },
+            {
+              title: "Clearer Focus",
+              text: "Build practical strategies for everyday well-being.",
+            },
+          ].map((item) => (
+
+            <div
+              key={item.title}
+              className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-md"
+            >
+
+              <h3 className="text-sm font-semibold text-slate-800">
+                {item.title}
+              </h3>
+
+              <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
+                {item.text}
+              </p>
+
             </div>
-          </section>
+
+          ))}
+
+        </div>
+
+      </div>
+
+
+      {/* Right Empty Space For Background Image Visibility */}
+      <div className="hidden md:block">
+      </div>
+
+
+    </div>
+  </div>
+
+</section>
 
           {/* About Us section */}
           <section ref={aboutSectionRef} id="about" className="py-20 bg-white">
