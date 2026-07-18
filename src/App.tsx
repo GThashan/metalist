@@ -1049,6 +1049,87 @@ function App() {
   </div>
 
 </section>
+{/* Founder's Message Section - Prasad Wijesundara */}
+<section className="py-20 bg-[#0D5ADB] border-b border-[#1a3a5c] m-7 rounded-3xl shadow-lg relative overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6">
+    {/* 4-Part Grid Layout */}
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      
+      {/* PART 1: Image & Decorative Elements */}
+      <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
+        <div className="relative">
+          <div className="absolute -inset-3 rounded-full border border-white/10" />
+          <div className="w-52 h-52 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=400"
+              alt="Prasad Wijesundara"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute top-0 right-0 w-8 h-8 bg-white/5 rounded-full -mr-2 -mt-2 z-0" />
+          <div className="absolute bottom-0 left-0 w-6 h-6 bg-white/5 rounded-full -ml-2 -mb-2 z-0" />
+        </div>
+        {/* Separator Line */}
+        <div className="hidden md:block w-px h-16 bg-white/10 mt-6" />
+      </div>
+
+      {/* PART 2: Name & Title */}
+      <div className="md:col-span-1 flex flex-col justify-center order-1 md:order-2">
+        <div className="space-y-3 text-center md:text-left">
+          <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
+            Prasad Wijesundara
+          </h2>
+          <p className="text-[#FFB347] font-medium text-xs tracking-wider uppercase">
+            Founder | Psychological Counselor & Psychotherapist
+          </p>
+          <p className="text-white/70 leading-relaxed text-sm">
+            Providing professional psychological counseling and psychotherapy services with compassion, confidentiality and respect.
+          </p>
+        </div>
+        {/* Separator Line */}
+        <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
+      </div>
+
+      {/* PART 3: Service List */}
+      <div className="md:col-span-1 flex flex-col justify-center order-3">
+        <div className="space-y-2.5">
+          <p className="text-white/50 text-xs uppercase tracking-wider font-medium mb-2 text-center md:text-left">
+            Services
+          </p>
+          {[
+            "Individual Counseling",
+            "Emotional Support", 
+            "Stress Management",
+            "Online Consultation"
+          ].map((item) => (
+            <div key={item} className="flex items-center gap-3 justify-center md:justify-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FFB347] flex-shrink-0" />
+              <span className="text-sm text-white/90">{item}</span>
+            </div>
+          ))}
+        </div>
+        {/* Separator Line */}
+        <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
+      </div>
+
+      {/* PART 4: CTA Button */}
+      <div className="md:col-span-1 flex flex-col items-center justify-center order-4">
+        <div className="flex flex-col items-center gap-4">
+          <button
+            onClick={openBookingModal}
+            className="inline-flex items-center gap-2 bg-[#FFB347] hover:bg-[#e69f3a] text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
+          >
+            <span>Book With Prasad →</span>
+          </button>
+          <p className="text-white/40 text-xs text-center">
+            Online & In-Person Sessions
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
           {/* About Us section */}
           <section ref={aboutSectionRef} id="about" className="py-20 bg-white">
