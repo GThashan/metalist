@@ -128,14 +128,14 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <Heart className="w-3.5 h-3.5" />
             <span>Who We Are</span>
           </div>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-[#333333] leading-tight mb-4">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-[#333333] dark:text-[#F8FAFC] leading-tight mb-4">
             About <span className="text-brand-primary italic">Us</span>
           </h1>
-          <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
+          <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
             Mentalist Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
           </p>
           {/* Breadcrumb */}
-          <nav className="flex items-center justify-center gap-2 text-sm text-slate-500">
+          <nav className="flex items-center justify-center gap-2 text-sm text-slate-500 dark:text-slate-400 dark:text-slate-300">
             <span className="hover:text-brand-primary cursor-pointer transition-colors">Home</span>
             <span className="text-slate-300">/</span>
             <span className="text-brand-primary font-medium">About Us</span>
@@ -144,18 +144,18 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       </section>
 
       {/* ── Mission & Features Section ────────────────────────────────────── */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-[#111827]">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
           {/* Left: Text + Feature cards */}
           <div className="space-y-8">
             <div>
               <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Mental Strength</p>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl text-[#333333] dark:text-[#F8FAFC] leading-tight">
                 Strengthen Your Mind With{' '}
                 <span className="text-brand-primary italic">Psychology Skills</span>
               </h2>
             </div>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               Our team of licensed psychologists and therapists brings together decades of combined experience across clinical psychology, cognitive behavioral therapy, and holistic mental wellness practices to serve you with exceptional care.
             </p>
             {/* Feature Grid */}
@@ -163,11 +163,11 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
               {STRENGTH_FEATURES.map((feature) => (
                 <div
                   key={feature.id}
-                  className="group p-5 bg-brand-primary/10 border border-[#E1D8CC] rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-lg hover:shadow-[#C76B3D]/10 transition-all duration-300"
+                  className="group p-5 bg-brand-primary/10 border border-[#E1D8CC] dark:border-slate-800 rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-lg hover:shadow-[#C76B3D]/10 transition-all duration-300"
                 >
                   <div className="mb-3">{feature.icon}</div>
-                  <h4 className="font-serif text-lg text-[#333333] mb-1">{feature.title}</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed">{feature.description}</p>
+                  <h4 className="font-serif text-lg text-[#333333] dark:text-[#F8FAFC] mb-1">{feature.title}</h4>
+                  <p className="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -175,7 +175,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
 
           {/* Right: Image with video play button */}
           <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC]">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC] dark:border-slate-800">
               <img
                 src="/about_section_therapy.png"
                 alt="Therapy session at Mentalist Psychology Center"
@@ -189,19 +189,19 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                 className="absolute inset-0 flex items-center justify-center group"
                 aria-label="Play video"
               >
-                <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm border border-[#C76B3D]/30 flex items-center justify-center shadow-xl group-hover:bg-[#C76B3D] group-hover:border-[#C76B3D] transition-all duration-300">
+                <div className="w-16 h-16 rounded-full bg-white dark:bg-[#111827]/90 backdrop-blur-sm border border-[#C76B3D]/30 flex items-center justify-center shadow-xl group-hover:bg-[#C76B3D] group-hover:border-[#C76B3D] transition-all duration-300">
                   <Play className="w-6 h-6 text-[#C76B3D] group-hover:text-white ml-1 transition-colors duration-300" fill="currentColor" />
                 </div>
               </button>
             </div>
             {/* Testimonial Badge */}
-            <div className="absolute -bottom-6 -left-4 bg-white border border-[#E1D8CC] rounded-2xl px-5 py-4 shadow-xl flex items-center gap-3 z-10">
+            <div className="absolute -bottom-6 -left-4 bg-white dark:bg-[#111827] border border-[#E1D8CC] dark:border-slate-800 rounded-2xl px-5 py-4 shadow-xl flex items-center gap-3 z-10">
               <div className="w-12 h-12 rounded-full bg-[#C76B3D]/10 flex items-center justify-center">
                 <Star className="w-5 h-5 text-[#C76B3D]" fill="currentColor" />
               </div>
               <div>
-                <div className="font-serif text-2xl font-bold text-[#333333]">4.9</div>
-                <div className="text-xs text-slate-500">3k+ Satisfied Customers</div>
+                <div className="font-serif text-2xl font-bold text-[#333333] dark:text-[#F8FAFC]">4.9</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-300">3k+ Satisfied Customers</div>
                 <div className="flex gap-0.5 mt-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3 h-3 text-amber-400" fill="currentColor" />
@@ -228,7 +228,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             />
             <button
               onClick={() => setShowVideo(false)}
-              className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/40 transition-colors"
+              className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white dark:bg-[#111827]/20 flex items-center justify-center text-white hover:bg-white dark:bg-[#111827]/40 transition-colors"
             >
               ✕
             </button>
@@ -237,14 +237,14 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       )}
 
       {/* ── Stats Counter Bar ─────────────────────────────────────────────── */}
-      <section className="bg-[#333333] py-14">
+      <section className="bg-[#333333] dark:bg-brand-primary py-14">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((stat, index) => (
             <div key={index} className="text-center group">
               <div className="font-serif text-4xl md:text-5xl font-bold text-[#C76B3D] group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
-              <div className="text-[#f7f0e5]/70 text-sm mt-2 uppercase tracking-wider font-medium">{stat.label}</div>
+              <div className="text-[#f7f0e5] dark:text-[#333333]/70 text-sm mt-2 uppercase tracking-wider font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -255,7 +255,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
           {/* Left: Image */}
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC]">
+            <div className="rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC] dark:border-slate-800">
               <img
                 src="/about_guiding_life.png"
                 alt="Counseling session at Mentalist"
@@ -273,24 +273,24 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           <div className="space-y-7">
             <div>
               <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest mb-3">Success Journey</p>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
+              <h2 className="font-serif text-4xl md:text-5xl text-[#333333] dark:text-[#F8FAFC] leading-tight">
                 Guiding You to a{' '}
                 <span className="text-[#C76B3D] italic">Brighter Life</span>
               </h2>
             </div>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               We provide compassionate support and expert guidance to help you overcome challenges, find clarity, and create a happier, more fulfilling life. Our approach integrates clinical best practices with warmth and understanding.
             </p>
             {/* Journey feature items */}
             <div className="space-y-4">
               {JOURNEY_FEATURES.map((feature) => (
-                <div key={feature.id} className="flex items-start gap-4 p-4 bg-white border border-[#E1D8CC] rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-md transition-all duration-300">
+                <div key={feature.id} className="flex items-start gap-4 p-4 bg-white dark:bg-[#111827] border border-[#E1D8CC] dark:border-slate-800 rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-md transition-all duration-300">
                   <div className="w-10 h-10 rounded-full bg-[#C76B3D]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-5 h-5 text-[#C76B3D]" />
                   </div>
                   <div>
-                    <h5 className="font-serif text-lg text-[#333333] mb-1">{feature.title}</h5>
-                    <p className="text-slate-500 text-sm leading-relaxed">{feature.description}</p>
+                    <h5 className="font-serif text-lg text-[#333333] dark:text-[#F8FAFC] mb-1">{feature.title}</h5>
+                    <p className="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               ))}
@@ -303,7 +303,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                 Book Appointment
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="px-6 py-3.5 rounded-full border border-[#E1D8CC] bg-white hover:border-[#C76B3D] text-slate-700 hover:text-[#C76B3D] font-semibold text-sm transition-all duration-300">
+              <button className="px-6 py-3.5 rounded-full border border-[#E1D8CC] dark:border-slate-800 bg-white dark:bg-[#111827] hover:border-[#C76B3D] text-slate-700 dark:text-slate-200 hover:text-[#C76B3D] font-semibold text-sm transition-all duration-300">
                 Learn More
               </button>
             </div>
@@ -312,11 +312,11 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       </section>
 
       {/* ── Our Values / Mission Section ──────────────────────────────────── */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-[#111827]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest mb-3">What Drives Us</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#333333] max-w-2xl mx-auto leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl text-[#333333] dark:text-[#F8FAFC] max-w-2xl mx-auto leading-tight">
               Our Core{' '}
               <span className="text-[#C76B3D] italic">Values</span> &amp; Mission
             </h2>
@@ -341,13 +341,13 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             ].map((value, index) => (
               <div
                 key={index}
-                className="p-7 bg-[#f7f0e5] border border-[#E1D8CC] rounded-3xl hover:border-[#C76B3D]/40 hover:shadow-xl hover:shadow-[#C76B3D]/10 hover:-translate-y-1 transition-all duration-300 group"
+                className="p-7 bg-[#f7f0e5] border border-[#E1D8CC] dark:border-slate-800 rounded-3xl hover:border-[#C76B3D]/40 hover:shadow-xl hover:shadow-[#C76B3D]/10 hover:-translate-y-1 transition-all duration-300 group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#C76B3D]/10 flex items-center justify-center mb-5 group-hover:bg-[#C76B3D] group-hover:scale-110 transition-all duration-300">
                   <div className="group-hover:text-white transition-colors duration-300">{value.icon}</div>
                 </div>
-                <h4 className="font-serif text-xl text-[#333333] mb-3">{value.title}</h4>
-                <p className="text-slate-500 text-sm leading-relaxed">{value.desc}</p>
+                <h4 className="font-serif text-xl text-[#333333] dark:text-[#F8FAFC] mb-3">{value.title}</h4>
+                <p className="text-slate-500 dark:text-slate-400 dark:text-slate-300 text-sm leading-relaxed">{value.desc}</p>
               </div>
             ))}
           </div>
@@ -360,10 +360,10 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           {/* Left: Heading + intro */}
           <div className="space-y-6 md:sticky md:top-28">
             <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest">Common Questions</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl text-[#333333] dark:text-[#F8FAFC] leading-tight">
               Frequently Asked <span className="text-[#C76B3D] italic">Questions</span>
             </h2>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
               We want you to feel confident and informed before beginning your journey with us. Here are answers to some of the most common questions our clients ask.
             </p>
             <button
@@ -380,14 +380,14 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             {FAQ_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="bg-white border border-[#E1D8CC] rounded-2xl overflow-hidden hover:border-[#C76B3D]/40 transition-colors duration-300"
+                className="bg-white dark:bg-[#111827] border border-[#E1D8CC] dark:border-slate-800 rounded-2xl overflow-hidden hover:border-[#C76B3D]/40 transition-colors duration-300"
               >
                 <button
                   onClick={() => toggleFaq(item.id)}
                   className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
                   aria-expanded={openFaq === item.id}
                 >
-                  <span className="font-serif text-base md:text-lg text-[#333333] leading-snug pr-2">
+                  <span className="font-serif text-base md:text-lg text-[#333333] dark:text-[#F8FAFC] leading-snug pr-2">
                     {item.question}
                   </span>
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#C76B3D]/10 flex items-center justify-center">
@@ -399,7 +399,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                   </div>
                 </button>
                 {openFaq === item.id && (
-                  <div className="px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-[#E1D8CC] pt-4 animate-fadeIn">
+                  <div className="px-6 pb-5 text-slate-600 dark:text-slate-300 text-sm leading-relaxed border-t border-[#E1D8CC] dark:border-slate-800 pt-4 animate-fadeIn">
                     {item.answer}
                   </div>
                 )}
@@ -410,7 +410,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       </section>
 
       {/* ── CTA Banner ────────────────────────────────────────────────────── */}
-      <section className="py-20 bg-[#333333] relative overflow-hidden">
+      <section className="py-20 bg-[#333333] dark:bg-brand-primary relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#C76B3D]/10 rounded-l-[80px]" />
         <div className="absolute bottom-0 left-0 w-1/3 h-full bg-[#843519]/5 rounded-tr-[80px]" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center space-y-6">
@@ -419,7 +419,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             Take the First Step Toward{' '}
             <span className="text-[#C76B3D] italic">Your Well-Being</span>
           </h2>
-          <p className="text-[#f7f0e5]/70 max-w-xl mx-auto leading-relaxed">
+          <p className="text-[#f7f0e5] dark:text-[#333333]/70 max-w-xl mx-auto leading-relaxed">
             Schedule a confidential session with one of our compassionate specialists. Your healing journey starts with a single conversation.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -430,7 +430,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
               Book Appointment
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="px-8 py-4 rounded-full border border-[#f7f0e5]/20 bg-white/5 backdrop-blur-sm text-[#f7f0e5] hover:border-[#C76B3D] hover:text-[#C76B3D] font-semibold text-base transition-all duration-300">
+            <button className="px-8 py-4 rounded-full border border-[#f7f0e5]/20 bg-white dark:bg-[#111827]/5 backdrop-blur-sm text-[#f7f0e5] dark:text-[#333333] hover:border-[#C76B3D] hover:text-[#C76B3D] font-semibold text-base transition-all duration-300">
               Meet Our Specialists
             </button>
           </div>
