@@ -22,7 +22,7 @@ const STRENGTH_FEATURES = [
     title: 'Self-Awareness',
     description: 'Self-awareness is the foundation of personal growth, emotional balance, and mental clarity.',
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-10 h-10 fill-[#C76B3D]">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-10 h-10 fill-brand-primary">
         <path d="M98.61,44.48C95.08,31.8,76.6,13.6,52,12.66v-5a2,2,0,0,0-4,0v5a54.77,54.77,0,0,0-30.54,11C9,30,3.2,38,1.39,44.48a3.73,3.73,0,0,0,5.34,4.3,11.65,11.65,0,0,1,5.44-1.51A12.19,12.19,0,0,1,17.94,49a7.42,7.42,0,0,0,7.37,0,12.22,12.22,0,0,1,5.77-1.69A12.23,12.23,0,0,1,36.86,49a7.45,7.45,0,0,0,7.37,0A13.3,13.3,0,0,1,48,47.5v21a2,2,0,0,0,4,0v-21A13.3,13.3,0,0,1,55.77,49a7.45,7.45,0,0,0,7.37,0,12.23,12.23,0,0,1,5.78-1.69A12.22,12.22,0,0,1,74.69,49a7.45,7.45,0,0,0,7.37,0,12.19,12.19,0,0,1,5.77-1.69,11.92,11.92,0,0,1,5.44,1.51,3.73,3.73,0,0,0,5.34-4.3Z"/>
       </svg>
     ),
@@ -31,19 +31,19 @@ const STRENGTH_FEATURES = [
     id: 'human-behavior',
     title: 'Human Behavior',
     description: 'Human behavior is shaped by a complex blend of thoughts, emotions, beliefs, and past experiences.',
-    icon: <Users className="w-10 h-10 text-[#C76B3D]" />,
+    icon: <Users className="w-10 h-10 text-brand-primary" />,
   },
   {
     id: 'therapy-support',
     title: 'Therapy Support',
     description: 'Therapy support provides a safe and understanding space for individuals to explore their emotions.',
-    icon: <Heart className="w-10 h-10 text-[#C76B3D]" />,
+    icon: <Heart className="w-10 h-10 text-brand-primary" />,
   },
   {
     id: 'brain-power',
     title: 'Brain Power',
     description: "Brain power refers to the mind's ability to think clearly, learn effectively, and stay focused.",
-    icon: <Brain className="w-10 h-10 text-[#C76B3D]" />,
+    icon: <Brain className="w-10 h-10 text-brand-primary" />,
   },
 ]
 
@@ -115,7 +115,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       <section
         className="relative py-20 md:py-28 overflow-hidden"
         style={{
-          background: 'linear-gradient(180deg, rgba(247,240,229,0.92) 0%, rgba(247,240,229,0.70) 100%)',
+          background: 'linear-gradient(180deg, rgba(241, 229, 247, 0.92) 0%, rgba(235, 229, 247, 0.7) 100%)',
         }}
       >
         {/* Decorative background blobs */}
@@ -124,21 +124,21 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-[#843519]/5 rounded-tr-[60px]" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-[#C76B3D]/10 border border-[#C76B3D]/20 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-[#C76B3D] mb-5">
+          <div className="inline-flex items-center gap-2 bg-brand-primary/10 border border-brand-primary/20 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-brand-primary mb-5">
             <Heart className="w-3.5 h-3.5" />
             <span>Who We Are</span>
           </div>
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-[#333333] leading-tight mb-4">
-            About <span className="text-[#C76B3D] italic">Us</span>
+            About <span className="text-brand-primary italic">Us</span>
           </h1>
           <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
             Mentalist Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
           </p>
           {/* Breadcrumb */}
           <nav className="flex items-center justify-center gap-2 text-sm text-slate-500">
-            <span className="hover:text-[#C76B3D] cursor-pointer transition-colors">Home</span>
+            <span className="hover:text-brand-primary cursor-pointer transition-colors">Home</span>
             <span className="text-slate-300">/</span>
-            <span className="text-[#C76B3D] font-medium">About Us</span>
+            <span className="text-brand-primary font-medium">About Us</span>
           </nav>
         </div>
       </section>
@@ -149,10 +149,10 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           {/* Left: Text + Feature cards */}
           <div className="space-y-8">
             <div>
-              <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest mb-3">Mental Strength</p>
+              <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Mental Strength</p>
               <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
                 Strengthen Your Mind With{' '}
-                <span className="text-[#C76B3D] italic">Psychology Skills</span>
+                <span className="text-brand-primary italic">Psychology Skills</span>
               </h2>
             </div>
             <p className="text-slate-600 leading-relaxed">
@@ -163,7 +163,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
               {STRENGTH_FEATURES.map((feature) => (
                 <div
                   key={feature.id}
-                  className="group p-5 bg-[#f7f0e5] border border-[#E1D8CC] rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-lg hover:shadow-[#C76B3D]/10 transition-all duration-300"
+                  className="group p-5 bg-brand-primary/10 border border-[#E1D8CC] rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-lg hover:shadow-[#C76B3D]/10 transition-all duration-300"
                 >
                   <div className="mb-3">{feature.icon}</div>
                   <h4 className="font-serif text-lg text-[#333333] mb-1">{feature.title}</h4>
