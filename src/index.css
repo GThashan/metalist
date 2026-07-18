@@ -1,27 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-serif: "Fraunces", serif;
   --font-sans: "DM Sans", sans-serif;
-  
-  --color-brand-primary: #C76B3D;
-  --color-brand-secondary: #843519;
-  --color-brand-cream: #F7F0E5;
-  --color-brand-charcoal: #333333;
-  --color-brand-text: #636363;
-  --color-brand-border: #E1D8CC;
+
+  /* Main Brand Colors */
+  --color-brand-primary: #0057B8;      /* Main medical blue */
+  --color-brand-secondary: #003B73;    /* Dark navy blue */
+  --color-brand-accent: #00A8E8;       /* Light blue accent */
+
+  /* Background Colors */
+  --color-brand-background: #F5FAFF;    /* Very light blue background */
+  --color-brand-white: #FFFFFF;
+  --color-brand-light: #EAF4FF;
+
+  /* Text Colors */
+  --color-brand-charcoal: #1F2937;     /* Main heading */
+  --color-brand-text: #64748B;         /* Paragraph text */
+
+  /* Borders */
+  --color-brand-border: #D6E6F5;
+
+  /* Success / WhatsApp Green */
+  --color-brand-success: #25D366;
+
+  /* Card Shadow Color */
+  --color-brand-shadow: #CBDCF0;
 }
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--color-brand-text);
-    background-color: #ffffff;
+    background-color: var(--color-brand-cream);
+    line-height: 1.6;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     color: var(--color-brand-charcoal);
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .theme-btn-primary {
+    @apply rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-secondary;
+  }
+
+  .theme-btn-secondary {
+    @apply rounded-full border border-brand-border bg-white/80 px-6 py-3 text-sm font-semibold text-brand-charcoal transition-all duration-300 hover:border-brand-primary hover:text-brand-primary;
+  }
+
+  .theme-card {
+    @apply rounded-[2rem] border border-brand-border bg-white shadow-sm;
   }
 }
