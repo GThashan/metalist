@@ -7,19 +7,19 @@ type ContactPageProps = {
 function ContactPage({ onBookAppointment }: ContactPageProps) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-700">
-      <section className="relative overflow-hidden bg-[#f7f0e5] border-b border-[#E1D8CC]/40">
+      <section className="relative overflow-hidden bg-[#000690] border-b border-[#E1D8CC]/40">
         <div className="absolute top-[-8%] right-[-8%] h-56 w-56 rounded-full bg-[#C76B3D]/10 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-10%] h-64 w-64 rounded-full bg-[#843519]/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
           <div className="max-w-3xl space-y-6">
-            <span className="block text-xs font-bold uppercase tracking-[0.3em] text-[#C76B3D]">
+            <span className="block text-xs font-bold uppercase tracking-[0.3em] text-white">
               Contact Us
             </span>
-            <h1 className="text-4xl font-serif font-bold leading-tight text-[#333333] sm:text-5xl">
+            <h1 className="text-4xl font-serif font-bold leading-tight text-white sm:text-5xl">
               We’re here to help you take the next step with confidence.
             </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+            <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
               Reach out for appointment requests, counseling support, or general inquiries. We’ll guide you with care and clarity.
             </p>
             <button
@@ -45,7 +45,7 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
 
             <div className="mt-8 space-y-5">
               <div className="flex items-start gap-3 rounded-2xl border border-stone-200 bg-slate-50 p-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f7f0e5] text-[#C76B3D]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary text-white">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
@@ -55,7 +55,7 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
               </div>
 
               <div className="flex items-start gap-3 rounded-2xl border border-stone-200 bg-slate-50 p-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f7f0e5] text-[#C76B3D]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary text-white">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
@@ -67,7 +67,7 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
               </div>
 
               <div className="flex items-start gap-3 rounded-2xl border border-stone-200 bg-slate-50 p-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f7f0e5] text-[#C76B3D]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary text-white">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
@@ -104,8 +104,36 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
           </div>
         </div>
       </section>
+
+      <section>
+  <div className="overflow-hidden border border-[#E1D8CC] bg-white shadow-sm">
+    
+    <div className=" sm:p-10">
+     
+      <p className="mt-3 text-sm text-slate-600">
+        Visit us at our clinic location in Embilipitiya.
+      </p>
+    </div>
+
+    <div className="h-[400px] w-full">
+      <iframe
+        title="Clinic Location - Embilipitiya"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63449.707695963625!2d80.81843254011606!3d6.315279630478413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae4002f298e95e3%3A0x62e2b8bc9ea7a79b!2sEmbilipitiya!5e0!3m2!1sen!2slk!4v1784435075768!5m2!1sen!2slk"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        loading="lazy"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+
+  </div>
+</section>
     </div>
   )
 }
 
 export default ContactPage
+
+
