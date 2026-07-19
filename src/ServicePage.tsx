@@ -216,7 +216,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">Ready when you are</p>
-            <h2 className="mt-2 font-serif text-3xl text-[#f7f0e5]">Take the next step with Mentalist</h2>
+            <h2 className="mt-2 font-serif text-3xl text-[#f7f0e5]">Take the next step with Insight</h2>
           </div>
           <button
             onClick={onBookAppointment}

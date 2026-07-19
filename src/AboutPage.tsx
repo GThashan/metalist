@@ -79,7 +79,7 @@ const FAQ_ITEMS = [
     id: 'faq-3',
     question: 'What types of mental health professionals can I consult?',
     answer:
-      'There are several types of mental health professionals you can consult, each offering specialized support for different needs. Psychologists, licensed therapists, counselors, and psychiatrists all have unique areas of expertise. Our Mentalist team can help you match with the right professional.',
+      'There are several types of mental health professionals you can consult, each offering specialized support for different needs. Psychologists, licensed therapists, counselors, and psychiatrists all have unique areas of expertise. Our Insight team can help you match with the right professional.',
   },
   {
     id: 'faq-4',
@@ -132,7 +132,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             About <span className="text-brand-primary italic">Us</span>
           </h1>
           <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
-            Mentalist Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
+            Insight Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
           </p>
           {/* Breadcrumb */}
           <nav className="flex items-center justify-center gap-2 text-sm text-slate-500">
@@ -178,7 +178,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC]">
               <img
                 src="/about_section_therapy.png"
-                alt="Therapy session at Mentalist Psychology Center"
+                alt="Therapy session at Insight Psychology Center"
                 className="w-full h-[480px] object-cover"
               />
               {/* Gradient overlay */}
@@ -224,7 +224,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
               src="https://player.vimeo.com/video/276591200?autoplay=1"
               className="w-full h-full"
               allow="autoplay; fullscreen"
-              title="Mentalist Introduction Video"
+              title="Insight Introduction Video"
             />
             <button
               onClick={() => setShowVideo(false)}
@@ -258,7 +258,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <div className="rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC]">
               <img
                 src="/about_guiding_life.png"
-                alt="Counseling session at Mentalist"
+                alt="Counseling session at Insight"
                 className="w-full h-[440px] object-cover"
               />
             </div>
