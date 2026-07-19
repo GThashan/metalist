@@ -57,20 +57,20 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
 
   return (
     <main className="bg-slate-50">
-      <section className="relative overflow-hidden bg-[#f7f0e5] py-20 md:py-24 border-b border-[#E1D8CC]/50">
+      <section className="relative overflow-hidden bg-[#000690] text-white py-20 md:py-24 border-b border-[#E1D8CC]/50">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-[#C76B3D]/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#C76B3D]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-[#C76B3D]/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                 <Heart className="w-3.5 h-3.5" />
                 <span>Our Services</span>
               </div>
               <div className="space-y-4">
-                <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#333333] leading-tight">
+                <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-white leading-tight">
                   {service.title}
                 </h1>
-                <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
                   {service.description}
                 </p>
               </div>
@@ -115,7 +115,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-6">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C76B3D]">How we guide you</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary">How we guide you</p>
               <h2 className="mt-3 font-serif text-3xl text-[#333333] sm:text-4xl">
                 A supportive path built around your needs
               </h2>
@@ -125,7 +125,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
             </p>
             <div className="space-y-4">
               {serviceHighlights.map((item) => (
-                <div key={item.title} className="flex gap-3 rounded-2xl border border-[#E1D8CC] bg-[#f7f0e5]/60 p-4">
+                <div key={item.title} className="flex gap-3 rounded-2xl border border-[#E1D8CC] bg-brand-primary/10 p-4">
                   <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#C76B3D]/10 text-[#C76B3D]">
                     {item.icon}
                   </div>
@@ -139,7 +139,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
           </div>
 
           <div className="rounded-[2rem] border border-[#E1D8CC] bg-slate-50 p-6 shadow-sm">
-            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#C76B3D]">
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary">
               <Users className="w-4 h-4" />
               <span>Who this service helps</span>
             </div>
@@ -164,7 +164,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C76B3D]">Our specialists</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary">Our specialists</p>
             <h2 className="mt-3 font-serif text-3xl text-[#333333] sm:text-4xl">
               Meet the experts supporting this service
             </h2>
@@ -201,7 +201,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
                 </div>
                 <button
                   onClick={onBookAppointment}
-                  className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-[#C76B3D]/20 bg-[#f7f0e5] px-4 py-2.5 text-sm font-semibold text-[#C76B3D] transition-all hover:bg-[#C76B3D] hover:text-white"
+                  className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-[#C76B3D]/20 bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#000690] hover:text-white"
                 >
                   Request this specialist
                   <ArrowRight className="h-4 w-4" />
@@ -215,7 +215,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
       <section className="bg-[#333333] py-16">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C76B3D]">Ready when you are</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">Ready when you are</p>
             <h2 className="mt-2 font-serif text-3xl text-[#f7f0e5]">Take the next step with Mentalist</h2>
           </div>
           <button

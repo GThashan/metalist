@@ -20,7 +20,6 @@ import {
   Star,
   Check,
   Heart,
-  
   Award,
   ShieldCheck,
   ThumbsUp,
@@ -60,8 +59,7 @@ const SPECIALISTS = [
     role: "Cognitive Neuropsychologist",
     rating: 5,
     reviews: 98,
-    image:
-      profile1,
+    image: profile1,
     specialties: [
       "Neurodevelopmental Conditions",
       "Physical Health Sync",
@@ -76,7 +74,7 @@ const SPECIALISTS = [
     rating: 5,
     reviews: 147,
     image: profile2,
-      
+
     specialties: [
       "Relationship Counseling",
       "PTSD & Trauma Recovery",
@@ -178,6 +176,9 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingSuccessData, setBookingSuccessData] = useState<any>(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [formAge, setFormAge] = useState("");
+  const [formTreatmentMode, setFormTreatmentMode] = useState("");
+  const [formReceipt, setFormReceipt] = useState<File | null>(null);
 
   // Custom scrolling references
   const appointmentFormRef = useRef<HTMLDivElement>(null);
@@ -347,6 +348,30 @@ function App() {
                   </p>
                 </div>
               </div>
+             <div className="flex gap-3.5 items-center">
+  <div className="w-10 h-10 rounded-xl bg-green-100 text-green-600 flex items-center justify-center shrink-0">
+    <MessageCircle className="w-5 h-5" />
+  </div>
+
+  <div>
+    <h4 className="font-semibold text-slate-800 text-xs">
+      Chat on WhatsApp
+    </h4>
+
+    <p className="text-[10px] text-slate-500">
+      Contact us directly for quick appointment inquiries and support.
+    </p>
+
+    <a
+      href="https://wa.me/94757629950?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment."
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center mt-1 text-[11px] font-semibold text-green-600 hover:text-green-700"
+    >
+      Start Chat →
+    </a>
+  </div>
+</div>
             </div>
           </div>
 
@@ -357,6 +382,7 @@ function App() {
                 <span>Request Booking Slot</span>
               </h3>
 
+              {/* Name + Email */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-600 block">
@@ -368,7 +394,7 @@ function App() {
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
                     placeholder="Your name"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
                   />
                 </div>
 
@@ -382,11 +408,12 @@ function App() {
                     value={formEmail}
                     onChange={(e) => setFormEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
                   />
                 </div>
               </div>
 
+              {/* Phone + Age */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-600 block">
@@ -397,19 +424,37 @@ function App() {
                     required
                     value={formPhone}
                     onChange={(e) => setFormPhone(e.target.value)}
-                    placeholder="(555) 000-0000"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    placeholder="07X XXX XXXX"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-600 block">
-                    Select Service category *
+                    Age *
                   </label>
+                  <input
+                    type="number"
+                    required
+                    value={formAge}
+                    onChange={(e) => setFormAge(e.target.value)}
+                    placeholder="Enter your age"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Service + Treatment Mode */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">
+                    Select Service Category *
+                  </label>
+
                   <select
                     value={formService}
                     onChange={(e) => setFormService(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] px-4 py-2.5 rounded-xl text-sm"
                   >
                     {SERVICES.map((s) => (
                       <option key={s.id} value={s.id}>
@@ -418,17 +463,36 @@ function App() {
                     ))}
                   </select>
                 </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">
+                    Treatment Mode *
+                  </label>
+
+                  <select
+                    required
+                    value={formTreatmentMode}
+                    onChange={(e) => setFormTreatmentMode(e.target.value)}
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] px-4 py-2.5 rounded-xl text-sm"
+                  >
+                    <option value="">Select mode</option>
+                    <option value="physical">Physical Consultation</option>
+                    <option value="online">Online Consultation</option>
+                  </select>
+                </div>
               </div>
 
+              {/* Doctor + Date + Time */}
               <div className="grid sm:grid-cols-3 gap-4">
-                <div className="space-y-1.5 sm:col-span-1">
+                <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-600 block">
                     Preferred Doctor *
                   </label>
+
                   <select
                     value={formSpecialist}
                     onChange={(e) => setFormSpecialist(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                    className="w-full bg-white border border-stone-200 px-3 py-2.5 rounded-xl text-xs"
                   >
                     {SPECIALISTS.map((spec) => (
                       <option key={spec.id} value={spec.id}>
@@ -442,46 +506,75 @@ function App() {
                   <label className="text-xs font-semibold text-slate-600 block">
                     Pick Date *
                   </label>
+
                   <input
                     type="date"
                     required
                     value={formDate}
                     onChange={(e) => setFormDate(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                    className="w-full bg-white border border-stone-200 px-3 py-2.5 rounded-xl text-xs"
                   />
                 </div>
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-600 block">
-                    Pick Time Slot *
+                    Pick Time *
                   </label>
+
                   <input
                     type="time"
                     required
                     value={formTime}
                     onChange={(e) => setFormTime(e.target.value)}
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-3.5 py-2.5 rounded-xl text-xs transition-all"
+                    className="w-full bg-white border border-stone-200 px-3 py-2.5 rounded-xl text-xs"
                   />
                 </div>
               </div>
 
+              {/* Message */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-600 block">
-                  Short details / notes (Optional)
+                  Short Details / Notes
                 </label>
+
                 <textarea
                   rows={3}
                   value={formMsg}
                   onChange={(e) => setFormMsg(e.target.value)}
-                  placeholder="Briefly describe what you would like to address..."
-                  className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all resize-none"
+                  placeholder="Briefly describe your concern..."
+                  className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] px-4 py-2.5 rounded-xl text-sm resize-none"
                 />
+              </div>
+
+              {/* Payment Receipt Upload */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-600 block">
+                  Upload Payment Receipt *
+                </label>
+
+                <input
+                  type="file"
+                  required
+                  accept="image/*,.pdf"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+
+                    if (file) {
+                      setFormReceipt(file);
+                    }
+                  }}
+                  className="w-full bg-white border border-stone-200 px-4 py-2.5 rounded-xl text-sm"
+                />
+
+                <p className="text-xs text-slate-500">
+                  Upload your payment receipt (JPG, PNG or PDF)
+                </p>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full bg-[#C76B3D] hover:bg-[#843519] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${
+                className={`w-full bg-brand-primary hover:bg-[#000690] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${
                   isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
@@ -612,7 +705,7 @@ function App() {
                 Insight
               </span>
               <span className="block text-[10px] uppercase tracking-widest text-brand-primary font-semibold -mt-1">
-                counseling 
+                counseling
               </span>
             </div>
           </div>
@@ -751,15 +844,15 @@ function App() {
 
           {/* Appointment button CTA */}
           <div className="hidden lg:flex items-center gap-3">
-           <a
-  href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
->
-  <MessageCircle className="h-4 w-4" />
-  <span>Chat on WhatsApp</span>
-</a>
+            <a
+              href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>Chat on WhatsApp</span>
+            </a>
             <button
               onClick={() => navigateToHomeSection("booking")}
               className="rounded-full bg-[#0D5ADB] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#C76B3D]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A3D91] hover:shadow-lg hover:shadow-[#843519]/25"
@@ -932,9 +1025,9 @@ function App() {
         <>
           {/* Hero Section */}
           <section
-  className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-16 md:py-24"
-  style={{
-    backgroundImage: `
+            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-16 md:py-24"
+            style={{
+              backgroundImage: `
       linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.15)100%,
@@ -943,208 +1036,183 @@ function App() {
       ),
       url(${heroImage})
     `,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Soft background effects */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
-  <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
-
-  <div className="relative z-10 mx-auto max-w-7xl px-6">
-    <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-
-      {/* Left Content */}
-      <div className="space-y-6">
-
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
-          <Heart className="h-3.5 w-3.5" />
-          <span>Support for lasting wellness</span>
-        </div>
-
-
-        <div className="space-y-4">
-
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.03] tracking-tight text-[#333333] sm:text-5xl lg:text-6xl">
-            Find calm,
-            <span className="block text-blue-600">
-              clarity, and balance
-            </span>
-          </h1>
-
-
-          <p className="max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
-            Compassionate therapy and expert guidance for stress,
-            anxiety, relationships, and everyday well-being.
-          </p>
-
-        </div>
-
-
-        {/* Buttons */}
-        <div className="flex flex-wrap items-center gap-4 pt-2">
-
-          {/* Booking Button */}
-          <button
-            onClick={openBookingModal}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
-            <Calendar className="h-4 w-4" />
-            <span>Book Your Session Now</span>
-          </button>
+            {/* Soft background effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
+            <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
 
+            <div className="relative z-10 mx-auto max-w-7xl px-6">
+              <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+                {/* Left Content */}
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
+                    <Heart className="h-3.5 w-3.5" />
+                    <span>Support for lasting wellness</span>
+                  </div>
 
-          {/* WhatsApp Button */}
-          
+                  <div className="space-y-4">
+                    <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.03] tracking-tight text-[#333333] sm:text-5xl lg:text-6xl">
+                      Find calm,
+                      <span className="block text-blue-600">
+                        clarity, and balance
+                      </span>
+                    </h1>
 
-<a
-  href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
->
-  <MessageCircle className="h-4 w-4" />
-  <span>Chat on WhatsApp</span>
-</a>
+                    <p className="max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
+                      Compassionate therapy and expert guidance for stress,
+                      anxiety, relationships, and everyday well-being.
+                    </p>
+                  </div>
 
-        </div>
+                  {/* Buttons */}
+                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                    {/* Booking Button */}
+                    <button
+                      onClick={openBookingModal}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                    >
+                      <Calendar className="h-4 w-4" />
+                      <span>Book Your Session Now</span>
+                    </button>
 
+                    {/* WhatsApp Button */}
 
+                    <a
+                      href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>Chat on WhatsApp</span>
+                    </a>
+                  </div>
 
-        {/* Feature Cards */}
-        <div className="grid gap-3 pt-2 sm:grid-cols-3">
+                  {/* Feature Cards */}
+                  <div className="grid gap-3 pt-2 sm:grid-cols-3">
+                    {[
+                      {
+                        title: "Calm Your Mind",
+                        text: "Reduce stress with tailored emotional support.",
+                      },
+                      {
+                        title: "Balance Your Life",
+                        text: "Create healthier routines and stronger resilience.",
+                      },
+                      {
+                        title: "Clearer Focus",
+                        text: "Build practical strategies for everyday well-being.",
+                      },
+                    ].map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-md"
+                      >
+                        <h3 className="text-sm font-semibold text-slate-800">
+                          {item.title}
+                        </h3>
 
-          {[
-            {
-              title: "Calm Your Mind",
-              text: "Reduce stress with tailored emotional support.",
-            },
-            {
-              title: "Balance Your Life",
-              text: "Create healthier routines and stronger resilience.",
-            },
-            {
-              title: "Clearer Focus",
-              text: "Build practical strategies for everyday well-being.",
-            },
-          ].map((item) => (
+                        <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-            <div
-              key={item.title}
-              className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-md"
-            >
-
-              <h3 className="text-sm font-semibold text-slate-800">
-                {item.title}
-              </h3>
-
-              <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
-                {item.text}
-              </p>
-
+                {/* Right Empty Space For Background Image Visibility */}
+                <div className="hidden md:block"></div>
+              </div>
             </div>
+          </section>
+          {/* Founder's Message Section - Prasad Wijesundara */}
+          <section className="py-6 bg-[#000690] border-b border-[#1a3a5c] m-3 rounded-3xl shadow-lg relative overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+              {/* 4-Part Grid Layout */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                {/* PART 1: Image & Decorative Elements */}
+                <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
+                  <div className="relative">
+                    <div className="absolute -inset-3 rounded-full border border-white/10" />
+                    <div className="w-70 h-70 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
+                      <img
+                        src={profile}
+                        alt="Prasad Wijesundara"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/5 rounded-full -mr-2 -mt-2 z-0" />
+                    <div className="absolute bottom-0 left-0 w-6 h-6 bg-white/5 rounded-full -ml-2 -mb-2 z-0" />
+                  </div>
+                  {/* Separator Line */}
+                  <div className="hidden md:block w-px h-16 bg-white/10 mt-6" />
+                </div>
 
-          ))}
+                {/* PART 2: Name & Title */}
+                <div className="md:col-span-1 flex flex-col justify-center order-1 md:order-2">
+                  <div className="space-y-3 text-center md:text-left">
+                    <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
+                      Prasad Wijesundara
+                    </h2>
+                    <p className="text-white font-medium text-xs tracking-wider uppercase">
+                      Founder | Psychological Counselor & Psychotherapist
+                    </p>
+                    <p className="text-white/70 leading-relaxed text-sm">
+                      Providing professional psychological counseling and
+                      psychotherapy services with compassion, confidentiality
+                      and respect.
+                    </p>
+                  </div>
+                  {/* Separator Line */}
+                  <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
+                </div>
 
-        </div>
+                {/* PART 3: Service List */}
+                <div className="md:col-span-1 flex flex-col justify-center order-3">
+                  <div className="space-y-2.5">
+                    <p className="text-white/50 text-xs uppercase tracking-wider font-medium mb-2 text-center md:text-left">
+                      Services
+                    </p>
+                    {[
+                      "Individual Counseling",
+                      "Emotional Support",
+                      "Stress Management",
+                      "Online Consultation",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center gap-3 justify-center md:justify-start"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FFB347] flex-shrink-0" />
+                        <span className="text-sm text-white/90">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Separator Line */}
+                  <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
+                </div>
 
-      </div>
-
-
-      {/* Right Empty Space For Background Image Visibility */}
-      <div className="hidden md:block">
-      </div>
-
-
-    </div>
-  </div>
-
-</section>
-{/* Founder's Message Section - Prasad Wijesundara */}
-<section className="py-6 bg-[#000690] border-b border-[#1a3a5c] m-3 rounded-3xl shadow-lg relative overflow-hidden">
-  <div className="max-w-7xl mx-auto">
-    {/* 4-Part Grid Layout */}
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-      
-      {/* PART 1: Image & Decorative Elements */}
-      <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
-        <div className="relative">
-          <div className="absolute -inset-3 rounded-full border border-white/10" />
-          <div className="w-70 h-70 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
-            <img
-              src={profile}
-              alt="Prasad Wijesundara"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute top-0 right-0 w-8 h-8 bg-white/5 rounded-full -mr-2 -mt-2 z-0" />
-          <div className="absolute bottom-0 left-0 w-6 h-6 bg-white/5 rounded-full -ml-2 -mb-2 z-0" />
-        </div>
-        {/* Separator Line */}
-        <div className="hidden md:block w-px h-16 bg-white/10 mt-6" />
-      </div>
-
-      {/* PART 2: Name & Title */}
-      <div className="md:col-span-1 flex flex-col justify-center order-1 md:order-2">
-        <div className="space-y-3 text-center md:text-left">
-          <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
-            Prasad Wijesundara
-          </h2>
-          <p className="text-white font-medium text-xs tracking-wider uppercase">
-            Founder | Psychological Counselor & Psychotherapist
-          </p>
-          <p className="text-white/70 leading-relaxed text-sm">
-            Providing professional psychological counseling and psychotherapy services with compassion, confidentiality and respect.
-          </p>
-        </div>
-        {/* Separator Line */}
-        <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
-      </div>
-
-      {/* PART 3: Service List */}
-      <div className="md:col-span-1 flex flex-col justify-center order-3">
-        <div className="space-y-2.5">
-          <p className="text-white/50 text-xs uppercase tracking-wider font-medium mb-2 text-center md:text-left">
-            Services
-          </p>
-          {[
-            "Individual Counseling",
-            "Emotional Support", 
-            "Stress Management",
-            "Online Consultation"
-          ].map((item) => (
-            <div key={item} className="flex items-center gap-3 justify-center md:justify-start">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FFB347] flex-shrink-0" />
-              <span className="text-sm text-white/90">{item}</span>
+                {/* PART 4: CTA Button */}
+                <div className="md:col-span-1 flex flex-col items-center justify-center order-4">
+                  <div className="flex flex-col items-center gap-4">
+                    <button
+                      onClick={openBookingModal}
+                      className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
+                    >
+                      <span>Book With Prasad →</span>
+                    </button>
+                    <p className="text-white/40 text-xs text-center">
+                      Online & In-Person Sessions
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-        {/* Separator Line */}
-        <div className="hidden md:block w-px h-16 bg-white/10 mt-6 mx-auto md:mx-0" />
-      </div>
+          </section>
 
-      {/* PART 4: CTA Button */}
-      <div className="md:col-span-1 flex flex-col items-center justify-center order-4">
-        <div className="flex flex-col items-center gap-4">
-          <button
-            onClick={openBookingModal}
-            className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
-          >
-            <span>Book With Prasad →</span>
-          </button>
-          <p className="text-white/40 text-xs text-center">
-            Online & In-Person Sessions
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-          
-
-          
           <section
             ref={servicesSectionRef}
             id="services"
@@ -1497,6 +1565,7 @@ function App() {
                         </p>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
 
