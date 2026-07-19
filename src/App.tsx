@@ -28,6 +28,11 @@ import {
   Users,
   MessageCircle,
   Sparkles,
+  User,
+  CreditCard,
+  Video,
+  Upload,
+  ArrowDown,
 } from "lucide-react";
 const message = `Hello,
 
@@ -1528,6 +1533,210 @@ function App() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Booking & Payment section */}
+          <section
+            id="booking-payment"
+            className="py-16 sm:py-20 bg-white border-t border-brand-border"
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="text-center max-w-xl mx-auto space-y-3 mb-10 sm:mb-14">
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                  Simple & Secure
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-serif text-[#333333]">
+                  Booking & Payment
+                </h2>
+                <p className="text-slate-500 text-sm font-light">
+                  Book your session in a few clear steps, pay securely, and join
+                  from anywhere.
+                </p>
+              </div>
+
+              <div className="grid gap-6 lg:grid-cols-3">
+                {/* Card 1: How Booking Works */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
+                    How Booking Works
+                  </h3>
+                  <div className="flex flex-col items-stretch gap-2 flex-1">
+                    {[
+                      {
+                        step: 1,
+                        label: "Choose Professional",
+                        icon: <User className="h-4 w-4 text-brand-primary" />,
+                      },
+                      {
+                        step: 2,
+                        label: "Select Time",
+                        icon: (
+                          <Calendar className="h-4 w-4 text-brand-primary" />
+                        ),
+                      },
+                      {
+                        step: 3,
+                        label: "Make Payment",
+                        icon: (
+                          <CreditCard className="h-4 w-4 text-brand-primary" />
+                        ),
+                      },
+                      {
+                        step: 4,
+                        label: "Join Session",
+                        icon: <Video className="h-4 w-4 text-brand-primary" />,
+                      },
+                    ].map((item, index, arr) => (
+                      <div key={item.step} className="flex flex-col items-center">
+                        <div className="flex w-full items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-3 py-3">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-xs font-bold text-white">
+                            {item.step}
+                          </span>
+                          <span className="flex items-center gap-2 text-sm font-medium text-slate-700">
+                            {item.icon}
+                            {item.label}
+                          </span>
+                        </div>
+                        {index < arr.length - 1 && (
+                          <ArrowDown className="my-1.5 h-4 w-4 text-brand-primary/50" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card 2: Secure Payment */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-5">
+                    Secure Payment
+                  </h3>
+
+                  <div className="rounded-xl bg-brand-light border border-brand-border px-4 py-4 text-center mb-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                      Session Fee:
+                    </p>
+                    <p className="text-2xl sm:text-3xl font-bold text-brand-primary">
+                      Rs. 2,000/-
+                    </p>
+                  </div>
+
+                  <div className="flex-1 space-y-3 mb-5">
+                    <p className="text-sm font-bold text-slate-800">
+                      Bank Transfer:
+                    </p>
+                    <div className="space-y-2.5 text-sm">
+                      {[
+                        { label: "Bank", value: "Commercial" },
+                        { label: "Account Name", value: "W S P Dhanasankha" },
+                        { label: "Account Number", value: "8020157278" },
+                        { label: "Branch", value: "Embilipitiya" },
+                      ].map((row) => (
+                        <div
+                          key={row.label}
+                          className="flex items-start justify-between gap-3 border-b border-brand-border/60 pb-2 last:border-0"
+                        >
+                          <span className="text-slate-500 shrink-0">
+                            {row.label}:
+                          </span>
+                          <span className="font-semibold text-slate-800 text-right break-all">
+                            {row.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={openBookingModal}
+                    className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
+                  >
+                    <Upload className="h-4 w-4" />
+                    Upload Payment Receipt
+                  </button>
+                </div>
+
+                {/* Card 3: Attend From Anywhere */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
+                    Attend From Anywhere
+                  </h3>
+
+                  <div className="space-y-3 flex-1">
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white border border-brand-border shadow-sm">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fill="#00832D"
+                            d="M12 8.5v7l6 3.5V5z"
+                          />
+                          <path
+                            fill="#0066DA"
+                            d="M4 7.5A2.5 2.5 0 0 1 6.5 5h7v14h-7A2.5 2.5 0 0 1 4 16.5z"
+                          />
+                          <path fill="#FFBA00" d="M18 12l4 2.5V9.5z" />
+                          <path fill="#E94235" d="M18 12l4 2.5V19l-4-2.5z" />
+                        </svg>
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Google Meet
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2D8CFF] text-white shadow-sm">
+                        <Video className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Zoom
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
+                        <Phone className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Phone Consultation
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 rounded-xl bg-brand-light border border-brand-border px-4 py-4">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                      After confirmation you will receive WhatsApp and Email
+                      notifications.
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white shadow-sm transition-transform hover:scale-105"
+                        aria-label="WhatsApp +94 (0) 757629950"
+                        title="+94 (0) 757629950"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="mailto:counsellinginsightdomain@gmail.com"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-primary text-white shadow-sm transition-transform hover:scale-105"
+                        aria-label="Email"
+                      >
+                        <Mail className="h-4 w-4" />
+                      </a>
+                      <span className="ml-1 text-xs text-slate-500">
+                        +94 (0) 757629950
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
