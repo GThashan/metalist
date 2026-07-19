@@ -348,30 +348,31 @@ function App() {
                   </p>
                 </div>
               </div>
-             <div className="flex gap-3.5 items-center">
-  <div className="w-10 h-10 rounded-xl bg-green-100 text-green-600 flex items-center justify-center shrink-0">
-    <MessageCircle className="w-5 h-5" />
-  </div>
+              <div className="flex gap-3.5 items-center">
+                <div className="w-10 h-10 rounded-xl bg-green-100 text-green-600 flex items-center justify-center shrink-0">
+                  <MessageCircle className="w-5 h-5" />
+                </div>
 
-  <div>
-    <h4 className="font-semibold text-slate-800 text-xs">
-      Chat on WhatsApp
-    </h4>
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-xs">
+                    Chat on WhatsApp
+                  </h4>
 
-    <p className="text-[10px] text-slate-500">
-      Contact us directly for quick appointment inquiries and support.
-    </p>
+                  <p className="text-[10px] text-slate-500">
+                    Contact us directly for quick appointment inquiries and
+                    support.
+                  </p>
 
-    <a
-      href="https://wa.me/94757629950?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment."
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center mt-1 text-[11px] font-semibold text-green-600 hover:text-green-700"
-    >
-      Start Chat →
-    </a>
-  </div>
-</div>
+                  <a
+                    href="https://wa.me/94757629950?text=Hello,%20I%20would%20like%20to%20book%20an%20appointment."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center mt-1 text-[11px] font-semibold text-green-600 hover:text-green-700"
+                  >
+                    Start Chat →
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -555,7 +556,6 @@ function App() {
                 <input
                   type="file"
                   required
-                  
                   accept="image/*,.pdf"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
@@ -567,10 +567,10 @@ function App() {
                   className="w-full bg-white border border-stone-200 px-4 py-2.5 rounded-xl text-sm"
                 />
                 {formReceipt && (
-  <p className="text-xs text-slate-500 mt-2">
-    Selected file: {formReceipt.name}
-  </p>
-)}
+                  <p className="text-xs text-slate-500 mt-2">
+                    Selected file: {formReceipt.name}
+                  </p>
+                )}
 
                 <p className="text-xs text-slate-500">
                   Upload your payment receipt (JPG, PNG or PDF)
@@ -1571,7 +1571,6 @@ function App() {
                         </p>
                       </div>
                     </div>
-                    
                   </div>
                 </div>
 
