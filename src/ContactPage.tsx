@@ -11,20 +11,20 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
         <div className="absolute top-[-8%] right-[-8%] h-56 w-56 rounded-full bg-[#C76B3D]/10 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-10%] h-64 w-64 rounded-full bg-[#843519]/10 blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
+        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28" data-animate="hero">
           <div className="max-w-3xl space-y-6">
             <span className="block text-xs font-bold uppercase tracking-[0.3em] text-white">
               Contact Us
             </span>
-            <h1 className="text-4xl font-serif font-bold leading-tight text-white sm:text-5xl">
+            <h1 className="text-3xl font-serif font-bold leading-tight text-white sm:text-4xl md:text-5xl">
               We’re here to help you take the next step with confidence.
             </h1>
-            <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
+            <p className="max-w-2xl text-sm leading-relaxed text-white sm:text-base md:text-lg">
               Reach out for appointment requests, counseling support, or general inquiries. We’ll guide you with care and clarity.
             </p>
             <button
               onClick={onBookAppointment}
-              className="inline-flex items-center gap-2 rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-[#C76B3D]/20 transition-all duration-300 hover:bg-[#843519]"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-[#C76B3D]/20 transition-all duration-300 hover:bg-[#843519]"
             >
               Book an Appointment
               <ArrowRight className="h-4 w-4" />
@@ -33,10 +33,13 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-[#E1D8CC] bg-white p-8 shadow-sm sm:p-10">
-            <h2 className="text-2xl font-serif font-semibold text-[#333333]">
+          <div
+            className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white p-5 shadow-sm sm:p-10"
+            data-animate="fade-left"
+          >
+            <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[#333333]">
               Visit our clinic
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
@@ -78,7 +81,10 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#E1D8CC] bg-[#333333] p-8 text-[#f7f0e5] shadow-sm sm:p-10">
+          <div
+            className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-[#333333] p-5 text-[#f7f0e5] shadow-sm sm:p-10"
+            data-animate="fade-right"
+          >
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C76B3D]/20 text-[#C76B3D]">
                 <CalendarDays className="h-5 w-5" />
@@ -105,17 +111,17 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
         </div>
       </section>
 
-      <section>
-  <div className="overflow-hidden border border-[#E1D8CC] bg-white shadow-sm">
+      <section className="px-4 sm:px-6 pb-10">
+  <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white shadow-sm">
     
-    <div className=" sm:p-10">
+    <div className="px-5 py-4 sm:p-10">
      
       <p className="mt-3 text-sm text-slate-600">
         Visit us at our clinic location in Embilipitiya.
       </p>
     </div>
 
-    <div className="h-[400px] w-full">
+    <div className="h-[240px] sm:h-[320px] md:h-[400px] w-full">
       <iframe
         title="Clinic Location - Embilipitiya"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63449.707695963625!2d80.81843254011606!3d6.315279630478413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae4002f298e95e3%3A0x62e2b8bc9ea7a79b!2sEmbilipitiya!5e0!3m2!1sen!2slk!4v1784435075768!5m2!1sen!2slk"

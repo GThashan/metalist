@@ -3,6 +3,8 @@ import AboutPage from "./AboutPage";
 import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
+import BlogPage from "./BlogPage";
+import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
@@ -28,6 +30,12 @@ import {
   Users,
   MessageCircle,
   Sparkles,
+  User,
+  CreditCard,
+  Video,
+  Upload,
+  ArrowDown,
+  BookOpen,
 } from "lucide-react";
 const message = `Hello,
 
@@ -157,9 +165,12 @@ function App() {
   >(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<
-    "home" | "about" | "service" | "specialists" | "contact"
+    "home" | "about" | "service" | "specialists" | "contact" | "blog"
   >("home");
   const [currentServiceId, setCurrentServiceId] = useState("mental-health");
+
+  // GSAP scroll + entrance animations (re-run on page change)
+  useGsapAnimations([currentPage, currentServiceId]);
 
   // Selected Service in Service Showcase
   const [selectedServiceTab, setSelectedServiceTab] = useState("mental-health");
@@ -197,7 +208,7 @@ function App() {
   };
 
   const navigateToPage = (
-    page: "home" | "about" | "service" | "specialists" | "contact",
+    page: "home" | "about" | "service" | "specialists" | "contact" | "blog",
     serviceId?: string,
   ) => {
     setCurrentPage(page);
@@ -225,6 +236,8 @@ function App() {
     }
 
     setCurrentPage("home");
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
     setTimeout(() => {
       switch (section) {
         case "specialists":
@@ -295,7 +308,7 @@ function App() {
       onClick={() => setIsBookingModalOpen(false)}
     >
       <div
-        className="bg-white border border-[#E1D8CC] rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+        className="bg-white border border-[#E1D8CC] rounded-3xl p-4 sm:p-6 md:p-8 max-w-4xl w-full max-h-[90dvh] overflow-y-auto shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -307,11 +320,11 @@ function App() {
         </button>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-4 sm:space-y-6">
             <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
               Start Healing
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#333333] leading-tight">
               Schedule a Consultation at Insight
             </h2>
             <p className="text-slate-600 text-sm leading-relaxed font-light">
@@ -319,7 +332,7 @@ function App() {
               licensed specialists.
             </p>
 
-            <div className="space-y-4 pt-4 border-t border-stone-150">
+            <div className="hidden sm:block space-y-4 pt-4 border-t border-stone-150">
               <div className="flex gap-3.5 items-center">
                 <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
@@ -376,7 +389,7 @@ function App() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-lg">
+          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg">
             <form onSubmit={handleBookingSubmit} className="space-y-5">
               <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-brand-primary" />
@@ -696,7 +709,7 @@ function App() {
 
       {/* Main Header / Navigation */}
       <header className="sticky top-0 z-50 bg-white border-b border-[#E1D8CC]/60 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
           {/* Logo */}
           <div
             className="flex items-center gap-2 cursor-pointer group"
@@ -754,6 +767,12 @@ function App() {
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
                     About Us
+                  </button>
+                  <button
+                    onClick={() => navigateToPage("blog")}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                  >
+                    Blog
                   </button>
                   <button
                     onClick={() => navigateToPage("specialists")}
@@ -869,8 +888,15 @@ function App() {
 
           {/* Mobile menu trigger */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => {
+              setIsMobileMenuOpen((open) => {
+                if (open) setActiveDropdown(null);
+                return !open;
+              });
+            }}
             className="lg:hidden p-2 text-[#333333] hover:text-brand-primary transition-colors focus:outline-none"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -882,123 +908,214 @@ function App() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-brand-border bg-white py-4 px-6 space-y-4 animate-slideDown">
-            <div className="flex flex-col space-y-3">
+          <nav
+            className="lg:hidden border-t border-brand-border bg-white animate-slideDown max-h-[calc(100dvh-4rem)] overflow-y-auto"
+            aria-label="Mobile navigation"
+          >
+            <div className="px-4 py-3 space-y-1">
+              {/* Home */}
               <button
                 onClick={() => navigateToPage("home")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                  currentPage === "home"
+                    ? "bg-brand-primary/10 text-brand-primary"
+                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                }`}
               >
-                <Home className="h-4 w-4" />
+                <Home className="h-4 w-4 shrink-0" />
                 <span>Home</span>
               </button>
 
-              <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Pages
-                </span>
+              {/* Pages accordion */}
+              <div className="rounded-xl overflow-hidden">
                 <button
-                  onClick={() => navigateToPage("about")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === "pages" ? null : "pages",
+                    )
+                  }
+                  className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                    activeDropdown === "pages"
+                      ? "bg-brand-cream text-brand-primary"
+                      : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                  }`}
+                  aria-expanded={activeDropdown === "pages"}
                 >
-                  <Info className="h-4 w-4" />
-                  <span>About Us</span>
+                  <span className="flex items-center gap-3">
+                    <Info className="h-4 w-4 shrink-0" />
+                    <span>Pages</span>
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
+                      activeDropdown === "pages" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                <button
-                  onClick={() => navigateToPage("specialists")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Users className="h-4 w-4" />
-                  <span>Our Team</span>
-                </button>
-                <button
-                  onClick={() => navigateToPage("contact")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Phone className="h-4 w-4" />
-                  <span>Contact Us</span>
-                </button>
-                <button
-                  onClick={() => navigateToHomeSection("reviews")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Heart className="h-4 w-4" />
-                  <span>Client Review</span>
-                </button>
+                {activeDropdown === "pages" && (
+                  <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
+                    <button
+                      onClick={() => navigateToPage("about")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Info className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>About Us</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("blog")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <BookOpen className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Blog</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("specialists")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Users className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Our Team</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("contact")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Phone className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Contact Us</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToHomeSection("reviews")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Heart className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Client Review</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
-              <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Services
-                </span>
+              {/* Services accordion */}
+              <div className="rounded-xl overflow-hidden">
                 <button
-                  onClick={() => {
-                    navigateToPage("service", "mental-health");
-                  }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === "services" ? null : "services",
+                    )
+                  }
+                  className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                    activeDropdown === "services" || currentPage === "service"
+                      ? "bg-brand-cream text-brand-primary"
+                      : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                  }`}
+                  aria-expanded={activeDropdown === "services"}
                 >
-                  <Sparkles className="h-4 w-4" />
-                  <span>Mental Health Support</span>
+                  <span className="flex items-center gap-3">
+                    <Sparkles className="h-4 w-4 shrink-0" />
+                    <span>Services</span>
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
+                      activeDropdown === "services" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                <button
-                  onClick={() => {
-                    navigateToPage("service", "physical-health");
-                  }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  <span>Physical Health Sync</span>
-                </button>
-                <button
-                  onClick={() => {
-                    navigateToPage("service", "therapy");
-                  }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  <span>Psychotherapy & Counseling</span>
-                </button>
+                {activeDropdown === "services" && (
+                  <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
+                    <button
+                      onClick={() =>
+                        navigateToPage("service", "mental-health")
+                      }
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
+                        currentPage === "service" &&
+                        currentServiceId === "mental-health"
+                          ? "bg-brand-primary/10 text-brand-primary font-medium"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Mental Health Support</span>
+                    </button>
+                    <button
+                      onClick={() =>
+                        navigateToPage("service", "physical-health")
+                      }
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
+                        currentPage === "service" &&
+                        currentServiceId === "physical-health"
+                          ? "bg-brand-primary/10 text-brand-primary font-medium"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Physical Health Sync</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("service", "therapy")}
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
+                        currentPage === "service" &&
+                        currentServiceId === "therapy"
+                          ? "bg-brand-primary/10 text-brand-primary font-medium"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Psychotherapy & Counseling</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
+              {/* Specialists */}
               <button
                 onClick={() => navigateToPage("specialists")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                  currentPage === "specialists"
+                    ? "bg-brand-primary/10 text-brand-primary"
+                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                }`}
               >
-                <Users className="h-4 w-4" />
+                <Users className="h-4 w-4 shrink-0" />
                 <span>Specialists</span>
               </button>
 
+              {/* Contact */}
               <button
                 onClick={() => navigateToPage("contact")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                  currentPage === "contact"
+                    ? "bg-brand-primary/10 text-brand-primary"
+                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                }`}
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 shrink-0" />
                 <span>Contact</span>
               </button>
             </div>
 
-            <div className="flex items-center gap-3 pt-2">
+            {/* Mobile CTAs */}
+            <div className="sticky bottom-0 border-t border-brand-border bg-white px-4 py-4 space-y-2.5">
               <a
-                href="https://wa.me/15553217890"
+                href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                 target="_blank"
-                rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                aria-label="WhatsApp"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#1ebe57]"
               >
-                <MessageCircle className="h-5 w-5" />
+                <MessageCircle className="h-4 w-4" />
+                Chat on WhatsApp
               </a>
               <button
                 onClick={() => navigateToHomeSection("booking")}
-                className="w-full rounded-xl bg-[#C76B3D] py-3 text-center font-medium text-white shadow-md shadow-[#C76B3D]/10"
+                className="w-full rounded-xl bg-brand-primary py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
               >
                 Book Appointment
               </button>
             </div>
-          </div>
+          </nav>
         )}
       </header>
 
       {currentPage === "about" ? (
         <AboutPage onBookAppointment={handleBookAppointment} />
+      ) : currentPage === "blog" ? (
+        <BlogPage onBookAppointment={handleBookAppointment} />
       ) : currentPage === "contact" ? (
         <ContactPage onBookAppointment={handleBookAppointment} />
       ) : currentPage === "service" ? (
@@ -1031,7 +1148,7 @@ function App() {
         <>
           {/* Hero Section */}
           <section
-            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-16 md:py-24"
+            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-12 sm:py-16 md:py-24"
             style={{
               backgroundImage: `
       linear-gradient(
@@ -1050,35 +1167,42 @@ function App() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
             <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
 
-            <div className="relative z-10 mx-auto max-w-7xl px-6">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
               <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
                 {/* Left Content */}
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
-                    <Heart className="h-3.5 w-3.5" />
-                    <span>Support for lasting wellness</span>
+                <div className="space-y-5 sm:space-y-6">
+                  <div
+                    className="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm"
+                    data-animate="hero"
+                  >
+                    <Heart className="h-3.5 w-3.5 shrink-0" />
+                    <span className="truncate">Support for lasting wellness</span>
                   </div>
 
-                  <div className="space-y-4">
-                    <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.03] tracking-tight text-[#333333] sm:text-5xl lg:text-6xl">
+                  <div className="space-y-4" data-animate="hero" data-delay="0.12">
+                    <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl">
                       Find calm,
                       <span className="block text-blue-600">
                         clarity, and balance
                       </span>
                     </h1>
 
-                    <p className="max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
+                    <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
                       Compassionate therapy and expert guidance for stress,
                       anxiety, relationships, and everyday well-being.
                     </p>
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <div
+                    className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2"
+                    data-animate="hero"
+                    data-delay="0.22"
+                  >
                     {/* Booking Button */}
                     <button
                       onClick={openBookingModal}
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
                     >
                       <Calendar className="h-4 w-4" />
                       <span>Book Your Session Now</span>
@@ -1090,7 +1214,7 @@ function App() {
                       href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
                     >
                       <MessageCircle className="h-4 w-4" />
                       <span>Chat on WhatsApp</span>
@@ -1098,7 +1222,11 @@ function App() {
                   </div>
 
                   {/* Feature Cards */}
-                  <div className="grid gap-3 pt-2 sm:grid-cols-3">
+                  <div
+                    className="grid gap-3 pt-2 sm:grid-cols-3"
+                    data-animate="stagger"
+                    data-stagger="0.1"
+                  >
                     {[
                       {
                         title: "Calm Your Mind",
@@ -1135,15 +1263,19 @@ function App() {
             </div>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
-          <section className="py-6 bg-[#000690] border-b border-[#1a3a5c] m-3 rounded-3xl shadow-lg relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+          <section className="py-8 sm:py-6 bg-[#000690] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
               {/* 4-Part Grid Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              <div
+                className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 max-w-6xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.1"
+              >
                 {/* PART 1: Image & Decorative Elements */}
                 <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
                   <div className="relative">
                     <div className="absolute -inset-3 rounded-full border border-white/10" />
-                    <div className="w-70 h-70 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
+                    <div className="w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
                       <img
                         src={profile}
                         alt="Prasad Wijesundara"
@@ -1160,10 +1292,10 @@ function App() {
                 {/* PART 2: Name & Title */}
                 <div className="md:col-span-1 flex flex-col justify-center order-1 md:order-2">
                   <div className="space-y-3 text-center md:text-left">
-                    <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white leading-tight">
                       Prasad Wijesundara
                     </h2>
-                    <p className="text-white font-medium text-xs tracking-wider uppercase">
+                    <p className="text-white font-medium text-[10px] sm:text-xs tracking-wider uppercase">
                       Founder | Psychological Counselor & Psychotherapist
                     </p>
                     <p className="text-white/70 leading-relaxed text-sm">
@@ -1203,7 +1335,7 @@ function App() {
 
                 {/* PART 4: CTA Button */}
                 <div className="md:col-span-1 flex flex-col items-center justify-center order-4">
-                  <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col items-center gap-4 w-full max-w-xs">
                     <button
                       onClick={openBookingModal}
                       className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
@@ -1226,7 +1358,7 @@ function App() {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-6">
-              <div className="mx-auto mb-12 max-w-3xl text-center">
+              <div className="mx-auto mb-12 max-w-3xl text-center" data-animate="fade-up">
                 <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
                   Tailored specialties
                 </span>
@@ -1239,7 +1371,11 @@ function App() {
                 </p>
               </div>
 
-              <div className="mx-auto mb-10 flex max-w-3xl flex-wrap justify-center gap-3">
+              <div
+                className="mx-auto mb-10 flex max-w-3xl gap-3 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:justify-center sm:overflow-visible"
+                data-animate="fade-up"
+                data-delay="0.1"
+              >
                 {SERVICES.map((srv) => (
                   <button
                     key={srv.id}
@@ -1247,7 +1383,7 @@ function App() {
                       setSelectedServiceTab(srv.id);
                       navigateToPage("service", srv.id);
                     }}
-                    className={`rounded-full px-5 py-3 text-sm font-medium transition-all duration-300 ${
+                    className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${
                       selectedServiceTab === srv.id
                         ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
                         : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
@@ -1258,7 +1394,10 @@ function App() {
                 ))}
               </div>
 
-              <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12">
+              <div
+                className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-4 sm:p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12"
+                data-animate="scale-in"
+              >
                 {SERVICES.filter((s) => s.id === selectedServiceTab).map(
                   (activeSrv) => (
                     <div
@@ -1353,7 +1492,10 @@ function App() {
           >
             <div className="max-w-7xl mx-auto px-6">
               {/* Header */}
-              <div className="text-center max-w-xl mx-auto space-y-4 mb-14">
+              <div
+                className="text-center max-w-xl mx-auto space-y-4 mb-14"
+                data-animate="fade-up"
+              >
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Professional Care
                 </span>
@@ -1367,7 +1509,11 @@ function App() {
               </div>
 
               {/* Grid */}
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div
+                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
                 {SPECIALISTS.map((spec) => (
                   <div
                     key={spec.id}
@@ -1441,6 +1587,217 @@ function App() {
             </div>
           </section>
 
+          {/* Booking & Payment section */}
+          <section
+            id="booking-payment"
+            className="py-16 sm:py-20 bg-white border-t border-brand-border"
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div
+                className="text-center max-w-xl mx-auto space-y-3 mb-10 sm:mb-14"
+                data-animate="fade-up"
+              >
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                  Simple & Secure
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-serif text-[#333333]">
+                  Booking & Payment
+                </h2>
+                <p className="text-slate-500 text-sm font-light">
+                  Book your session in a few clear steps, pay securely, and join
+                  from anywhere.
+                </p>
+              </div>
+
+              <div
+                className="grid gap-6 lg:grid-cols-3"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
+                {/* Card 1: How Booking Works */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
+                    How Booking Works
+                  </h3>
+                  <div className="flex flex-col items-stretch gap-2 flex-1">
+                    {[
+                      {
+                        step: 1,
+                        label: "Choose Professional",
+                        icon: <User className="h-4 w-4 text-brand-primary" />,
+                      },
+                      {
+                        step: 2,
+                        label: "Select Time",
+                        icon: (
+                          <Calendar className="h-4 w-4 text-brand-primary" />
+                        ),
+                      },
+                      {
+                        step: 3,
+                        label: "Make Payment",
+                        icon: (
+                          <CreditCard className="h-4 w-4 text-brand-primary" />
+                        ),
+                      },
+                      {
+                        step: 4,
+                        label: "Join Session",
+                        icon: <Video className="h-4 w-4 text-brand-primary" />,
+                      },
+                    ].map((item, index, arr) => (
+                      <div key={item.step} className="flex flex-col items-center">
+                        <div className="flex w-full items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-3 py-3">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-xs font-bold text-white">
+                            {item.step}
+                          </span>
+                          <span className="flex items-center gap-2 text-sm font-medium text-slate-700">
+                            {item.icon}
+                            {item.label}
+                          </span>
+                        </div>
+                        {index < arr.length - 1 && (
+                          <ArrowDown className="my-1.5 h-4 w-4 text-brand-primary/50" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card 2: Secure Payment */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-5">
+                    Secure Payment
+                  </h3>
+
+                  <div className="rounded-xl bg-brand-light border border-brand-border px-4 py-4 text-center mb-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                      Session Fee:
+                    </p>
+                    <p className="text-2xl sm:text-3xl font-bold text-brand-primary">
+                      Rs. 2,000/-
+                    </p>
+                  </div>
+
+                  <div className="flex-1 space-y-3 mb-5">
+                    <p className="text-sm font-bold text-slate-800">
+                      Bank Transfer:
+                    </p>
+                    <div className="space-y-2.5 text-sm">
+                      {[
+                        { label: "Bank", value: "Commercial" },
+                        { label: "Account Name", value: "W S P Dhanasankha" },
+                        { label: "Account Number", value: "8020157278" },
+                        { label: "Branch", value: "Embilipitiya" },
+                      ].map((row) => (
+                        <div
+                          key={row.label}
+                          className="flex items-start justify-between gap-3 border-b border-brand-border/60 pb-2 last:border-0"
+                        >
+                          <span className="text-slate-500 shrink-0">
+                            {row.label}:
+                          </span>
+                          <span className="font-semibold text-slate-800 text-right break-all">
+                            {row.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={openBookingModal}
+                    className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
+                  >
+                    <Upload className="h-4 w-4" />
+                    Upload Payment Receipt
+                  </button>
+                </div>
+
+                {/* Card 3: Attend From Anywhere */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
+                    Attend From Anywhere
+                  </h3>
+
+                  <div className="space-y-3 flex-1">
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white border border-brand-border shadow-sm">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fill="#00832D"
+                            d="M12 8.5v7l6 3.5V5z"
+                          />
+                          <path
+                            fill="#0066DA"
+                            d="M4 7.5A2.5 2.5 0 0 1 6.5 5h7v14h-7A2.5 2.5 0 0 1 4 16.5z"
+                          />
+                          <path fill="#FFBA00" d="M18 12l4 2.5V9.5z" />
+                          <path fill="#E94235" d="M18 12l4 2.5V19l-4-2.5z" />
+                        </svg>
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Google Meet
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2D8CFF] text-white shadow-sm">
+                        <Video className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Zoom
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
+                        <Phone className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Phone Consultation
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 rounded-xl bg-brand-light border border-brand-border px-4 py-4">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                      After confirmation you will receive WhatsApp and Email
+                      notifications.
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white shadow-sm transition-transform hover:scale-105"
+                        aria-label="WhatsApp +94 (0) 757629950"
+                        title="+94 (0) 757629950"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="mailto:counsellinginsightdomain@gmail.com"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-primary text-white shadow-sm transition-transform hover:scale-105"
+                        aria-label="Email"
+                      >
+                        <Mail className="h-4 w-4" />
+                      </a>
+                      <span className="ml-1 text-xs text-slate-500">
+                        +94 (0) 757629950
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Testimonials (Client Reviews) section */}
           <section
             ref={reviewSectionRef}
@@ -1451,7 +1808,10 @@ function App() {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               {/* Header */}
-              <div className="text-center max-w-xl mx-auto space-y-4 mb-14">
+              <div
+                className="text-center max-w-xl mx-auto space-y-4 mb-14"
+                data-animate="fade-up"
+              >
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Patient Testimonials
                 </span>
@@ -1465,7 +1825,11 @@ function App() {
               </div>
 
               {/* Grid */}
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div
+                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
                 {REVIEWS.map((rev, idx) => (
                   <div
                     key={idx}
@@ -1749,38 +2113,38 @@ function App() {
                   </div>
 
                   {/* Summary Card */}
-                  <div className="bg-[#f7f0e5] rounded-2xl p-5 text-left border border-[#E1D8CC]/40 text-sm space-y-3.5 my-6">
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                  <div className="bg-[#f7f0e5] rounded-2xl p-4 sm:p-5 text-left border border-[#E1D8CC]/40 text-sm space-y-3.5 my-6">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">
                         Intake Client
                       </span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-slate-800 break-words">
                         {bookingSuccessData.name}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">
                         Service Category
                       </span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-slate-800 break-words">
                         {bookingSuccessData.service}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">
                         Specialist Doctor
                       </span>
-                      <span className="font-semibold text-[#843519]">
+                      <span className="font-semibold text-[#843519] break-words">
                         {bookingSuccessData.specialist}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">Date slot</span>
                       <span className="font-semibold text-slate-800">
                         {bookingSuccessData.date}
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
                       <span className="text-xs text-slate-500">Time slot</span>
                       <span className="font-semibold text-slate-800">
                         {bookingSuccessData.time}
@@ -1915,6 +2279,12 @@ function App() {
                 About Us
               </button>
               <button
+                onClick={() => navigateToPage("blog")}
+                className="hover:text-brand-primary text-left transition-colors"
+              >
+                Blog
+              </button>
+              <button
                 onClick={() => navigateToHomeSection("specialists")}
                 className="hover:text-brand-primary text-left transition-colors"
               >
@@ -1989,7 +2359,7 @@ function App() {
               Stay updated with clinical journals and physical wellness insights
               from Insight.
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row">
               <input
                 type="email"
                 placeholder="Your Mail Address"
