@@ -79,7 +79,7 @@ const FAQ_ITEMS = [
     id: 'faq-3',
     question: 'What types of mental health professionals can I consult?',
     answer:
-      'There are several types of mental health professionals you can consult, each offering specialized support for different needs. Psychologists, licensed therapists, counselors, and psychiatrists all have unique areas of expertise. Our Mentalist team can help you match with the right professional.',
+      'There are several types of mental health professionals you can consult, each offering specialized support for different needs. Psychologists, licensed therapists, counselors, and psychiatrists all have unique areas of expertise. Our Insight team can help you match with the right professional.',
   },
   {
     id: 'faq-4',
@@ -132,7 +132,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             About <span className="text-brand-primary italic">Us</span>
           </h1>
           <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
-            Mentalist Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
+            Insight Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
           </p>
           {/* Breadcrumb */}
           <nav className="flex items-center justify-center gap-2 text-sm text-slate-500">
@@ -178,7 +178,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC]">
               <img
                 src="/about_section_therapy.png"
-                alt="Therapy session at Mentalist Psychology Center"
+                alt="Therapy session at Insight Psychology Center"
                 className="w-full h-[480px] object-cover"
               />
               {/* Gradient overlay */}
@@ -197,10 +197,10 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             {/* Testimonial Badge */}
             <div className="absolute -bottom-6 -left-4 bg-white border border-[#E1D8CC] rounded-2xl px-5 py-4 shadow-xl flex items-center gap-3 z-10">
               <div className="w-12 h-12 rounded-full bg-[#C76B3D]/10 flex items-center justify-center">
-                <Star className="w-5 h-5 text-[#C76B3D]" fill="currentColor" />
+                <Star className="w-5 h-5 text-[#000690]" fill="currentColor" />
               </div>
               <div>
-                <div className="font-serif text-2xl font-bold text-[#333333]">4.9</div>
+                <div className="font-serif text-2xl font-bold text-[#000690]">4.9</div>
                 <div className="text-xs text-slate-500">3k+ Satisfied Customers</div>
                 <div className="flex gap-0.5 mt-0.5">
                   {[...Array(5)].map((_, i) => (
@@ -224,7 +224,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
               src="https://player.vimeo.com/video/276591200?autoplay=1"
               className="w-full h-full"
               allow="autoplay; fullscreen"
-              title="Mentalist Introduction Video"
+              title="Insight Introduction Video"
             />
             <button
               onClick={() => setShowVideo(false)}
@@ -237,11 +237,11 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       )}
 
       {/* ── Stats Counter Bar ─────────────────────────────────────────────── */}
-      <section className="bg-[#333333] py-14">
+      <section className="bg-[#000690] py-14">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((stat, index) => (
             <div key={index} className="text-center group">
-              <div className="font-serif text-4xl md:text-5xl font-bold text-[#C76B3D] group-hover:scale-110 transition-transform duration-300">
+              <div className="font-serif text-4xl md:text-5xl font-bold text-white group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
               <div className="text-[#f7f0e5]/70 text-sm mt-2 uppercase tracking-wider font-medium">{stat.label}</div>
@@ -258,12 +258,12 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <div className="rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC]">
               <img
                 src="/about_guiding_life.png"
-                alt="Counseling session at Mentalist"
+                alt="Counseling session at Insight"
                 className="w-full h-[440px] object-cover"
               />
             </div>
             {/* Floating accent card */}
-            <div className="absolute -top-5 -right-5 bg-[#C76B3D] text-white rounded-2xl px-5 py-4 shadow-xl max-w-[160px] text-center">
+            <div className="absolute -top-5 -right-5 bg-brand-primary text-white rounded-2xl px-5 py-4 shadow-xl max-w-[160px] text-center">
               <div className="font-serif text-3xl font-bold">12+</div>
               <div className="text-xs text-white/80 mt-1 leading-tight">Years of Trusted Mental Care</div>
             </div>
@@ -272,10 +272,10 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           {/* Right: Content */}
           <div className="space-y-7">
             <div>
-              <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest mb-3">Success Journey</p>
+              <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Success Journey</p>
               <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
                 Guiding You to a{' '}
-                <span className="text-[#C76B3D] italic">Brighter Life</span>
+                <span className="text-brand-primary italic">Brighter Life</span>
               </h2>
             </div>
             <p className="text-slate-600 leading-relaxed">
@@ -298,12 +298,12 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <div className="flex flex-wrap gap-3 pt-2">
               <button
                 onClick={onBookAppointment}
-                className="px-6 py-3.5 rounded-full bg-[#C76B3D] hover:bg-[#843519] text-white font-semibold text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/20 hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5"
+                className="px-6 py-3.5 rounded-full bg-brand-primary hover:bg-[#000690] text-white font-semibold text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/20 hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5"
               >
                 Book Appointment
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="px-6 py-3.5 rounded-full border border-[#E1D8CC] bg-white hover:border-[#C76B3D] text-slate-700 hover:text-[#C76B3D] font-semibold text-sm transition-all duration-300">
+              <button className="px-6 py-3.5 rounded-full border border-[#000690] bg-white hover:border-[#000690] text-slate-700 hover:text-[#000690] font-semibold text-sm transition-all duration-300">
                 Learn More
               </button>
             </div>
@@ -315,35 +315,35 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest mb-3">What Drives Us</p>
+            <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">What Drives Us</p>
             <h2 className="font-serif text-4xl md:text-5xl text-[#333333] max-w-2xl mx-auto leading-tight">
               Our Core{' '}
-              <span className="text-[#C76B3D] italic">Values</span> &amp; Mission
+              <span className="text-brand-primary italic">Values</span> &amp; Mission
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Heart className="w-8 h-8 text-[#C76B3D]" />,
+                icon: <Heart className="w-8 h-8 text-white" />,
                 title: 'Compassion First',
                 desc: 'We believe every person deserves to be heard, understood, and treated with the deepest empathy and care from the very first session.',
               },
               {
-                icon: <ShieldCheck className="w-8 h-8 text-[#C76B3D]" />,
+                icon: <ShieldCheck className="w-8 h-8 text-white" />,
                 title: 'Evidence-Based Care',
                 desc: 'Our clinical approaches are rooted in proven psychological science — CBT, EMDR, DBT, and more — ensuring real, measurable progress for each client.',
               },
               {
-                icon: <Lightbulb className="w-8 h-8 text-[#C76B3D]" />,
+                icon: <Lightbulb className="w-8 h-8 text-white" />,
                 title: 'Holistic Healing',
                 desc: 'We look at the whole person — mind, body, and environment — to help you build lasting resilience and a healthier relationship with yourself.',
               },
             ].map((value, index) => (
               <div
                 key={index}
-                className="p-7 bg-[#f7f0e5] border border-[#E1D8CC] rounded-3xl hover:border-[#C76B3D]/40 hover:shadow-xl hover:shadow-[#C76B3D]/10 hover:-translate-y-1 transition-all duration-300 group"
+                className="p-7 bg-brand-cream border  rounded-3xl hover:border-brand-primary/40 hover:shadow-xl hover:shadow-[#C76B3D]/10 hover:-translate-y-1 transition-all duration-300 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-[#C76B3D]/10 flex items-center justify-center mb-5 group-hover:bg-[#C76B3D] group-hover:scale-110 transition-all duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mb-5 group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300 hover:text-white">
                   <div className="group-hover:text-white transition-colors duration-300">{value.icon}</div>
                 </div>
                 <h4 className="font-serif text-xl text-[#333333] mb-3">{value.title}</h4>
@@ -359,16 +359,16 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
           {/* Left: Heading + intro */}
           <div className="space-y-6 md:sticky md:top-28">
-            <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest">Common Questions</p>
+            <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest">Common Questions</p>
             <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
-              Frequently Asked <span className="text-[#C76B3D] italic">Questions</span>
+              Frequently Asked <span className="text-brand-primary italic">Questions</span>
             </h2>
             <p className="text-slate-600 leading-relaxed">
               We want you to feel confident and informed before beginning your journey with us. Here are answers to some of the most common questions our clients ask.
             </p>
             <button
               onClick={onBookAppointment}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#C76B3D] hover:bg-[#843519] text-white font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brand-primary hover:bg-[#000690] text-white font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Have More Questions? Talk to Us
               <ArrowRight className="w-4 h-4" />
@@ -409,33 +409,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
         </div>
       </section>
 
-      {/* ── CTA Banner ────────────────────────────────────────────────────── */}
-      <section className="py-20 bg-[#333333] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#C76B3D]/10 rounded-l-[80px]" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-full bg-[#843519]/5 rounded-tr-[80px]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center space-y-6">
-          <p className="text-[#C76B3D] text-sm font-semibold uppercase tracking-widest">Ready to Begin?</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-white leading-tight max-w-2xl mx-auto">
-            Take the First Step Toward{' '}
-            <span className="text-[#C76B3D] italic">Your Well-Being</span>
-          </h2>
-          <p className="text-[#f7f0e5]/70 max-w-xl mx-auto leading-relaxed">
-            Schedule a confidential session with one of our compassionate specialists. Your healing journey starts with a single conversation.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <button
-              onClick={onBookAppointment}
-              className="px-8 py-4 rounded-full bg-[#C76B3D] hover:bg-[#843519] text-white font-semibold text-base transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#843519]/30 flex items-center gap-2 transform hover:-translate-y-0.5"
-            >
-              Book Appointment
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="px-8 py-4 rounded-full border border-[#f7f0e5]/20 bg-white/5 backdrop-blur-sm text-[#f7f0e5] hover:border-[#C76B3D] hover:text-[#C76B3D] font-semibold text-base transition-all duration-300">
-              Meet Our Specialists
-            </button>
-          </div>
-        </div>
-      </section>
+   
     </main>
   )
 }

@@ -25,20 +25,20 @@ interface SpecialistsPageProps {
 export default function SpecialistsPage({ specialists, onBookAppointment }: SpecialistsPageProps) {
   return (
     <main className="bg-slate-50">
-      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#f7f0e5] py-20 md:py-24">
+      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#000690] py-20 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-[#C76B3D]/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#C76B3D]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                 <Heart className="w-3.5 h-3.5" />
                 <span>Meet the team</span>
               </div>
               <div className="space-y-4">
-                <h1 className="font-serif text-4xl leading-tight text-[#333333] sm:text-5xl md:text-6xl">
+                <h1 className="font-serif text-4xl leading-tight text-white sm:text-5xl md:text-6xl">
                   Specialists across every care pathway
                 </h1>
-                <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+                <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
                   Our licensed clinicians combine warmth, expertise, and evidence-based support so you can find the right specialist for your goals.
                 </p>
               </div>
@@ -83,7 +83,7 @@ export default function SpecialistsPage({ specialists, onBookAppointment }: Spec
       <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C76B3D]">Our specialists</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary">Our specialists</p>
             <h2 className="mt-3 font-serif text-3xl text-[#333333] sm:text-4xl">
               Meet the clinicians behind every service path
             </h2>
@@ -120,7 +120,7 @@ export default function SpecialistsPage({ specialists, onBookAppointment }: Spec
                 </div>
                 <button
                   onClick={onBookAppointment}
-                  className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-[#C76B3D]/20 bg-[#f7f0e5] px-4 py-2.5 text-sm font-semibold text-[#C76B3D] transition-all hover:bg-[#C76B3D] hover:text-white"
+                  className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-[#C76B3D]/20 bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#000690] hover:text-white"
                 >
                   Request this specialist
                   <ArrowRight className="h-4 w-4" />
