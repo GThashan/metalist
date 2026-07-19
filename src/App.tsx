@@ -30,6 +30,13 @@ import {
   MessageCircle,
   Sparkles,
 } from "lucide-react";
+const message = `Hello,
+
+I would like to book an appointment. Could you please let me know the available dates and times?
+
+I would also appreciate it if you could share more information about your services, consultation fees, and any preparation required before the appointment.
+
+Thank you.`;
 
 // Mock Data
 const SPECIALISTS = [
@@ -125,7 +132,7 @@ const REVIEWS = [
   {
     name: "Arthur Pendelton",
     location: "New York, NY",
-    text: "Reaching out to Mentalist was the best decision I ever made. Dr. Sarah Jenkins listend with absolute empathy and provided actual, structured coping strategies that transformed my morning anxiety loops.",
+    text: "Reaching out to Insight was the best decision I ever made. Dr. Sarah Jenkins listend with absolute empathy and provided actual, structured coping strategies that transformed my morning anxiety loops.",
     rating: 5,
     date: "July 10, 2026",
   },
@@ -304,7 +311,7 @@ function App() {
               Start Healing
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
-              Schedule a Consultation at Mentalist
+              Schedule a Consultation at Insight
             </h2>
             <p className="text-slate-600 text-sm leading-relaxed font-light">
               Complete this form to coordinate a consultation session with our
@@ -499,15 +506,15 @@ function App() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <MapPin className="w-4 h-4 text-brand-primary" />
-              25 Main St, NY 10001
+              House of Dr Gayan.Ragama/online
             </span>
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <Mail className="w-4 h-4 text-brand-primary" />
-              contact@mentalist.com
+              counsellinginsightdomain@gmail.com
             </span>
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <Phone className="w-4 h-4 text-brand-primary" />
-              +1 (555) 321-7890
+              +94 (o) 7577629950
             </span>
           </div>
           <div className="flex items-center gap-4">
@@ -605,7 +612,7 @@ function App() {
                 Insight
               </span>
               <span className="block text-[10px] uppercase tracking-widest text-brand-primary font-semibold -mt-1">
-                counseling organization
+                counseling 
               </span>
             </div>
           </div>
@@ -744,15 +751,15 @@ function App() {
 
           {/* Appointment button CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://wa.me/15553217890"
-              target="_blank"
-              rel="noreferrer"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="h-5 w-5" />
-            </a>
+           <a
+  href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+>
+  <MessageCircle className="h-4 w-4" />
+  <span>Chat on WhatsApp</span>
+</a>
             <button
               onClick={() => navigateToHomeSection("booking")}
               className="rounded-full bg-[#0D5ADB] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#C76B3D]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A3D91] hover:shadow-lg hover:shadow-[#843519]/25"
@@ -988,15 +995,17 @@ function App() {
 
 
           {/* WhatsApp Button */}
-          <a
-            href="https://wa.me/947XXXXXXXX"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
-          >
-            <MessageCircle className="h-4 w-4" />
-            <span>Chat on WhatsApp</span>
-          </a>
+          
+
+<a
+  href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+>
+  <MessageCircle className="h-4 w-4" />
+  <span>Chat on WhatsApp</span>
+</a>
 
         </div>
 
@@ -1052,7 +1061,7 @@ function App() {
 
 </section>
 {/* Founder's Message Section - Prasad Wijesundara */}
-<section className="py-7 bg-[#0D5ADB] border-b border-[#1a3a5c] m-7 rounded-3xl shadow-lg relative overflow-hidden">
+<section className="py-6 bg-[#000690] border-b border-[#1a3a5c] m-3 rounded-3xl shadow-lg relative overflow-hidden">
   <div className="max-w-7xl mx-auto">
     {/* 4-Part Grid Layout */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -1362,9 +1371,9 @@ function App() {
           <section
             ref={reviewSectionRef}
             id="reviews"
-            className="py-20 bg-brand-primary border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
+            className="py-20  border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-brand-primary pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[#000690] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               {/* Header */}
@@ -1372,10 +1381,10 @@ function App() {
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Patient Testimonials
                 </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-black">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white">
                   Clinical Reviews & Feedback
                 </h2>
-                <p className="text-black text-sm font-light">
+                <p className="text-white text-sm font-light">
                   Read how our personalized behavioral approaches helped clients
                   navigate life transitions.
                 </p>
@@ -1435,7 +1444,7 @@ function App() {
                     Start Healing
                   </span>
                   <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
-                    Schedule a Consultation at Mentalist
+                    Schedule a Consultation at Insight
                   </h2>
                   <p className="text-slate-600 text-sm leading-relaxed font-light">
                     Ready to take the first step? Complete this form to
@@ -1727,21 +1736,21 @@ function App() {
       )}
 
       {/* Footer */}
-      <footer className="bg-[#003B73] text-[#fffff] border-t border-stone-800">
+      <footer className="bg-[#000690] text-[#fffff] border-t border-stone-800">
         {/* Main Footer Links */}
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-lg shadow-sm">
-                M
+              <div className="bg-stone-800 w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white font-serif font-bold text-lg shadow-sm">
+                I
               </div>
               <span className="font-serif font-bold text-xl tracking-tight text-[#f7f0e5]">
-                Mentalist
+                Insight
               </span>
             </div>
             <p className="text-xs text-white leading-relaxed font-light">
-              Mentalist is a licensed psychiatric clinic advocating for clinical
+              Insight is a licensed psychiatric clinic advocating for clinical
               mental wellness, family reconciliation, and physical neurology
               alignment.
             </p>
@@ -1904,7 +1913,7 @@ function App() {
             </h4>
             <p className="text-xs text-white font-light leading-relaxed">
               Stay updated with clinical journals and physical wellness insights
-              from Mentalist.
+              from Insight.
             </p>
             <div className="flex gap-2">
               <input
@@ -1914,7 +1923,7 @@ function App() {
               />
               <button
                 onClick={() => alert("Successfully Subscribed to newsletter!")}
-                className="bg-[#C76B3D] hover:bg-[#843519] text-white px-4 py-2.5 rounded-xl font-bold text-xs transition-colors shrink-0"
+                className="bg-stone-800 hover:bg-[#843519] text-white px-4 py-2.5 rounded-xl font-bold text-xs transition-colors shrink-0"
               >
                 Send
               </button>
