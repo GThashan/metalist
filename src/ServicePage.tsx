@@ -212,11 +212,11 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
         </div>
       </section>
 
-      <section className="bg-[#333333] py-16">
+      <section className="bg-[#000690] py-16">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">Ready when you are</p>
-            <h2 className="mt-2 font-serif text-2xl sm:text-3xl text-[#f7f0e5]">Take the next step with Insight</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/70">Ready when you are</p>
+            <h2 className="mt-2 font-serif text-2xl sm:text-3xl text-white">Take the next step with Insight</h2>
           </div>
           <button
             onClick={onBookAppointment}

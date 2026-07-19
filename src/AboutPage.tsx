@@ -112,33 +112,24 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
   return (
     <main>
       {/* ── Page Hero / Breadcrumb ─────────────────────────────────────── */}
-      <section
-        className="relative py-20 md:py-28 overflow-hidden"
-        style={{
-          background: 'linear-gradient(180deg, rgba(241, 229, 247, 0.92) 0%, rgba(235, 229, 247, 0.7) 100%)',
-        }}
-      >
-        {/* Decorative background blobs */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#C76B3D]/8 rounded-l-[60px]" />
-          <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-[#843519]/5 rounded-tr-[60px]" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-brand-primary/10 border border-brand-primary/20 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-brand-primary mb-5">
+      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#000690] py-16 sm:py-20 md:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white mb-5">
             <Heart className="w-3.5 h-3.5" />
             <span>Who We Are</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#333333] leading-tight mb-4">
-            About <span className="text-brand-primary italic">Us</span>
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-4">
+            About <span className="text-white/90 italic">Us</span>
           </h1>
-          <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
+          <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
             Insight Psychology Center — dedicated to transforming lives through compassionate, evidence-based mental health care.
           </p>
           {/* Breadcrumb */}
-          <nav className="flex items-center justify-center gap-2 text-sm text-slate-500">
-            <span className="hover:text-brand-primary cursor-pointer transition-colors">Home</span>
-            <span className="text-slate-300">/</span>
-            <span className="text-brand-primary font-medium">About Us</span>
+          <nav className="flex items-center justify-center gap-2 text-sm text-white/70">
+            <span className="hover:text-white cursor-pointer transition-colors">Home</span>
+            <span className="text-white/40">/</span>
+            <span className="text-white font-medium">About Us</span>
           </nav>
         </div>
       </section>

@@ -3,6 +3,7 @@ import AboutPage from "./AboutPage";
 import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
+import BlogPage from "./BlogPage";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
@@ -33,6 +34,7 @@ import {
   Video,
   Upload,
   ArrowDown,
+  BookOpen,
 } from "lucide-react";
 const message = `Hello,
 
@@ -162,7 +164,7 @@ function App() {
   >(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<
-    "home" | "about" | "service" | "specialists" | "contact"
+    "home" | "about" | "service" | "specialists" | "contact" | "blog"
   >("home");
   const [currentServiceId, setCurrentServiceId] = useState("mental-health");
 
@@ -202,7 +204,7 @@ function App() {
   };
 
   const navigateToPage = (
-    page: "home" | "about" | "service" | "specialists" | "contact",
+    page: "home" | "about" | "service" | "specialists" | "contact" | "blog",
     serviceId?: string,
   ) => {
     setCurrentPage(page);
@@ -763,6 +765,12 @@ function App() {
                     About Us
                   </button>
                   <button
+                    onClick={() => navigateToPage("blog")}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                  >
+                    Blog
+                  </button>
+                  <button
                     onClick={() => navigateToPage("specialists")}
                     className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
                   >
@@ -949,6 +957,13 @@ function App() {
                       <span>About Us</span>
                     </button>
                     <button
+                      onClick={() => navigateToPage("blog")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <BookOpen className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Blog</span>
+                    </button>
+                    <button
                       onClick={() => navigateToPage("specialists")}
                       className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
                     >
@@ -1095,6 +1110,8 @@ function App() {
 
       {currentPage === "about" ? (
         <AboutPage onBookAppointment={handleBookAppointment} />
+      ) : currentPage === "blog" ? (
+        <BlogPage onBookAppointment={handleBookAppointment} />
       ) : currentPage === "contact" ? (
         <ContactPage onBookAppointment={handleBookAppointment} />
       ) : currentPage === "service" ? (
@@ -2213,6 +2230,12 @@ function App() {
                 className="hover:text-brand-primary text-left transition-colors"
               >
                 About Us
+              </button>
+              <button
+                onClick={() => navigateToPage("blog")}
+                className="hover:text-brand-primary text-left transition-colors"
+              >
+                Blog
               </button>
               <button
                 onClick={() => navigateToHomeSection("specialists")}
