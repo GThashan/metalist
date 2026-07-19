@@ -225,6 +225,8 @@ function App() {
     }
 
     setCurrentPage("home");
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
     setTimeout(() => {
       switch (section) {
         case "specialists":
@@ -869,8 +871,15 @@ function App() {
 
           {/* Mobile menu trigger */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => {
+              setIsMobileMenuOpen((open) => {
+                if (open) setActiveDropdown(null);
+                return !open;
+              });
+            }}
             className="lg:hidden p-2 text-[#333333] hover:text-brand-primary transition-colors focus:outline-none"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -882,118 +891,200 @@ function App() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-brand-border bg-white py-4 px-4 sm:px-6 space-y-4 animate-slideDown max-h-[calc(100dvh-5rem)] overflow-y-auto">
-            <div className="flex flex-col space-y-3">
+          <nav
+            className="lg:hidden border-t border-brand-border bg-white animate-slideDown max-h-[calc(100dvh-4rem)] overflow-y-auto"
+            aria-label="Mobile navigation"
+          >
+            <div className="px-4 py-3 space-y-1">
+              {/* Home */}
               <button
                 onClick={() => navigateToPage("home")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                  currentPage === "home"
+                    ? "bg-brand-primary/10 text-brand-primary"
+                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                }`}
               >
-                <Home className="h-4 w-4" />
+                <Home className="h-4 w-4 shrink-0" />
                 <span>Home</span>
               </button>
 
-              <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Pages
-                </span>
+              {/* Pages accordion */}
+              <div className="rounded-xl overflow-hidden">
                 <button
-                  onClick={() => navigateToPage("about")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === "pages" ? null : "pages",
+                    )
+                  }
+                  className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                    activeDropdown === "pages"
+                      ? "bg-brand-cream text-brand-primary"
+                      : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                  }`}
+                  aria-expanded={activeDropdown === "pages"}
                 >
-                  <Info className="h-4 w-4" />
-                  <span>About Us</span>
+                  <span className="flex items-center gap-3">
+                    <Info className="h-4 w-4 shrink-0" />
+                    <span>Pages</span>
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
+                      activeDropdown === "pages" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                <button
-                  onClick={() => navigateToPage("specialists")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Users className="h-4 w-4" />
-                  <span>Our Team</span>
-                </button>
-                <button
-                  onClick={() => navigateToPage("contact")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Phone className="h-4 w-4" />
-                  <span>Contact Us</span>
-                </button>
-                <button
-                  onClick={() => navigateToHomeSection("reviews")}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Heart className="h-4 w-4" />
-                  <span>Client Review</span>
-                </button>
+                {activeDropdown === "pages" && (
+                  <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
+                    <button
+                      onClick={() => navigateToPage("about")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Info className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>About Us</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("specialists")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Users className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Our Team</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("contact")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Phone className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Contact Us</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToHomeSection("reviews")}
+                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
+                    >
+                      <Heart className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Client Review</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
-              <div className="border-t border-stone-100 my-1 pt-2">
-                <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Services
-                </span>
+              {/* Services accordion */}
+              <div className="rounded-xl overflow-hidden">
                 <button
-                  onClick={() => {
-                    navigateToPage("service", "mental-health");
-                  }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === "services" ? null : "services",
+                    )
+                  }
+                  className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                    activeDropdown === "services" || currentPage === "service"
+                      ? "bg-brand-cream text-brand-primary"
+                      : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                  }`}
+                  aria-expanded={activeDropdown === "services"}
                 >
-                  <Sparkles className="h-4 w-4" />
-                  <span>Mental Health Support</span>
+                  <span className="flex items-center gap-3">
+                    <Sparkles className="h-4 w-4 shrink-0" />
+                    <span>Services</span>
+                  </span>
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
+                      activeDropdown === "services" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                <button
-                  onClick={() => {
-                    navigateToPage("service", "physical-health");
-                  }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  <span>Physical Health Sync</span>
-                </button>
-                <button
-                  onClick={() => {
-                    navigateToPage("service", "therapy");
-                  }}
-                  className="flex w-full items-center gap-2 py-1.5 pl-3 text-sm text-slate-600 transition-all duration-300 hover:text-brand-primary"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  <span>Psychotherapy & Counseling</span>
-                </button>
+                {activeDropdown === "services" && (
+                  <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
+                    <button
+                      onClick={() =>
+                        navigateToPage("service", "mental-health")
+                      }
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
+                        currentPage === "service" &&
+                        currentServiceId === "mental-health"
+                          ? "bg-brand-primary/10 text-brand-primary font-medium"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Mental Health Support</span>
+                    </button>
+                    <button
+                      onClick={() =>
+                        navigateToPage("service", "physical-health")
+                      }
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
+                        currentPage === "service" &&
+                        currentServiceId === "physical-health"
+                          ? "bg-brand-primary/10 text-brand-primary font-medium"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Physical Health Sync</span>
+                    </button>
+                    <button
+                      onClick={() => navigateToPage("service", "therapy")}
+                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
+                        currentPage === "service" &&
+                        currentServiceId === "therapy"
+                          ? "bg-brand-primary/10 text-brand-primary font-medium"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
+                      <span>Psychotherapy & Counseling</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
+              {/* Specialists */}
               <button
                 onClick={() => navigateToPage("specialists")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                  currentPage === "specialists"
+                    ? "bg-brand-primary/10 text-brand-primary"
+                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                }`}
               >
-                <Users className="h-4 w-4" />
+                <Users className="h-4 w-4 shrink-0" />
                 <span>Specialists</span>
               </button>
 
+              {/* Contact */}
               <button
                 onClick={() => navigateToPage("contact")}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-left text-base font-semibold text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
+                  currentPage === "contact"
+                    ? "bg-brand-primary/10 text-brand-primary"
+                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
+                }`}
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 shrink-0" />
                 <span>Contact</span>
               </button>
             </div>
 
-            <div className="flex items-center gap-3 pt-2">
+            {/* Mobile CTAs */}
+            <div className="sticky bottom-0 border-t border-brand-border bg-white px-4 py-4 space-y-2.5">
               <a
-                href="https://wa.me/15553217890"
+                href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                 target="_blank"
-                rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                aria-label="WhatsApp"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#1ebe57]"
               >
-                <MessageCircle className="h-5 w-5" />
+                <MessageCircle className="h-4 w-4" />
+                Chat on WhatsApp
               </a>
               <button
                 onClick={() => navigateToHomeSection("booking")}
-                className="w-full rounded-xl bg-[#C76B3D] py-3 text-center font-medium text-white shadow-md shadow-[#C76B3D]/10"
+                className="w-full rounded-xl bg-brand-primary py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
               >
                 Book Appointment
               </button>
             </div>
-          </div>
+          </nav>
         )}
       </header>
 
