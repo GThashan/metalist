@@ -555,6 +555,7 @@ function App() {
                 <input
                   type="file"
                   required
+                  
                   accept="image/*,.pdf"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
@@ -565,6 +566,11 @@ function App() {
                   }}
                   className="w-full bg-white border border-stone-200 px-4 py-2.5 rounded-xl text-sm"
                 />
+                {formReceipt && (
+  <p className="text-xs text-slate-500 mt-2">
+    Selected file: {formReceipt.name}
+  </p>
+)}
 
                 <p className="text-xs text-slate-500">
                   Upload your payment receipt (JPG, PNG or PDF)
