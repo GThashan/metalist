@@ -67,32 +67,32 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
                 <span>Our Services</span>
               </div>
               <div className="space-y-4">
-                <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-white leading-tight">
+                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
                   {service.title}
                 </h1>
                 <p className="max-w-2xl text-base leading-relaxed text-white sm:text-lg">
                   {service.description}
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <button
                   onClick={onBookAppointment}
-                  className="rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
+                  className="w-full sm:w-auto rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
                 >
                   Book a consultation
                 </button>
-                <div className="flex items-center gap-2 rounded-full border border-stone-300 bg-white/70 px-4 py-3 text-sm text-slate-600">
-                  <Calendar className="w-4 h-4 text-[#C76B3D]" />
-                  Flexible virtual and in-office sessions
+                <div className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-stone-300 bg-white/70 px-4 py-3 text-sm text-slate-600">
+                  <Calendar className="w-4 h-4 shrink-0 text-[#C76B3D]" />
+                  <span className="text-center sm:text-left">Flexible virtual and in-office sessions</span>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-[#E1D8CC] bg-white/90 p-6 shadow-xl">
-              <div className="flex items-center justify-between border-b border-stone-200 pb-4">
+            <div className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/90 p-4 sm:p-6 shadow-xl">
+              <div className="flex items-start sm:items-center justify-between gap-3 border-b border-stone-200 pb-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C76B3D]">Service focus</p>
-                  <h2 className="mt-1 font-serif text-2xl text-[#333333]">What this program includes</h2>
+                  <h2 className="mt-1 font-serif text-xl sm:text-2xl text-[#333333]">What this program includes</h2>
                 </div>
                 <div className="rounded-full bg-[#f7f0e5] p-3 text-[#C76B3D]">
                   <Award className="w-6 h-6" />
@@ -213,14 +213,14 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
       </section>
 
       <section className="bg-[#333333] py-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white">Ready when you are</p>
-            <h2 className="mt-2 font-serif text-3xl text-[#f7f0e5]">Take the next step with Insight</h2>
+            <h2 className="mt-2 font-serif text-2xl sm:text-3xl text-[#f7f0e5]">Take the next step with Insight</h2>
           </div>
           <button
             onClick={onBookAppointment}
-            className="rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
+            className="w-full md:w-auto rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
           >
             Book appointment
           </button>

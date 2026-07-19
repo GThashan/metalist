@@ -295,7 +295,7 @@ function App() {
       onClick={() => setIsBookingModalOpen(false)}
     >
       <div
-        className="bg-white border border-[#E1D8CC] rounded-3xl p-6 sm:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+        className="bg-white border border-[#E1D8CC] rounded-3xl p-4 sm:p-6 md:p-8 max-w-4xl w-full max-h-[90dvh] overflow-y-auto shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -307,11 +307,11 @@ function App() {
         </button>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-4 sm:space-y-6">
             <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
               Start Healing
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif text-[#333333] leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#333333] leading-tight">
               Schedule a Consultation at Insight
             </h2>
             <p className="text-slate-600 text-sm leading-relaxed font-light">
@@ -319,7 +319,7 @@ function App() {
               licensed specialists.
             </p>
 
-            <div className="space-y-4 pt-4 border-t border-stone-150">
+            <div className="hidden sm:block space-y-4 pt-4 border-t border-stone-150">
               <div className="flex gap-3.5 items-center">
                 <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
@@ -376,7 +376,7 @@ function App() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-lg">
+          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg">
             <form onSubmit={handleBookingSubmit} className="space-y-5">
               <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-brand-primary" />
@@ -696,7 +696,7 @@ function App() {
 
       {/* Main Header / Navigation */}
       <header className="sticky top-0 z-50 bg-white border-b border-[#E1D8CC]/60 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
           {/* Logo */}
           <div
             className="flex items-center gap-2 cursor-pointer group"
@@ -882,7 +882,7 @@ function App() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-brand-border bg-white py-4 px-6 space-y-4 animate-slideDown">
+          <div className="lg:hidden border-t border-brand-border bg-white py-4 px-4 sm:px-6 space-y-4 animate-slideDown max-h-[calc(100dvh-5rem)] overflow-y-auto">
             <div className="flex flex-col space-y-3">
               <button
                 onClick={() => navigateToPage("home")}
@@ -1031,7 +1031,7 @@ function App() {
         <>
           {/* Hero Section */}
           <section
-            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-16 md:py-24"
+            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-12 sm:py-16 md:py-24"
             style={{
               backgroundImage: `
       linear-gradient(
@@ -1050,35 +1050,35 @@ function App() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
             <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
 
-            <div className="relative z-10 mx-auto max-w-7xl px-6">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
               <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
                 {/* Left Content */}
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
-                    <Heart className="h-3.5 w-3.5" />
-                    <span>Support for lasting wellness</span>
+                <div className="space-y-5 sm:space-y-6">
+                  <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
+                    <Heart className="h-3.5 w-3.5 shrink-0" />
+                    <span className="truncate">Support for lasting wellness</span>
                   </div>
 
                   <div className="space-y-4">
-                    <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.03] tracking-tight text-[#333333] sm:text-5xl lg:text-6xl">
+                    <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl">
                       Find calm,
                       <span className="block text-blue-600">
                         clarity, and balance
                       </span>
                     </h1>
 
-                    <p className="max-w-xl text-base leading-relaxed text-slate-700 sm:text-lg">
+                    <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
                       Compassionate therapy and expert guidance for stress,
                       anxiety, relationships, and everyday well-being.
                     </p>
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
                     {/* Booking Button */}
                     <button
                       onClick={openBookingModal}
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
                     >
                       <Calendar className="h-4 w-4" />
                       <span>Book Your Session Now</span>
@@ -1090,7 +1090,7 @@ function App() {
                       href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
                     >
                       <MessageCircle className="h-4 w-4" />
                       <span>Chat on WhatsApp</span>
@@ -1135,15 +1135,15 @@ function App() {
             </div>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
-          <section className="py-6 bg-[#000690] border-b border-[#1a3a5c] m-3 rounded-3xl shadow-lg relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+          <section className="py-8 sm:py-6 bg-[#000690] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
               {/* 4-Part Grid Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 max-w-6xl mx-auto">
                 {/* PART 1: Image & Decorative Elements */}
                 <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
                   <div className="relative">
                     <div className="absolute -inset-3 rounded-full border border-white/10" />
-                    <div className="w-70 h-70 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
+                    <div className="w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/20 shadow-xl relative z-10">
                       <img
                         src={profile}
                         alt="Prasad Wijesundara"
@@ -1160,10 +1160,10 @@ function App() {
                 {/* PART 2: Name & Title */}
                 <div className="md:col-span-1 flex flex-col justify-center order-1 md:order-2">
                   <div className="space-y-3 text-center md:text-left">
-                    <h2 className="text-3xl md:text-4xl font-serif text-white leading-tight">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white leading-tight">
                       Prasad Wijesundara
                     </h2>
-                    <p className="text-white font-medium text-xs tracking-wider uppercase">
+                    <p className="text-white font-medium text-[10px] sm:text-xs tracking-wider uppercase">
                       Founder | Psychological Counselor & Psychotherapist
                     </p>
                     <p className="text-white/70 leading-relaxed text-sm">
@@ -1203,7 +1203,7 @@ function App() {
 
                 {/* PART 4: CTA Button */}
                 <div className="md:col-span-1 flex flex-col items-center justify-center order-4">
-                  <div className="flex flex-col items-center gap-4">
+                  <div className="flex flex-col items-center gap-4 w-full max-w-xs">
                     <button
                       onClick={openBookingModal}
                       className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
@@ -1239,7 +1239,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="mx-auto mb-10 flex max-w-3xl flex-wrap justify-center gap-3">
+              <div className="mx-auto mb-10 flex max-w-3xl gap-3 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:justify-center sm:overflow-visible">
                 {SERVICES.map((srv) => (
                   <button
                     key={srv.id}
@@ -1247,7 +1247,7 @@ function App() {
                       setSelectedServiceTab(srv.id);
                       navigateToPage("service", srv.id);
                     }}
-                    className={`rounded-full px-5 py-3 text-sm font-medium transition-all duration-300 ${
+                    className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${
                       selectedServiceTab === srv.id
                         ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
                         : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
@@ -1258,7 +1258,7 @@ function App() {
                 ))}
               </div>
 
-              <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12">
+              <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-4 sm:p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12">
                 {SERVICES.filter((s) => s.id === selectedServiceTab).map(
                   (activeSrv) => (
                     <div
@@ -1749,38 +1749,38 @@ function App() {
                   </div>
 
                   {/* Summary Card */}
-                  <div className="bg-[#f7f0e5] rounded-2xl p-5 text-left border border-[#E1D8CC]/40 text-sm space-y-3.5 my-6">
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                  <div className="bg-[#f7f0e5] rounded-2xl p-4 sm:p-5 text-left border border-[#E1D8CC]/40 text-sm space-y-3.5 my-6">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">
                         Intake Client
                       </span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-slate-800 break-words">
                         {bookingSuccessData.name}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">
                         Service Category
                       </span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-slate-800 break-words">
                         {bookingSuccessData.service}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">
                         Specialist Doctor
                       </span>
-                      <span className="font-semibold text-[#843519]">
+                      <span className="font-semibold text-[#843519] break-words">
                         {bookingSuccessData.specialist}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-stone-200/50 pb-2">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between border-b border-stone-200/50 pb-2">
                       <span className="text-xs text-slate-500">Date slot</span>
                       <span className="font-semibold text-slate-800">
                         {bookingSuccessData.date}
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
                       <span className="text-xs text-slate-500">Time slot</span>
                       <span className="font-semibold text-slate-800">
                         {bookingSuccessData.time}
@@ -1989,7 +1989,7 @@ function App() {
               Stay updated with clinical journals and physical wellness insights
               from Insight.
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row">
               <input
                 type="email"
                 placeholder="Your Mail Address"

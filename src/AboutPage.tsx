@@ -128,7 +128,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             <Heart className="w-3.5 h-3.5" />
             <span>Who We Are</span>
           </div>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-[#333333] leading-tight mb-4">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#333333] leading-tight mb-4">
             About <span className="text-brand-primary italic">Us</span>
           </h1>
           <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-6">
@@ -145,12 +145,12 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
 
       {/* ── Mission & Features Section ────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: Text + Feature cards */}
           <div className="space-y-8">
             <div>
               <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Mental Strength</p>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] leading-tight">
                 Strengthen Your Mind With{' '}
                 <span className="text-brand-primary italic">Psychology Skills</span>
               </h2>
@@ -174,12 +174,12 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           </div>
 
           {/* Right: Image with video play button */}
-          <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC]">
+          <div className="relative pb-8 sm:pb-6">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC]">
               <img
                 src="/about_section_therapy.png"
                 alt="Therapy session at Insight Psychology Center"
-                className="w-full h-[480px] object-cover"
+                className="w-full h-64 sm:h-80 md:h-[440px] lg:h-[480px] object-cover"
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#333333]/40 via-transparent to-transparent" />
@@ -189,18 +189,18 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                 className="absolute inset-0 flex items-center justify-center group"
                 aria-label="Play video"
               >
-                <div className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm border border-[#C76B3D]/30 flex items-center justify-center shadow-xl group-hover:bg-[#C76B3D] group-hover:border-[#C76B3D] transition-all duration-300">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/90 backdrop-blur-sm border border-[#C76B3D]/30 flex items-center justify-center shadow-xl group-hover:bg-[#C76B3D] group-hover:border-[#C76B3D] transition-all duration-300">
                   <Play className="w-6 h-6 text-[#C76B3D] group-hover:text-white ml-1 transition-colors duration-300" fill="currentColor" />
                 </div>
               </button>
             </div>
             {/* Testimonial Badge */}
-            <div className="absolute -bottom-6 -left-4 bg-white border border-[#E1D8CC] rounded-2xl px-5 py-4 shadow-xl flex items-center gap-3 z-10">
-              <div className="w-12 h-12 rounded-full bg-[#C76B3D]/10 flex items-center justify-center">
+            <div className="absolute bottom-0 left-2 right-2 sm:right-auto sm:-bottom-4 sm:left-4 bg-white border border-[#E1D8CC] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-xl flex items-center gap-3 z-10">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#C76B3D]/10 flex items-center justify-center shrink-0">
                 <Star className="w-5 h-5 text-[#000690]" fill="currentColor" />
               </div>
               <div>
-                <div className="font-serif text-2xl font-bold text-[#000690]">4.9</div>
+                <div className="font-serif text-xl sm:text-2xl font-bold text-[#000690]">4.9</div>
                 <div className="text-xs text-slate-500">3k+ Satisfied Customers</div>
                 <div className="flex gap-0.5 mt-0.5">
                   {[...Array(5)].map((_, i) => (
@@ -252,19 +252,19 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
 
       {/* ── Journey / Guiding Section ─────────────────────────────────────── */}
       <section className="py-20 bg-[#f7f0e5]">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left: Image */}
-          <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC]">
+          <div className="relative pt-6 sm:pt-0">
+            <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC]">
               <img
                 src="/about_guiding_life.png"
                 alt="Counseling session at Insight"
-                className="w-full h-[440px] object-cover"
+                className="w-full h-64 sm:h-80 md:h-[400px] lg:h-[440px] object-cover"
               />
             </div>
             {/* Floating accent card */}
-            <div className="absolute -top-5 -right-5 bg-brand-primary text-white rounded-2xl px-5 py-4 shadow-xl max-w-[160px] text-center">
-              <div className="font-serif text-3xl font-bold">12+</div>
+            <div className="absolute top-2 right-2 sm:-top-4 sm:right-4 bg-brand-primary text-white rounded-2xl px-4 sm:px-5 py-3 sm:py-4 shadow-xl max-w-[140px] sm:max-w-[160px] text-center">
+              <div className="font-serif text-2xl sm:text-3xl font-bold">12+</div>
               <div className="text-xs text-white/80 mt-1 leading-tight">Years of Trusted Mental Care</div>
             </div>
           </div>
@@ -273,7 +273,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           <div className="space-y-7">
             <div>
               <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Success Journey</p>
-              <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] leading-tight">
                 Guiding You to a{' '}
                 <span className="text-brand-primary italic">Brighter Life</span>
               </h2>
@@ -295,15 +295,15 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
               <button
                 onClick={onBookAppointment}
-                className="px-6 py-3.5 rounded-full bg-brand-primary hover:bg-[#000690] text-white font-semibold text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/20 hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto justify-center px-6 py-3.5 rounded-full bg-brand-primary hover:bg-[#000690] text-white font-semibold text-sm transition-all duration-300 shadow-md shadow-[#C76B3D]/20 hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5"
               >
                 Book Appointment
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="px-6 py-3.5 rounded-full border border-[#000690] bg-white hover:border-[#000690] text-slate-700 hover:text-[#000690] font-semibold text-sm transition-all duration-300">
+              <button className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-[#000690] bg-white hover:border-[#000690] text-slate-700 hover:text-[#000690] font-semibold text-sm transition-all duration-300">
                 Learn More
               </button>
             </div>
@@ -316,7 +316,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">What Drives Us</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#333333] max-w-2xl mx-auto leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] max-w-2xl mx-auto leading-tight">
               Our Core{' '}
               <span className="text-brand-primary italic">Values</span> &amp; Mission
             </h2>
@@ -356,11 +356,11 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
 
       {/* ── FAQ Section ───────────────────────────────────────────────────── */}
       <section className="py-20 bg-[#f7f0e5]">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: Heading + intro */}
           <div className="space-y-6 md:sticky md:top-28">
             <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest">Common Questions</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#333333] leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] leading-tight">
               Frequently Asked <span className="text-brand-primary italic">Questions</span>
             </h2>
             <p className="text-slate-600 leading-relaxed">
@@ -368,7 +368,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
             </p>
             <button
               onClick={onBookAppointment}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-brand-primary hover:bg-[#000690] text-white font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5"
+              className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-brand-primary hover:bg-[#000690] text-white font-semibold text-sm transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Have More Questions? Talk to Us
               <ArrowRight className="w-4 h-4" />
@@ -384,7 +384,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
               >
                 <button
                   onClick={() => toggleFaq(item.id)}
-                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+                  className="w-full text-left px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-3 sm:gap-4"
                   aria-expanded={openFaq === item.id}
                 >
                   <span className="font-serif text-base md:text-lg text-[#333333] leading-snug pr-2">
