@@ -11,7 +11,7 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
         <div className="absolute top-[-8%] right-[-8%] h-56 w-56 rounded-full bg-[#C76B3D]/10 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-10%] h-64 w-64 rounded-full bg-[#843519]/10 blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
+        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28" data-animate="hero">
           <div className="max-w-3xl space-y-6">
             <span className="block text-xs font-bold uppercase tracking-[0.3em] text-white">
               Contact Us
@@ -35,7 +35,10 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
 
       <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white p-5 shadow-sm sm:p-10">
+          <div
+            className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white p-5 shadow-sm sm:p-10"
+            data-animate="fade-left"
+          >
             <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[#333333]">
               Visit our clinic
             </h2>
@@ -78,7 +81,10 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-[#333333] p-5 text-[#f7f0e5] shadow-sm sm:p-10">
+          <div
+            className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-[#333333] p-5 text-[#f7f0e5] shadow-sm sm:p-10"
+            data-animate="fade-right"
+          >
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C76B3D]/20 text-[#C76B3D]">
                 <CalendarDays className="h-5 w-5" />

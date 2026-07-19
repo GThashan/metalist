@@ -35,6 +35,21 @@
     color-scheme: light;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    [data-animate] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--color-brand-text);

@@ -4,6 +4,7 @@ import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
+import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
@@ -167,6 +168,9 @@ function App() {
     "home" | "about" | "service" | "specialists" | "contact" | "blog"
   >("home");
   const [currentServiceId, setCurrentServiceId] = useState("mental-health");
+
+  // GSAP scroll + entrance animations (re-run on page change)
+  useGsapAnimations([currentPage, currentServiceId]);
 
   // Selected Service in Service Showcase
   const [selectedServiceTab, setSelectedServiceTab] = useState("mental-health");
@@ -1167,12 +1171,15 @@ function App() {
               <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
                 {/* Left Content */}
                 <div className="space-y-5 sm:space-y-6">
-                  <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm">
+                  <div
+                    className="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm"
+                    data-animate="hero"
+                  >
                     <Heart className="h-3.5 w-3.5 shrink-0" />
                     <span className="truncate">Support for lasting wellness</span>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4" data-animate="hero" data-delay="0.12">
                     <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl">
                       Find calm,
                       <span className="block text-blue-600">
@@ -1187,7 +1194,11 @@ function App() {
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+                  <div
+                    className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2"
+                    data-animate="hero"
+                    data-delay="0.22"
+                  >
                     {/* Booking Button */}
                     <button
                       onClick={openBookingModal}
@@ -1211,7 +1222,11 @@ function App() {
                   </div>
 
                   {/* Feature Cards */}
-                  <div className="grid gap-3 pt-2 sm:grid-cols-3">
+                  <div
+                    className="grid gap-3 pt-2 sm:grid-cols-3"
+                    data-animate="stagger"
+                    data-stagger="0.1"
+                  >
                     {[
                       {
                         title: "Calm Your Mind",
@@ -1251,7 +1266,11 @@ function App() {
           <section className="py-8 sm:py-6 bg-[#000690] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               {/* 4-Part Grid Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 max-w-6xl mx-auto">
+              <div
+                className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4 max-w-6xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.1"
+              >
                 {/* PART 1: Image & Decorative Elements */}
                 <div className="md:col-span-1 flex flex-col items-center justify-center order-2 md:order-1">
                   <div className="relative">
@@ -1339,7 +1358,7 @@ function App() {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-6">
-              <div className="mx-auto mb-12 max-w-3xl text-center">
+              <div className="mx-auto mb-12 max-w-3xl text-center" data-animate="fade-up">
                 <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
                   Tailored specialties
                 </span>
@@ -1352,7 +1371,11 @@ function App() {
                 </p>
               </div>
 
-              <div className="mx-auto mb-10 flex max-w-3xl gap-3 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:justify-center sm:overflow-visible">
+              <div
+                className="mx-auto mb-10 flex max-w-3xl gap-3 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:justify-center sm:overflow-visible"
+                data-animate="fade-up"
+                data-delay="0.1"
+              >
                 {SERVICES.map((srv) => (
                   <button
                     key={srv.id}
@@ -1371,7 +1394,10 @@ function App() {
                 ))}
               </div>
 
-              <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-4 sm:p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12">
+              <div
+                className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-4 sm:p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12"
+                data-animate="scale-in"
+              >
                 {SERVICES.filter((s) => s.id === selectedServiceTab).map(
                   (activeSrv) => (
                     <div
@@ -1466,7 +1492,10 @@ function App() {
           >
             <div className="max-w-7xl mx-auto px-6">
               {/* Header */}
-              <div className="text-center max-w-xl mx-auto space-y-4 mb-14">
+              <div
+                className="text-center max-w-xl mx-auto space-y-4 mb-14"
+                data-animate="fade-up"
+              >
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Professional Care
                 </span>
@@ -1480,7 +1509,11 @@ function App() {
               </div>
 
               {/* Grid */}
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div
+                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
                 {SPECIALISTS.map((spec) => (
                   <div
                     key={spec.id}
@@ -1560,7 +1593,10 @@ function App() {
             className="py-16 sm:py-20 bg-white border-t border-brand-border"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="text-center max-w-xl mx-auto space-y-3 mb-10 sm:mb-14">
+              <div
+                className="text-center max-w-xl mx-auto space-y-3 mb-10 sm:mb-14"
+                data-animate="fade-up"
+              >
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Simple & Secure
                 </span>
@@ -1573,7 +1609,11 @@ function App() {
                 </p>
               </div>
 
-              <div className="grid gap-6 lg:grid-cols-3">
+              <div
+                className="grid gap-6 lg:grid-cols-3"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
                 {/* Card 1: How Booking Works */}
                 <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
                   <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
@@ -1768,7 +1808,10 @@ function App() {
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               {/* Header */}
-              <div className="text-center max-w-xl mx-auto space-y-4 mb-14">
+              <div
+                className="text-center max-w-xl mx-auto space-y-4 mb-14"
+                data-animate="fade-up"
+              >
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
                   Patient Testimonials
                 </span>
@@ -1782,7 +1825,11 @@ function App() {
               </div>
 
               {/* Grid */}
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div
+                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
                 {REVIEWS.map((rev, idx) => (
                   <div
                     key={idx}

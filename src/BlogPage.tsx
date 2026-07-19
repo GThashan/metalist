@@ -82,7 +82,7 @@ export default function BlogPage({ onBookAppointment }: BlogPageProps) {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#000690] text-white py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center" data-animate="hero">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white mb-5">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Insights & Articles</span>
@@ -104,7 +104,10 @@ export default function BlogPage({ onBookAppointment }: BlogPageProps) {
       {/* Featured post */}
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <article className="grid gap-6 lg:grid-cols-2 overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-brand-border bg-white shadow-sm">
+          <article
+            className="grid gap-6 lg:grid-cols-2 overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-brand-border bg-white shadow-sm"
+            data-animate="scale-in"
+          >
             <div className="relative min-h-[220px] sm:min-h-[280px] lg:min-h-full">
               <img
                 src={featured.image}
@@ -148,7 +151,7 @@ export default function BlogPage({ onBookAppointment }: BlogPageProps) {
       {/* Blog grid */}
       <section className="pb-16 sm:pb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-8 sm:mb-10">
+          <div className="mb-8 sm:mb-10" data-animate="fade-up">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary">
               Latest reading
             </p>
@@ -157,11 +160,12 @@ export default function BlogPage({ onBookAppointment }: BlogPageProps) {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" data-animate="stagger" data-stagger="0.12">
             {rest.map((post) => (
               <article
                 key={post.id}
                 className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-brand-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-shadow/40"
+                data-animate-child
               >
                 <div className="relative h-44 overflow-hidden">
                   <img

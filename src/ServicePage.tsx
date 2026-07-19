@@ -61,7 +61,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-6">
+            <div className="space-y-6" data-animate="hero">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-[#C76B3D]/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                 <Heart className="w-3.5 h-3.5" />
                 <span>Our Services</span>
@@ -88,7 +88,10 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
               </div>
             </div>
 
-            <div className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/90 p-4 sm:p-6 shadow-xl">
+            <div
+              className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/90 p-4 sm:p-6 shadow-xl"
+              data-animate="fade-right"
+            >
               <div className="flex items-start sm:items-center justify-between gap-3 border-b border-stone-200 pb-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C76B3D]">Service focus</p>
@@ -173,7 +176,11 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
             </p>
           </div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div
+            className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3"
+            data-animate="stagger"
+            data-stagger="0.12"
+          >
             {specialists.map((spec) => (
               <div key={spec.id} className="flex h-full flex-col justify-between rounded-[2rem] border border-stone-200 bg-white p-6 shadow-sm">
                 <div className="space-y-4">

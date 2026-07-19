@@ -114,7 +114,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       {/* ── Page Hero / Breadcrumb ─────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#000690] py-16 sm:py-20 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center" data-animate="hero">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white mb-5">
             <Heart className="w-3.5 h-3.5" />
             <span>Who We Are</span>
@@ -139,22 +139,23 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: Text + Feature cards */}
           <div className="space-y-8">
-            <div>
+            <div data-animate="fade-left">
               <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Mental Strength</p>
               <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] leading-tight">
                 Strengthen Your Mind With{' '}
                 <span className="text-brand-primary italic">Psychology Skills</span>
               </h2>
             </div>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 leading-relaxed" data-animate="fade-up">
               Our team of licensed psychologists and therapists brings together decades of combined experience across clinical psychology, cognitive behavioral therapy, and holistic mental wellness practices to serve you with exceptional care.
             </p>
             {/* Feature Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5" data-animate="stagger" data-stagger="0.1">
               {STRENGTH_FEATURES.map((feature) => (
                 <div
                   key={feature.id}
                   className="group p-5 bg-brand-primary/10 border border-[#E1D8CC] rounded-2xl hover:border-[#C76B3D]/40 hover:shadow-lg hover:shadow-[#C76B3D]/10 transition-all duration-300"
+                  data-animate-child
                 >
                   <div className="mb-3">{feature.icon}</div>
                   <h4 className="font-serif text-lg text-[#333333] mb-1">{feature.title}</h4>
@@ -165,7 +166,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           </div>
 
           {/* Right: Image with video play button */}
-          <div className="relative pb-8 sm:pb-6">
+          <div className="relative pb-8 sm:pb-6" data-animate="fade-right">
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/15 border border-[#E1D8CC]">
               <img
                 src="/about_section_therapy.png"
@@ -229,7 +230,11 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
 
       {/* ── Stats Counter Bar ─────────────────────────────────────────────── */}
       <section className="bg-[#000690] py-14">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div
+          className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8"
+          data-animate="stagger"
+          data-stagger="0.1"
+        >
           {STATS.map((stat, index) => (
             <div key={index} className="text-center group">
               <div className="font-serif text-4xl md:text-5xl font-bold text-white group-hover:scale-110 transition-transform duration-300">
@@ -245,7 +250,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       <section className="py-20 bg-[#f7f0e5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left: Image */}
-          <div className="relative pt-6 sm:pt-0">
+          <div className="relative pt-6 sm:pt-0" data-animate="fade-left">
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-[#C76B3D]/10 border border-[#E1D8CC]">
               <img
                 src="/about_guiding_life.png"
@@ -261,7 +266,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           </div>
 
           {/* Right: Content */}
-          <div className="space-y-7">
+          <div className="space-y-7" data-animate="fade-right">
             <div>
               <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">Success Journey</p>
               <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] leading-tight">
@@ -305,14 +310,14 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       {/* ── Our Values / Mission Section ──────────────────────────────────── */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-14" data-animate="fade-up">
             <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest mb-3">What Drives Us</p>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] max-w-2xl mx-auto leading-tight">
               Our Core{' '}
               <span className="text-brand-primary italic">Values</span> &amp; Mission
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8" data-animate="stagger" data-stagger="0.15">
             {[
               {
                 icon: <Heart className="w-8 h-8 text-white" />,
@@ -349,7 +354,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
       <section className="py-20 bg-[#f7f0e5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Left: Heading + intro */}
-          <div className="space-y-6 md:sticky md:top-28">
+          <div className="space-y-6 md:sticky md:top-28" data-animate="fade-left">
             <p className="text-brand-primary text-sm font-semibold uppercase tracking-widest">Common Questions</p>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#333333] leading-tight">
               Frequently Asked <span className="text-brand-primary italic">Questions</span>
@@ -367,7 +372,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           </div>
 
           {/* Right: Accordion */}
-          <div className="space-y-4">
+          <div className="space-y-4" data-animate="stagger" data-stagger="0.1">
             {FAQ_ITEMS.map((item) => (
               <div
                 key={item.id}
