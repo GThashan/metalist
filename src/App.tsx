@@ -319,7 +319,7 @@ function App() {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 items-start overflow-hidden">
           <div className="lg:col-span-5 space-y-4 sm:space-y-6">
             <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
               Start Healing
@@ -332,7 +332,7 @@ function App() {
               licensed specialists.
             </p>
 
-            <div className="hidden sm:block space-y-4 pt-4 border-t border-stone-150">
+            <div className="hidden sm:block space-y-4 pt-4 border-stone-150">
               <div className="flex gap-3.5 items-center">
                 <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
@@ -389,7 +389,7 @@ function App() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg">
+          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg overflow-hidden">
             <form onSubmit={handleBookingSubmit} className="space-y-5">
               <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-brand-primary" />
@@ -1020,9 +1020,7 @@ function App() {
                 {activeDropdown === "services" && (
                   <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
                     <button
-                      onClick={() =>
-                        navigateToPage("service", "mental-health")
-                      }
+                      onClick={() => navigateToPage("service", "mental-health")}
                       className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
                         currentPage === "service" &&
                         currentServiceId === "mental-health"
@@ -1176,20 +1174,27 @@ function App() {
                     data-animate="hero"
                   >
                     <Heart className="h-3.5 w-3.5 shrink-0" />
-                    <span className="truncate">Support for lasting wellness</span>
+                    <span className="truncate">
+                      Professional Mental Health Care
+                    </span>
                   </div>
 
-                  <div className="space-y-4" data-animate="hero" data-delay="0.12">
+                  <div
+                    className="space-y-4"
+                    data-animate="hero"
+                    data-delay="0.12"
+                  >
                     <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl">
-                      Find calm,
+                      Confidential,
                       <span className="block text-blue-600">
-                        clarity, and balance
+                        Compassionate & Professional
                       </span>
                     </h1>
 
                     <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
-                      Compassionate therapy and expert guidance for stress,
-                      anxiety, relationships, and everyday well-being.
+                      Compassionate and evidence-based psychological counseling
+                      to help you overcome challenges, strengthen emotional
+                      well-being, and create a healthier, more meaningful life.
                     </p>
                   </div>
 
@@ -1229,16 +1234,16 @@ function App() {
                   >
                     {[
                       {
-                        title: "Calm Your Mind",
-                        text: "Reduce stress with tailored emotional support.",
+                        title: "Emotional Wellness",
+                        text: "Develop emotional balance, manage stress, and build healthier coping skills.",
                       },
                       {
-                        title: "Balance Your Life",
-                        text: "Create healthier routines and stronger resilience.",
+                        title: "Personal Growth",
+                        text: "Discover your strengths, improve self-awareness, and create positive life changes.",
                       },
                       {
-                        title: "Clearer Focus",
-                        text: "Build practical strategies for everyday well-being.",
+                        title: "Professional Guidance",
+                        text: "Receive confidential psychological support in a safe and respectful environment.",
                       },
                     ].map((item) => (
                       <div
@@ -1300,8 +1305,8 @@ function App() {
                     </p>
                     <p className="text-white/70 leading-relaxed text-sm">
                       Providing professional psychological counseling and
-                      psychotherapy services with compassion, confidentiality
-                      and respect.
+                      psychotherapy services with confidentiality, compassion,
+                      and excellence.
                     </p>
                   </div>
                   {/* Separator Line */}
@@ -1316,9 +1321,9 @@ function App() {
                     </p>
                     {[
                       "Individual Counseling",
-                      "Emotional Support",
-                      "Stress Management",
-                      "Online Consultation",
+                      "Emotional Wellness Support",
+                      "Stress & Anxiety Management",
+                      "Online Psychological Consultation",
                     ].map((item) => (
                       <div
                         key={item}
@@ -1340,7 +1345,7 @@ function App() {
                       onClick={openBookingModal}
                       className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
                     >
-                      <span>Book With Prasad →</span>
+                      <span>Book Your Session →</span>
                     </button>
                     <p className="text-white/40 text-xs text-center">
                       Online & In-Person Sessions
@@ -1351,7 +1356,7 @@ function App() {
             </div>
           </section>
 
-           <section
+          <section
             id="booking-payment"
             className="py-16 sm:py-20 bg-white border-t border-brand-border"
           >
@@ -1409,7 +1414,10 @@ function App() {
                         icon: <Video className="h-4 w-4 text-brand-primary" />,
                       },
                     ].map((item, index, arr) => (
-                      <div key={item.step} className="flex flex-col items-center">
+                      <div
+                        key={item.step}
+                        className="flex flex-col items-center"
+                      >
                         <div className="flex w-full items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-3 py-3">
                           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-xs font-bold text-white">
                             {item.step}
@@ -1437,12 +1445,12 @@ function App() {
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
                       Session Fee:
                     </p>
-                   <p className="font-bold text-brand-primary">
-  <span className="block text-2xl sm:text-3xl">$6</span>
-  <span className="block text-xs sm:text-sm font-normal text-gray-600">
-    (approximately Rs. 2,000)
-  </span>
-</p>
+                    <p className="font-bold text-brand-primary">
+                      <span className="block text-2xl sm:text-3xl">$6</span>
+                      <span className="block text-xs sm:text-sm font-normal text-gray-600">
+                        (approximately Rs. 2,000)
+                      </span>
+                    </p>
                   </div>
 
                   <div className="flex-1 space-y-3 mb-5">
@@ -1495,10 +1503,7 @@ function App() {
                           className="h-5 w-5"
                           aria-hidden="true"
                         >
-                          <path
-                            fill="#00832D"
-                            d="M12 8.5v7l6 3.5V5z"
-                          />
+                          <path fill="#00832D" d="M12 8.5v7l6 3.5V5z" />
                           <path
                             fill="#0066DA"
                             d="M4 7.5A2.5 2.5 0 0 1 6.5 5h7v14h-7A2.5 2.5 0 0 1 4 16.5z"
@@ -1563,8 +1568,6 @@ function App() {
               </div>
             </div>
           </section>
-
-        
 
           {/* Team / Specialists section */}
           <section
@@ -1669,14 +1672,17 @@ function App() {
             </div>
           </section>
 
-           <section
+          <section
             ref={servicesSectionRef}
             id="services"
             className="relative overflow-hidden border-t border-b border-[#E1D8CC]/40 bg-[linear-gradient(180deg,rgba(247,240,229,0.45),rgba(255,255,255,0.95))] py-20"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-6">
-              <div className="mx-auto mb-12 max-w-3xl text-center" data-animate="fade-up">
+              <div
+                className="mx-auto mb-12 max-w-3xl text-center"
+                data-animate="fade-up"
+              >
                 <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
                   Tailored specialties
                 </span>
@@ -1801,7 +1807,6 @@ function App() {
               </div>
             </div>
           </section>
-         
 
           {/* Testimonials (Client Reviews) section */}
           <section
@@ -1895,7 +1900,7 @@ function App() {
                     specialists.
                   </p>
 
-                  <div className="space-y-4 pt-4 border-t border-stone-150">
+                  <div className="space-y-4 pt-4  border-stone-150">
                     <div className="flex gap-3.5 items-center">
                       <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
                         <ShieldCheck className="w-5 h-5" />
