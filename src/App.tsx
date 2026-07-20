@@ -1582,14 +1582,13 @@ function App() {
                 data-animate="fade-up"
               >
                 <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
-                  Professional Care
+                  Professional Support
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
-                  Meet Our Licensed Specialists
+                  Meet Our Experts
                 </h2>
                 <p className="text-slate-500 text-sm font-light">
-                  Highly credentialed clinical leaders providing empathetic care
-                  customized for you.
+                  Compassionate mental health professionals providing personalized, confidential care tailored to your unique needs.
                 </p>
               </div>
 
