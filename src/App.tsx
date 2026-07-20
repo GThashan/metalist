@@ -1351,244 +1351,7 @@ function App() {
             </div>
           </section>
 
-          <section
-            ref={servicesSectionRef}
-            id="services"
-            className="relative overflow-hidden border-t border-b border-[#E1D8CC]/40 bg-[linear-gradient(180deg,rgba(247,240,229,0.45),rgba(255,255,255,0.95))] py-20"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
-            <div className="relative z-10 mx-auto max-w-7xl px-6">
-              <div className="mx-auto mb-12 max-w-3xl text-center" data-animate="fade-up">
-                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
-                  Tailored specialties
-                </span>
-                <h2 className="text-3xl font-serif text-[#333333] sm:text-4xl md:text-5xl">
-                  Clinical Services & Programs
-                </h2>
-                <p className="mt-4 text-sm leading-relaxed text-slate-500 sm:text-base">
-                  We combine evidence-based support with compassionate guidance
-                  for adults, couples, and families navigating change.
-                </p>
-              </div>
-
-              <div
-                className="mx-auto mb-10 flex max-w-3xl gap-3 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:justify-center sm:overflow-visible"
-                data-animate="fade-up"
-                data-delay="0.1"
-              >
-                {SERVICES.map((srv) => (
-                  <button
-                    key={srv.id}
-                    onClick={() => {
-                      setSelectedServiceTab(srv.id);
-                      navigateToPage("service", srv.id);
-                    }}
-                    className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${
-                      selectedServiceTab === srv.id
-                        ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
-                        : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
-                    }`}
-                  >
-                    {srv.title}
-                  </button>
-                ))}
-              </div>
-
-              <div
-                className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-4 sm:p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12"
-                data-animate="scale-in"
-              >
-                {SERVICES.filter((s) => s.id === selectedServiceTab).map(
-                  (activeSrv) => (
-                    <div
-                      key={activeSrv.id}
-                      className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center"
-                    >
-                      <div className="space-y-6">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-brand-cream px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
-                          <Award className="h-3.5 w-3.5" />
-                          <span>Focused care</span>
-                        </div>
-                        <h3 className="text-2xl font-serif text-[#333333] sm:text-3xl">
-                          {activeSrv.title}
-                        </h3>
-                        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                          {activeSrv.description}
-                        </p>
-
-                        <div className="grid gap-3 sm:grid-cols-2">
-                          {activeSrv.bullets.map((bullet, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-start gap-2 rounded-2xl border border-[#E1D8CC]/60 bg-brand-primary/10 p-3"
-                            >
-                              <div className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-primary" />
-                              <span className="text-sm text-slate-700">
-                                {bullet}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="rounded-[1.75rem] border border-[#E1D8CC] bg-[linear-gradient(180deg,_brand-primary_0%,_#fffdf9_100%)] p-6 shadow-sm">
-                        <div className="mb-5 flex items-center justify-between">
-                          <div>
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-primary">
-                              Next step
-                            </p>
-                            <h4 className="mt-1 text-lg font-semibold text-slate-800">
-                              Personalized consultation
-                            </h4>
-                          </div>
-                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
-                            <Heart className="h-5 w-5" />
-                          </div>
-                        </div>
-
-                        <div className="space-y-3">
-                          <div className="rounded-2xl border border-white/70 bg-white/80 p-4">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
-                              Why clients choose this
-                            </p>
-                            <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                              Tailored support, expert guidance, and a clear
-                              plan for progress from your first session onward.
-                            </p>
-                          </div>
-                          <div className="rounded-2xl border border-[#E1D8CC]/60 bg-white/70 p-4">
-                            <p className="text-sm font-semibold text-slate-800">
-                              Ready to begin?
-                            </p>
-                            <p className="mt-1 text-sm text-slate-600">
-                              Book a consultation and we’ll help you choose the
-                              right path.
-                            </p>
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => {
-                            setFormService(activeSrv.id);
-                            openBookingModal();
-                          }}
-                          className="mt-6 w-full rounded-xl bg-[#333333] px-4 py-3 text-sm font-semibold text-[#f7f0e5] transition-colors duration-300 hover:bg-brand-primary"
-                        >
-                          Select & Book this service
-                        </button>
-                      </div>
-                    </div>
-                  ),
-                )}
-              </div>
-            </div>
-          </section>
-
-          {/* Team / Specialists section */}
-          <section
-            ref={specialistSectionRef}
-            id="specialists"
-            className="py-20 bg-brand-primary/10"
-          >
-            <div className="max-w-7xl mx-auto px-6">
-              {/* Header */}
-              <div
-                className="text-center max-w-xl mx-auto space-y-4 mb-14"
-                data-animate="fade-up"
-              >
-                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
-                  Professional Care
-                </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
-                  Meet Our Licensed Specialists
-                </h2>
-                <p className="text-slate-500 text-sm font-light">
-                  Highly credentialed clinical leaders providing empathetic care
-                  customized for you.
-                </p>
-              </div>
-
-              {/* Grid */}
-              <div
-                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-                data-animate="stagger"
-                data-stagger="0.15"
-              >
-                {SPECIALISTS.map((spec) => (
-                  <div
-                    key={spec.id}
-                    className="bg-slate-50 border border-stone-200/60 rounded-3xl p-6 shadow-sm hover:border-brand-primary transition-all duration-300 flex flex-col justify-between"
-                  >
-                    <div className="space-y-4">
-                      {/* Photo */}
-                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-brand-primary/20 shadow">
-                        <img
-                          src={spec.image}
-                          alt={spec.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      {/* Title */}
-                      <div className="text-center space-y-1">
-                        <h3 className="text-lg font-bold text-slate-800">
-                          {spec.name}
-                        </h3>
-                        <p className="text-xs text-brand-primary font-medium tracking-wide">
-                          {spec.role}
-                        </p>
-
-                        {/* Stars */}
-                        <div className="flex items-center justify-center gap-1 mt-1.5">
-                          {[...Array(spec.rating)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
-                            />
-                          ))}
-                          <span className="text-[10px] text-slate-400 font-semibold ml-1">
-                            ({spec.reviews} Reviews)
-                          </span>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-slate-500 leading-relaxed text-center font-light italic">
-                        "{spec.bio}"
-                      </p>
-
-                      {/* Specialties tags */}
-                      <div className="pt-2 flex flex-wrap gap-1.5 justify-center">
-                        {spec.specialties.map((specItem, idx) => (
-                          <span
-                            key={idx}
-                            className="bg-white px-2 py-0.5 rounded-full border border-stone-200 text-[10px] text-slate-600 font-medium"
-                          >
-                            {specItem}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* CTA */}
-                    <div className="pt-6">
-                      <button
-                        onClick={() => {
-                          setFormSpecialist(spec.id);
-                          openBookingModal();
-                        }}
-                        className="w-full bg-brand-primary text-white border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
-                      >
-                        Request Booking
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Booking & Payment section */}
-          <section
+           <section
             id="booking-payment"
             className="py-16 sm:py-20 bg-white border-t border-brand-border"
           >
@@ -1797,6 +1560,245 @@ function App() {
               </div>
             </div>
           </section>
+
+        
+
+          {/* Team / Specialists section */}
+          <section
+            ref={specialistSectionRef}
+            id="specialists"
+            className="py-20 bg-brand-primary/10"
+          >
+            <div className="max-w-7xl mx-auto px-6">
+              {/* Header */}
+              <div
+                className="text-center max-w-xl mx-auto space-y-4 mb-14"
+                data-animate="fade-up"
+              >
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                  Professional Care
+                </span>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
+                  Meet Our Licensed Specialists
+                </h2>
+                <p className="text-slate-500 text-sm font-light">
+                  Highly credentialed clinical leaders providing empathetic care
+                  customized for you.
+                </p>
+              </div>
+
+              {/* Grid */}
+              <div
+                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
+                {SPECIALISTS.map((spec) => (
+                  <div
+                    key={spec.id}
+                    className="bg-slate-50 border border-stone-200/60 rounded-3xl p-6 shadow-sm hover:border-brand-primary transition-all duration-300 flex flex-col justify-between"
+                  >
+                    <div className="space-y-4">
+                      {/* Photo */}
+                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-brand-primary/20 shadow">
+                        <img
+                          src={spec.image}
+                          alt={spec.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Title */}
+                      <div className="text-center space-y-1">
+                        <h3 className="text-lg font-bold text-slate-800">
+                          {spec.name}
+                        </h3>
+                        <p className="text-xs text-brand-primary font-medium tracking-wide">
+                          {spec.role}
+                        </p>
+
+                        {/* Stars */}
+                        <div className="flex items-center justify-center gap-1 mt-1.5">
+                          {[...Array(spec.rating)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
+                            />
+                          ))}
+                          <span className="text-[10px] text-slate-400 font-semibold ml-1">
+                            ({spec.reviews} Reviews)
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-500 leading-relaxed text-center font-light italic">
+                        "{spec.bio}"
+                      </p>
+
+                      {/* Specialties tags */}
+                      <div className="pt-2 flex flex-wrap gap-1.5 justify-center">
+                        {spec.specialties.map((specItem, idx) => (
+                          <span
+                            key={idx}
+                            className="bg-white px-2 py-0.5 rounded-full border border-stone-200 text-[10px] text-slate-600 font-medium"
+                          >
+                            {specItem}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="pt-6">
+                      <button
+                        onClick={() => {
+                          setFormSpecialist(spec.id);
+                          openBookingModal();
+                        }}
+                        className="w-full bg-brand-primary text-white border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
+                      >
+                        Request Booking
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+           <section
+            ref={servicesSectionRef}
+            id="services"
+            className="relative overflow-hidden border-t border-b border-[#E1D8CC]/40 bg-[linear-gradient(180deg,rgba(247,240,229,0.45),rgba(255,255,255,0.95))] py-20"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(199,107,61,0.14),_transparent_35%)]" />
+            <div className="relative z-10 mx-auto max-w-7xl px-6">
+              <div className="mx-auto mb-12 max-w-3xl text-center" data-animate="fade-up">
+                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.3em] text-brand-primary">
+                  Tailored specialties
+                </span>
+                <h2 className="text-3xl font-serif text-[#333333] sm:text-4xl md:text-5xl">
+                  Clinical Services & Programs
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-slate-500 sm:text-base">
+                  We combine evidence-based support with compassionate guidance
+                  for adults, couples, and families navigating change.
+                </p>
+              </div>
+
+              <div
+                className="mx-auto mb-10 flex max-w-3xl gap-3 overflow-x-auto pb-2 scrollbar-thin sm:flex-wrap sm:justify-center sm:overflow-visible"
+                data-animate="fade-up"
+                data-delay="0.1"
+              >
+                {SERVICES.map((srv) => (
+                  <button
+                    key={srv.id}
+                    onClick={() => {
+                      setSelectedServiceTab(srv.id);
+                      navigateToPage("service", srv.id);
+                    }}
+                    className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${
+                      selectedServiceTab === srv.id
+                        ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
+                        : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
+                    }`}
+                  >
+                    {srv.title}
+                  </button>
+                ))}
+              </div>
+
+              <div
+                className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/95 p-4 sm:p-8 shadow-[0_20px_70px_rgba(51,51,51,0.08)] md:p-10 lg:p-12"
+                data-animate="scale-in"
+              >
+                {SERVICES.filter((s) => s.id === selectedServiceTab).map(
+                  (activeSrv) => (
+                    <div
+                      key={activeSrv.id}
+                      className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center"
+                    >
+                      <div className="space-y-6">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-brand-cream px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
+                          <Award className="h-3.5 w-3.5" />
+                          <span>Focused care</span>
+                        </div>
+                        <h3 className="text-2xl font-serif text-[#333333] sm:text-3xl">
+                          {activeSrv.title}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+                          {activeSrv.description}
+                        </p>
+
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          {activeSrv.bullets.map((bullet, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-start gap-2 rounded-2xl border border-[#E1D8CC]/60 bg-brand-primary/10 p-3"
+                            >
+                              <div className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-primary" />
+                              <span className="text-sm text-slate-700">
+                                {bullet}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="rounded-[1.75rem] border border-[#E1D8CC] bg-[linear-gradient(180deg,_brand-primary_0%,_#fffdf9_100%)] p-6 shadow-sm">
+                        <div className="mb-5 flex items-center justify-between">
+                          <div>
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-primary">
+                              Next step
+                            </p>
+                            <h4 className="mt-1 text-lg font-semibold text-slate-800">
+                              Personalized consultation
+                            </h4>
+                          </div>
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
+                            <Heart className="h-5 w-5" />
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <div className="rounded-2xl border border-white/70 bg-white/80 p-4">
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
+                              Why clients choose this
+                            </p>
+                            <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                              Tailored support, expert guidance, and a clear
+                              plan for progress from your first session onward.
+                            </p>
+                          </div>
+                          <div className="rounded-2xl border border-[#E1D8CC]/60 bg-white/70 p-4">
+                            <p className="text-sm font-semibold text-slate-800">
+                              Ready to begin?
+                            </p>
+                            <p className="mt-1 text-sm text-slate-600">
+                              Book a consultation and we’ll help you choose the
+                              right path.
+                            </p>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            setFormService(activeSrv.id);
+                            openBookingModal();
+                          }}
+                          className="mt-6 w-full rounded-xl bg-[#333333] px-4 py-3 text-sm font-semibold text-[#f7f0e5] transition-colors duration-300 hover:bg-brand-primary"
+                        >
+                          Select & Book this service
+                        </button>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
+            </div>
+          </section>
+         
 
           {/* Testimonials (Client Reviews) section */}
           <section
