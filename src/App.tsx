@@ -5,7 +5,7 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
-import heroImage from "./assets/hero5.jpeg";
+import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
 import profile1 from "./assets/profile1.jpg";
@@ -1437,9 +1437,12 @@ function App() {
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
                       Session Fee:
                     </p>
-                    <p className="text-2xl sm:text-3xl font-bold text-brand-primary">
-                      Rs. 2,000/-
-                    </p>
+                   <p className="font-bold text-brand-primary">
+  <span className="block text-2xl sm:text-3xl">$6</span>
+  <span className="block text-xs sm:text-sm font-normal text-gray-600">
+    (approximately Rs. 2,000)
+  </span>
+</p>
                   </div>
 
                   <div className="flex-1 space-y-3 mb-5">
