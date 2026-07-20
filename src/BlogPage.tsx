@@ -73,14 +73,14 @@ interface BlogPageProps {
   onBookAppointment: () => void
 }
 
-export default function BlogPage({ onBookAppointment }: BlogPageProps) {
+export default function BlogPage({  }: BlogPageProps) {
   const featured = BLOG_POSTS[0]
   const rest = BLOG_POSTS.slice(1)
 
   return (
     <main className="bg-slate-50">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#000690] text-white py-16 sm:py-20 md:py-24">
+      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#111844] text-white py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center" data-animate="hero">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white mb-5">
@@ -204,24 +204,7 @@ export default function BlogPage({ onBookAppointment }: BlogPageProps) {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#000690] py-12 sm:py-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 sm:px-6 text-center md:flex-row md:text-left">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/70">
-              Need personal support?
-            </p>
-            <h2 className="mt-2 font-serif text-2xl sm:text-3xl text-white">
-              Talk with an Insight specialist
-            </h2>
-          </div>
-          <button
-            onClick={onBookAppointment}
-            className="w-full md:w-auto rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
-          >
-            Book appointment
-          </button>
-        </div>
-      </section>
+    
     </main>
   )
 }

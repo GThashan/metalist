@@ -57,7 +57,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
 
   return (
     <main className="bg-slate-50">
-      <section className="relative overflow-hidden bg-[#000690] text-white py-20 md:py-24 border-b border-[#E1D8CC]/50">
+      <section className="relative overflow-hidden bg-[#111844] text-white py-20 md:py-24 border-b border-[#E1D8CC]/50">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -77,11 +77,11 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <button
                   onClick={onBookAppointment}
-                  className="w-full sm:w-auto rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
+                  className="w-full sm:w-auto rounded-full bg-[#3B82F6] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#2563EB]"
                 >
                   Book a consultation
                 </button>
-                <div className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-stone-300 bg-white/70 px-4 py-3 text-sm text-slate-600">
+                <div className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-3 text-sm text-slate-600">
                   <Calendar className="w-4 h-4 shrink-0 text-[#C76B3D]" />
                   <span className="text-center sm:text-left">Flexible virtual and in-office sessions</span>
                 </div>
@@ -219,7 +219,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
         </div>
       </section>
 
-      <section className="bg-[#000690] py-16">
+      <section className="bg-[#111844] py-16">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:text-left">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/70">Ready when you are</p>
@@ -227,7 +227,7 @@ export default function ServicePage({ service, specialists, onBookAppointment }:
           </div>
           <button
             onClick={onBookAppointment}
-            className="w-full md:w-auto rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
+            className="w-full md:w-auto rounded-full bg-[#3B82F6] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#2563EB]"
           >
             Book appointment
           </button>

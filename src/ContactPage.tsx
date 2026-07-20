@@ -7,7 +7,7 @@ type ContactPageProps = {
 function ContactPage({ onBookAppointment }: ContactPageProps) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-700">
-      <section className="relative overflow-hidden bg-[#000690] border-b border-[#E1D8CC]/40">
+      <section className="relative overflow-hidden bg-[#111844] border-b border-[#E1D8CC]/40">
         <div className="absolute top-[-8%] right-[-8%] h-56 w-56 rounded-full bg-[#C76B3D]/10 blur-3xl" />
         <div className="absolute bottom-[-10%] left-[-10%] h-64 w-64 rounded-full bg-[#843519]/10 blur-3xl" />
 
@@ -24,7 +24,7 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
             </p>
             <button
               onClick={onBookAppointment}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-[#C76B3D]/20 transition-all duration-300 hover:bg-[#843519]"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 py-3 text-sm font-semibold text-white shadow-md shadow-[#C76B3D]/20 transition-all duration-300 hover:bg-[#2563EB]"
             >
               Book an Appointment
               <ArrowRight className="h-4 w-4" />

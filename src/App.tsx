@@ -1263,7 +1263,7 @@ function App() {
             </div>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
-          <section className="py-8 sm:py-6 bg-[#000690] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
+          <section className="py-8 sm:py-6 bg-[#111844] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               {/* 4-Part Grid Layout */}
               <div
@@ -1351,7 +1351,325 @@ function App() {
             </div>
           </section>
 
+           <section
+            id="booking-payment"
+            className="py-16 sm:py-20 bg-white border-t border-brand-border"
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div
+                className="text-center max-w-xl mx-auto space-y-3 mb-10 sm:mb-14"
+                data-animate="fade-up"
+              >
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                  Simple & Secure
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-serif text-[#333333]">
+                  Booking & Payment
+                </h2>
+                <p className="text-slate-500 text-sm font-light">
+                  Book your session in a few clear steps, pay securely, and join
+                  from anywhere.
+                </p>
+              </div>
+
+              <div
+                className="grid gap-6 lg:grid-cols-3"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
+                {/* Card 1: How Booking Works */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
+                    How Booking Works
+                  </h3>
+                  <div className="flex flex-col items-stretch gap-2 flex-1">
+                    {[
+                      {
+                        step: 1,
+                        label: "Choose Professional",
+                        icon: <User className="h-4 w-4 text-brand-primary" />,
+                      },
+                      {
+                        step: 2,
+                        label: "Select Time",
+                        icon: (
+                          <Calendar className="h-4 w-4 text-brand-primary" />
+                        ),
+                      },
+                      {
+                        step: 3,
+                        label: "Make Payment",
+                        icon: (
+                          <CreditCard className="h-4 w-4 text-brand-primary" />
+                        ),
+                      },
+                      {
+                        step: 4,
+                        label: "Join Session",
+                        icon: <Video className="h-4 w-4 text-brand-primary" />,
+                      },
+                    ].map((item, index, arr) => (
+                      <div key={item.step} className="flex flex-col items-center">
+                        <div className="flex w-full items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-3 py-3">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-xs font-bold text-white">
+                            {item.step}
+                          </span>
+                          <span className="flex items-center gap-2 text-sm font-medium text-slate-700">
+                            {item.icon}
+                            {item.label}
+                          </span>
+                        </div>
+                        {index < arr.length - 1 && (
+                          <ArrowDown className="my-1.5 h-4 w-4 text-brand-primary/50" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card 2: Secure Payment */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-5">
+                    Secure Payment
+                  </h3>
+
+                  <div className="rounded-xl bg-brand-light border border-brand-border px-4 py-4 text-center mb-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                      Session Fee:
+                    </p>
+                   <p className="font-bold text-brand-primary">
+  <span className="block text-2xl sm:text-3xl">$6</span>
+  <span className="block text-xs sm:text-sm font-normal text-gray-600">
+    (approximately Rs. 2,000)
+  </span>
+</p>
+                  </div>
+
+                  <div className="flex-1 space-y-3 mb-5">
+                    <p className="text-sm font-bold text-slate-800">
+                      Bank Transfer:
+                    </p>
+                    <div className="space-y-2.5 text-sm">
+                      {[
+                        { label: "Bank", value: "Commercial" },
+                        { label: "Account Name", value: "W S P Dhanasankha" },
+                        { label: "Account Number", value: "8020157278" },
+                        { label: "Branch", value: "Embilipitiya" },
+                      ].map((row) => (
+                        <div
+                          key={row.label}
+                          className="flex items-start justify-between gap-3 border-b border-brand-border/60 pb-2 last:border-0"
+                        >
+                          <span className="text-slate-500 shrink-0">
+                            {row.label}:
+                          </span>
+                          <span className="font-semibold text-slate-800 text-right break-all">
+                            {row.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={openBookingModal}
+                    className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
+                  >
+                    <Upload className="h-4 w-4" />
+                    Upload Payment Receipt
+                  </button>
+                </div>
+
+                {/* Card 3: Attend From Anywhere */}
+                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
+                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
+                    Attend From Anywhere
+                  </h3>
+
+                  <div className="space-y-3 flex-1">
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white border border-brand-border shadow-sm">
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fill="#00832D"
+                            d="M12 8.5v7l6 3.5V5z"
+                          />
+                          <path
+                            fill="#0066DA"
+                            d="M4 7.5A2.5 2.5 0 0 1 6.5 5h7v14h-7A2.5 2.5 0 0 1 4 16.5z"
+                          />
+                          <path fill="#FFBA00" d="M18 12l4 2.5V9.5z" />
+                          <path fill="#E94235" d="M18 12l4 2.5V19l-4-2.5z" />
+                        </svg>
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Google Meet
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2D8CFF] text-white shadow-sm">
+                        <Video className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Zoom
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
+                        <Phone className="h-4 w-4" />
+                      </span>
+                      <span className="text-sm font-medium text-slate-700">
+                        Phone Consultation
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 rounded-xl bg-brand-light border border-brand-border px-4 py-4">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                      After confirmation you will receive WhatsApp and Email
+                      notifications.
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white shadow-sm transition-transform hover:scale-105"
+                        aria-label="WhatsApp +94 (0) 757629950"
+                        title="+94 (0) 757629950"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="mailto:counsellinginsightdomain@gmail.com"
+                        className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-primary text-white shadow-sm transition-transform hover:scale-105"
+                        aria-label="Email"
+                      >
+                        <Mail className="h-4 w-4" />
+                      </a>
+                      <span className="ml-1 text-xs text-slate-500">
+                        +94 (0) 757629950
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        
+
+          {/* Team / Specialists section */}
           <section
+            ref={specialistSectionRef}
+            id="specialists"
+            className="py-20 bg-brand-primary/10"
+          >
+            <div className="max-w-7xl mx-auto px-6">
+              {/* Header */}
+              <div
+                className="text-center max-w-xl mx-auto space-y-4 mb-14"
+                data-animate="fade-up"
+              >
+                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                  Professional Care
+                </span>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
+                  Meet Our Licensed Specialists
+                </h2>
+                <p className="text-slate-500 text-sm font-light">
+                  Highly credentialed clinical leaders providing empathetic care
+                  customized for you.
+                </p>
+              </div>
+
+              {/* Grid */}
+              <div
+                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+                data-animate="stagger"
+                data-stagger="0.15"
+              >
+                {SPECIALISTS.map((spec) => (
+                  <div
+                    key={spec.id}
+                    className="bg-slate-50 border border-stone-200/60 rounded-3xl p-6 shadow-sm hover:border-brand-primary transition-all duration-300 flex flex-col justify-between"
+                  >
+                    <div className="space-y-4">
+                      {/* Photo */}
+                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-brand-primary/20 shadow">
+                        <img
+                          src={spec.image}
+                          alt={spec.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      {/* Title */}
+                      <div className="text-center space-y-1">
+                        <h3 className="text-lg font-bold text-slate-800">
+                          {spec.name}
+                        </h3>
+                        <p className="text-xs text-brand-primary font-medium tracking-wide">
+                          {spec.role}
+                        </p>
+
+                        {/* Stars */}
+                        <div className="flex items-center justify-center gap-1 mt-1.5">
+                          {[...Array(spec.rating)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
+                            />
+                          ))}
+                          <span className="text-[10px] text-slate-400 font-semibold ml-1">
+                            ({spec.reviews} Reviews)
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-500 leading-relaxed text-center font-light italic">
+                        "{spec.bio}"
+                      </p>
+
+                      {/* Specialties tags */}
+                      <div className="pt-2 flex flex-wrap gap-1.5 justify-center">
+                        {spec.specialties.map((specItem, idx) => (
+                          <span
+                            key={idx}
+                            className="bg-white px-2 py-0.5 rounded-full border border-stone-200 text-[10px] text-slate-600 font-medium"
+                          >
+                            {specItem}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="pt-6">
+                      <button
+                        onClick={() => {
+                          setFormSpecialist(spec.id);
+                          openBookingModal();
+                        }}
+                        className="w-full bg-brand-primary text-white border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
+                      >
+                        Request Booking
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+           <section
             ref={servicesSectionRef}
             id="services"
             className="relative overflow-hidden border-t border-b border-[#E1D8CC]/40 bg-[linear-gradient(180deg,rgba(247,240,229,0.45),rgba(255,255,255,0.95))] py-20"
@@ -1483,320 +1801,7 @@ function App() {
               </div>
             </div>
           </section>
-
-          {/* Team / Specialists section */}
-          <section
-            ref={specialistSectionRef}
-            id="specialists"
-            className="py-20 bg-brand-primary/10"
-          >
-            <div className="max-w-7xl mx-auto px-6">
-              {/* Header */}
-              <div
-                className="text-center max-w-xl mx-auto space-y-4 mb-14"
-                data-animate="fade-up"
-              >
-                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
-                  Professional Care
-                </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#333333]">
-                  Meet Our Licensed Specialists
-                </h2>
-                <p className="text-slate-500 text-sm font-light">
-                  Highly credentialed clinical leaders providing empathetic care
-                  customized for you.
-                </p>
-              </div>
-
-              {/* Grid */}
-              <div
-                className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-                data-animate="stagger"
-                data-stagger="0.15"
-              >
-                {SPECIALISTS.map((spec) => (
-                  <div
-                    key={spec.id}
-                    className="bg-slate-50 border border-stone-200/60 rounded-3xl p-6 shadow-sm hover:border-brand-primary transition-all duration-300 flex flex-col justify-between"
-                  >
-                    <div className="space-y-4">
-                      {/* Photo */}
-                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-brand-primary/20 shadow">
-                        <img
-                          src={spec.image}
-                          alt={spec.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      {/* Title */}
-                      <div className="text-center space-y-1">
-                        <h3 className="text-lg font-bold text-slate-800">
-                          {spec.name}
-                        </h3>
-                        <p className="text-xs text-brand-primary font-medium tracking-wide">
-                          {spec.role}
-                        </p>
-
-                        {/* Stars */}
-                        <div className="flex items-center justify-center gap-1 mt-1.5">
-                          {[...Array(spec.rating)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
-                            />
-                          ))}
-                          <span className="text-[10px] text-slate-400 font-semibold ml-1">
-                            ({spec.reviews} Reviews)
-                          </span>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-slate-500 leading-relaxed text-center font-light italic">
-                        "{spec.bio}"
-                      </p>
-
-                      {/* Specialties tags */}
-                      <div className="pt-2 flex flex-wrap gap-1.5 justify-center">
-                        {spec.specialties.map((specItem, idx) => (
-                          <span
-                            key={idx}
-                            className="bg-white px-2 py-0.5 rounded-full border border-stone-200 text-[10px] text-slate-600 font-medium"
-                          >
-                            {specItem}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* CTA */}
-                    <div className="pt-6">
-                      <button
-                        onClick={() => {
-                          setFormSpecialist(spec.id);
-                          openBookingModal();
-                        }}
-                        className="w-full bg-brand-primary text-white border border-brand-primary/25 hover:bg-brand-primary hover:text-white hover:border-brand-primary py-2.5 rounded-xl font-semibold text-xs transition-all"
-                      >
-                        Request Booking
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Booking & Payment section */}
-          <section
-            id="booking-payment"
-            className="py-16 sm:py-20 bg-white border-t border-brand-border"
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div
-                className="text-center max-w-xl mx-auto space-y-3 mb-10 sm:mb-14"
-                data-animate="fade-up"
-              >
-                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
-                  Simple & Secure
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-serif text-[#333333]">
-                  Booking & Payment
-                </h2>
-                <p className="text-slate-500 text-sm font-light">
-                  Book your session in a few clear steps, pay securely, and join
-                  from anywhere.
-                </p>
-              </div>
-
-              <div
-                className="grid gap-6 lg:grid-cols-3"
-                data-animate="stagger"
-                data-stagger="0.15"
-              >
-                {/* Card 1: How Booking Works */}
-                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
-                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
-                    How Booking Works
-                  </h3>
-                  <div className="flex flex-col items-stretch gap-2 flex-1">
-                    {[
-                      {
-                        step: 1,
-                        label: "Choose Professional",
-                        icon: <User className="h-4 w-4 text-brand-primary" />,
-                      },
-                      {
-                        step: 2,
-                        label: "Select Time",
-                        icon: (
-                          <Calendar className="h-4 w-4 text-brand-primary" />
-                        ),
-                      },
-                      {
-                        step: 3,
-                        label: "Make Payment",
-                        icon: (
-                          <CreditCard className="h-4 w-4 text-brand-primary" />
-                        ),
-                      },
-                      {
-                        step: 4,
-                        label: "Join Session",
-                        icon: <Video className="h-4 w-4 text-brand-primary" />,
-                      },
-                    ].map((item, index, arr) => (
-                      <div key={item.step} className="flex flex-col items-center">
-                        <div className="flex w-full items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-3 py-3">
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-primary text-xs font-bold text-white">
-                            {item.step}
-                          </span>
-                          <span className="flex items-center gap-2 text-sm font-medium text-slate-700">
-                            {item.icon}
-                            {item.label}
-                          </span>
-                        </div>
-                        {index < arr.length - 1 && (
-                          <ArrowDown className="my-1.5 h-4 w-4 text-brand-primary/50" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card 2: Secure Payment */}
-                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
-                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-5">
-                    Secure Payment
-                  </h3>
-
-                  <div className="rounded-xl bg-brand-light border border-brand-border px-4 py-4 text-center mb-5">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
-                      Session Fee:
-                    </p>
-                    <p className="text-2xl sm:text-3xl font-bold text-brand-primary">
-                      Rs. 2,000/-
-                    </p>
-                  </div>
-
-                  <div className="flex-1 space-y-3 mb-5">
-                    <p className="text-sm font-bold text-slate-800">
-                      Bank Transfer:
-                    </p>
-                    <div className="space-y-2.5 text-sm">
-                      {[
-                        { label: "Bank", value: "Commercial" },
-                        { label: "Account Name", value: "W S P Dhanasankha" },
-                        { label: "Account Number", value: "8020157278" },
-                        { label: "Branch", value: "Embilipitiya" },
-                      ].map((row) => (
-                        <div
-                          key={row.label}
-                          className="flex items-start justify-between gap-3 border-b border-brand-border/60 pb-2 last:border-0"
-                        >
-                          <span className="text-slate-500 shrink-0">
-                            {row.label}:
-                          </span>
-                          <span className="font-semibold text-slate-800 text-right break-all">
-                            {row.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={openBookingModal}
-                    className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
-                  >
-                    <Upload className="h-4 w-4" />
-                    Upload Payment Receipt
-                  </button>
-                </div>
-
-                {/* Card 3: Attend From Anywhere */}
-                <div className="rounded-2xl border border-brand-border bg-white p-5 sm:p-6 shadow-sm flex flex-col">
-                  <h3 className="text-center text-lg sm:text-xl font-bold text-brand-secondary mb-6">
-                    Attend From Anywhere
-                  </h3>
-
-                  <div className="space-y-3 flex-1">
-                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white border border-brand-border shadow-sm">
-                        <svg
-                          viewBox="0 0 24 24"
-                          className="h-5 w-5"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill="#00832D"
-                            d="M12 8.5v7l6 3.5V5z"
-                          />
-                          <path
-                            fill="#0066DA"
-                            d="M4 7.5A2.5 2.5 0 0 1 6.5 5h7v14h-7A2.5 2.5 0 0 1 4 16.5z"
-                          />
-                          <path fill="#FFBA00" d="M18 12l4 2.5V9.5z" />
-                          <path fill="#E94235" d="M18 12l4 2.5V19l-4-2.5z" />
-                        </svg>
-                      </span>
-                      <span className="text-sm font-medium text-slate-700">
-                        Google Meet
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2D8CFF] text-white shadow-sm">
-                        <Video className="h-4 w-4" />
-                      </span>
-                      <span className="text-sm font-medium text-slate-700">
-                        Zoom
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3 rounded-xl bg-brand-light/70 border border-brand-border px-4 py-3.5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
-                        <Phone className="h-4 w-4" />
-                      </span>
-                      <span className="text-sm font-medium text-slate-700">
-                        Phone Consultation
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 rounded-xl bg-brand-light border border-brand-border px-4 py-4">
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
-                      After confirmation you will receive WhatsApp and Email
-                      notifications.
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white shadow-sm transition-transform hover:scale-105"
-                        aria-label="WhatsApp +94 (0) 757629950"
-                        title="+94 (0) 757629950"
-                      >
-                        <MessageCircle className="h-4 w-4" />
-                      </a>
-                      <a
-                        href="mailto:counsellinginsightdomain@gmail.com"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-primary text-white shadow-sm transition-transform hover:scale-105"
-                        aria-label="Email"
-                      >
-                        <Mail className="h-4 w-4" />
-                      </a>
-                      <span className="ml-1 text-xs text-slate-500">
-                        +94 (0) 757629950
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+         
 
           {/* Testimonials (Client Reviews) section */}
           <section
@@ -1804,7 +1809,7 @@ function App() {
             id="reviews"
             className="py-20  border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-[#000690] pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[#111844] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               {/* Header */}
@@ -1812,7 +1817,7 @@ function App() {
                 className="text-center max-w-xl mx-auto space-y-4 mb-14"
                 data-animate="fade-up"
               >
-                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                <span className="text-xs uppercase tracking-widest text-white font-bold block">
                   Patient Testimonials
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white">
@@ -2174,7 +2179,7 @@ function App() {
       )}
 
       {/* Footer */}
-      <footer className="bg-[#000690] text-[#fffff] border-t border-stone-800">
+      <footer className="bg-[#111844] text-[#fffff] border-t border-stone-800">
         {/* Main Footer Links */}
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand info */}
