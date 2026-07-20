@@ -25,7 +25,7 @@ interface SpecialistsPageProps {
 export default function SpecialistsPage({ specialists, onBookAppointment }: SpecialistsPageProps) {
   return (
     <main className="bg-slate-50">
-      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#000690] py-20 md:py-24">
+      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#111844] py-20 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
@@ -45,11 +45,11 @@ export default function SpecialistsPage({ specialists, onBookAppointment }: Spec
               <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <button
                   onClick={onBookAppointment}
-                  className="w-full sm:w-auto rounded-full bg-[#C76B3D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#843519]"
+                  className="w-full sm:w-auto rounded-full bg-[#3B82F6] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#2563EB]"
                 >
                   Book a consultation
                 </button>
-                <div className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-stone-300 bg-white/70 px-4 py-3 text-sm text-slate-600">
+                <div className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-3 text-sm text-slate-600">
                   <Calendar className="w-4 h-4 shrink-0 text-[#C76B3D]" />
                   <span className="text-center sm:text-left">Flexible virtual and in-clinic sessions</span>
                 </div>

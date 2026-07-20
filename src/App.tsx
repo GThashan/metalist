@@ -5,7 +5,7 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
-import heroImage from "./assets/hero1.jpg";
+import heroImage from "./assets/hero5.jpeg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
 import profile1 from "./assets/profile1.jpg";
@@ -1263,7 +1263,7 @@ function App() {
             </div>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
-          <section className="py-8 sm:py-6 bg-[#000690] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
+          <section className="py-8 sm:py-6 bg-[#111844] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               {/* 4-Part Grid Layout */}
               <div
@@ -1806,7 +1806,7 @@ function App() {
             id="reviews"
             className="py-20  border-t border-b border-[#E1D8CC]/40 relative overflow-hidden"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-[#000690] pointer-events-none" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[#111844] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               {/* Header */}
@@ -1814,7 +1814,7 @@ function App() {
                 className="text-center max-w-xl mx-auto space-y-4 mb-14"
                 data-animate="fade-up"
               >
-                <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
+                <span className="text-xs uppercase tracking-widest text-white font-bold block">
                   Patient Testimonials
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white">
@@ -2176,7 +2176,7 @@ function App() {
       )}
 
       {/* Footer */}
-      <footer className="bg-[#000690] text-[#fffff] border-t border-stone-800">
+      <footer className="bg-[#111844] text-[#fffff] border-t border-stone-800">
         {/* Main Footer Links */}
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand info */}
