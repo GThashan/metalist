@@ -319,7 +319,7 @@ function App() {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 items-start overflow-hidden">
           <div className="lg:col-span-5 space-y-4 sm:space-y-6">
             <span className="text-xs uppercase tracking-widest text-brand-primary font-bold block">
               Start Healing
@@ -332,7 +332,7 @@ function App() {
               licensed specialists.
             </p>
 
-            <div className="hidden sm:block space-y-4 pt-4 border-t border-stone-150">
+            <div className="hidden sm:block space-y-4 pt-4 border-stone-150">
               <div className="flex gap-3.5 items-center">
                 <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
@@ -389,7 +389,7 @@ function App() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg">
+          <div className="lg:col-span-7 bg-slate-50 border border-stone-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg overflow-hidden">
             <form onSubmit={handleBookingSubmit} className="space-y-5">
               <h3 className="text-xl font-bold text-slate-800 border-b border-stone-200 pb-3 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-brand-primary" />
@@ -1187,14 +1187,14 @@ function App() {
                     <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl">
                       Confidential,
                       <span className="block text-blue-600">
-                         Compassionate & Professional
+                        Compassionate & Professional
                       </span>
                     </h1>
 
                     <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
                       Compassionate and evidence-based psychological counseling
-to help you overcome challenges, strengthen emotional
- well-being, and create a healthier, more meaningful life.
+                      to help you overcome challenges, strengthen emotional
+                      well-being, and create a healthier, more meaningful life.
                     </p>
                   </div>
 
@@ -1304,7 +1304,9 @@ to help you overcome challenges, strengthen emotional
                       Founder | Psychological Counselor & Psychotherapist
                     </p>
                     <p className="text-white/70 leading-relaxed text-sm">
-                     Providing professional psychological counseling and psychotherapy services with confidentiality, compassion, and excellence.
+                      Providing professional psychological counseling and
+                      psychotherapy services with confidentiality, compassion,
+                      and excellence.
                     </p>
                   </div>
                   {/* Separator Line */}
@@ -1319,9 +1321,9 @@ to help you overcome challenges, strengthen emotional
                     </p>
                     {[
                       "Individual Counseling",
-                      "Emotional Support",
-                      "Stress Management",
-                      "Online Consultation",
+                      "Emotional Wellness Support",
+                      "Stress & Anxiety Management",
+                      "Online Psychological Consultation",
                     ].map((item) => (
                       <div
                         key={item}
@@ -1343,7 +1345,7 @@ to help you overcome challenges, strengthen emotional
                       onClick={openBookingModal}
                       className="inline-flex items-center gap-2 bg-white hover:bg-black text-[#0A2647] px-8 py-3.5 rounded-full text-sm font-semibold hover:text-white transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 group w-full justify-center"
                     >
-                      <span>Book With Prasad →</span>
+                      <span>Book Your Session →</span>
                     </button>
                     <p className="text-white/40 text-xs text-center">
                       Online & In-Person Sessions
@@ -1898,7 +1900,7 @@ to help you overcome challenges, strengthen emotional
                     specialists.
                   </p>
 
-                  <div className="space-y-4 pt-4 border-t border-stone-150">
+                  <div className="space-y-4 pt-4  border-stone-150">
                     <div className="flex gap-3.5 items-center">
                       <div className="w-10 h-10 rounded-xl bg-brand-cream text-[#C76B3D] flex items-center justify-center shrink-0">
                         <ShieldCheck className="w-5 h-5" />
