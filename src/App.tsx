@@ -601,6 +601,22 @@ function App() {
                   ? "Securing Slot..."
                   : "Submit Appointment Request"}
               </button>
+              <div className="mt-4">
+  <p className="text-xs text-red-400 text-center mb-2 font-bold">
+     Or book instantly via WhatsApp
+  </p>
+  <a
+    href={`https://wa.me/94757629950?text=${encodeURIComponent(
+      "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+  >
+    <MessageCircle className="h-5 w-5" />
+    Book via WhatsApp
+  </a>
+</div>
             </form>
           </div>
         </div>
@@ -2087,6 +2103,22 @@ function App() {
                         ? "Securing Slot..."
                         : "Submit Appointment Request"}
                     </button>
+                       <div className="mt-4">
+  <p className="text-xs text-red-400 text-center mb-2 font-bold">
+     Or book instantly via WhatsApp
+  </p>
+  <a
+    href={`https://wa.me/94757629950?text=${encodeURIComponent(
+      "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+  >
+    <MessageCircle className="h-5 w-5" />
+    Book via WhatsApp
+  </a>
+</div>
                   </form>
                 </div>
               </div>
