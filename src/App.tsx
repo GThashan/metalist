@@ -8,8 +8,8 @@ import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
-import profile1 from "./assets/profile1.jpg";
-import profile2 from "./assets/profile2.jpg";
+import profile1 from "./assets/profile3.jpeg";
+import profile2 from "./assets/profile4.jpeg";
 import {
   Menu,
   X,
@@ -49,8 +49,8 @@ Thank you.`;
 const SPECIALISTS = [
   {
     id: "sarah-jenkins",
-    name: "Dr. Sarah Jenkins",
-    role: "Clinical Psychologist",
+    name: "Mr. Prasad Wijesundara",
+    role: "Psychotherapist & Psychological Counselor",
     rating: 5,
     reviews: 124,
     image: profile,
@@ -63,7 +63,7 @@ const SPECIALISTS = [
   },
   {
     id: "marcus-vance",
-    name: "Dr. Marcus Vance",
+    name: "Dr. Gayan Jayawardana",
     role: "Cognitive Neuropsychologist",
     rating: 5,
     reviews: 98,
@@ -77,7 +77,7 @@ const SPECIALISTS = [
   },
   {
     id: "elena-rostova",
-    name: "Dr. Elena Rostova",
+    name: "Dr W.S.M Diwyanjali",
     role: "Family & Marriage Therapist",
     rating: 5,
     reviews: 147,
@@ -601,6 +601,22 @@ function App() {
                   ? "Securing Slot..."
                   : "Submit Appointment Request"}
               </button>
+              <div className="mt-4">
+  <p className="text-xs text-red-400 text-center mb-2 font-bold">
+     Or book instantly via WhatsApp
+  </p>
+  <a
+    href={`https://wa.me/94757629950?text=${encodeURIComponent(
+      "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+  >
+    <MessageCircle className="h-5 w-5" />
+    Book via WhatsApp
+  </a>
+</div>
             </form>
           </div>
         </div>
@@ -626,7 +642,7 @@ function App() {
             </span>
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <Phone className="w-4 h-4 text-brand-primary" />
-              +94 (o) 7577629950
+              +94 (0) 7577629950
             </span>
           </div>
           <div className="flex items-center gap-4">
@@ -1184,7 +1200,7 @@ function App() {
                     data-animate="hero"
                     data-delay="0.12"
                   >
-                    <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl">
+                    <h1 className="max-w-3xl text-3xl font-extrabold  tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl font-serif">
                       Confidential,
                       <span className="block text-blue-600">
                         Compassionate & Professional
@@ -1192,9 +1208,8 @@ function App() {
                     </h1>
 
                     <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
-                      Compassionate and evidence-based psychological counseling
-                      to help you overcome challenges, strengthen emotional
-                      well-being, and create a healthier, more meaningful life.
+                      Compassionate, evidence-based counseling to help you
+                      overcome challenges and improve emotional well-being.
                     </p>
                   </div>
 
@@ -1588,7 +1603,8 @@ function App() {
                   Meet Our Experts
                 </h2>
                 <p className="text-slate-500 text-sm font-light">
-                  Compassionate mental health professionals providing personalized, confidential care tailored to your unique needs.
+                  Compassionate mental health professionals providing
+                  personalized, confidential care tailored to your unique needs.
                 </p>
               </div>
 
@@ -1605,7 +1621,7 @@ function App() {
                   >
                     <div className="space-y-4">
                       {/* Photo */}
-                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto border-2 border-brand-primary/20 shadow">
+                      <div className="w-30 h-30 rounded-full overflow-hidden mx-auto border-2 border-brand-primary/20 shadow">
                         <img
                           src={spec.image}
                           alt={spec.name}
@@ -2087,6 +2103,22 @@ function App() {
                         ? "Securing Slot..."
                         : "Submit Appointment Request"}
                     </button>
+                       <div className="mt-4">
+  <p className="text-xs text-red-400 text-center mb-2 font-bold">
+     Or book instantly via WhatsApp
+  </p>
+  <a
+    href={`https://wa.me/94757629950?text=${encodeURIComponent(
+      "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+  >
+    <MessageCircle className="h-5 w-5" />
+    Book via WhatsApp
+  </a>
+</div>
                   </form>
                 </div>
               </div>
@@ -2161,20 +2193,33 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="text-xs text-slate-400 leading-normal max-w-sm mx-auto">
+                  {/* <div className="text-xs text-slate-400 leading-normal max-w-sm mx-auto">
                     An confirmation email with intake verification guidelines
                     has been dispatched to{" "}
                     <strong>{bookingSuccessData.email}</strong>.
-                  </div>
+                  </div> */}
+                  <div className="text-xs text-slate-400 leading-normal max-w-sm mx-auto">
+  <span className="text-red-600 font-semibold block">
+⚠️ To confirm your booking, please send your payment receipt via WhatsApp and then you can know additional details
+  </span>
+  
+</div>
 
                   <div className="pt-2">
-                    <button
-                      onClick={() => setBookingSuccessData(null)}
-                      className="w-full bg-[#333333] hover:bg-brand-primary text-white py-3 rounded-xl font-bold text-xs transition-colors"
-                    >
-                      Return to Homepage
-                    </button>
-                  </div>
+  <button
+    onClick={() => {
+      window.open(
+        `https://wa.me/94757629950?text=${encodeURIComponent("Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.")}`,
+        "_blank"
+      );
+      setBookingSuccessData(null);
+    }}
+    className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-3 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2"
+  >
+    <MessageCircle className="h-4 w-4" />
+    WhatsApp Yor Payment Reciept 
+  </button>
+</div>
                 </div>
               </div>
             </div>

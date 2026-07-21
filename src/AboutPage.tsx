@@ -112,7 +112,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
   return (
     <main>
       {/* ── Page Hero / Breadcrumb ─────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#111827] py-16 sm:py-20 md:py-28">
+      <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#111844] py-16 sm:py-20 md:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,107,61,0.18),_transparent_45%)]" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center" data-animate="hero">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white mb-5">

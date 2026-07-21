@@ -63,8 +63,8 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-slate-800">Email</h3>
-                  <a href="mailto:prasad@gmail.com" className="mt-1 block text-sm text-slate-600 transition-colors hover:text-[#C76B3D]">
-                    prasad@gmail.com
+                  <a href="mailto:counsellinginsightdomain@gmail.com" className="mt-1 block text-sm text-slate-600 transition-colors hover:text-[#C76B3D]">
+                    counsellinginsightdomain@gmail.com
                   </a>
                 </div>
               </div>
@@ -100,10 +100,10 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
                 We recommend reaching out by email for the earliest available appointment slot and any questions about services.
               </p>
               <a
-                href="mailto:prasad@gmail.com"
+                href="mailto:counsellinginsightdomain@gmail.com"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[#f7f0e5] transition-colors hover:text-[#C76B3D]"
               >
-                prasad@gmail.com
+                counsellinginsightdomain@gmail.com
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
