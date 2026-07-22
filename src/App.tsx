@@ -69,7 +69,7 @@ const SPECIALISTS = [
     reviews: 98,
     image: profile1,
     specialties: [
-      "Neurodevelopmental Conditions",
+      "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry NIMH",
       "Physical Health Sync",
       "Sleep & Fatigue Disorders",
     ],
