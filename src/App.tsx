@@ -8,7 +8,7 @@ import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
-import profile1 from "./assets/profile3.jpeg";
+import profile1 from "./assets/profile7.jpeg";
 import profile2 from "./assets/profile4.jpeg";
 import {
   Menu,
@@ -73,12 +73,12 @@ const SPECIALISTS = [
       "Physical Health Sync",
       "Sleep & Fatigue Disorders",
     ],
-    bio: "Dr. Marcus focuses on the intersection of physical neurology and mental health, diagnosing and treating fatigue and cognitive strain.",
+    bio: "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry ",
   },
   {
     id: "elena-rostova",
     name: "Dr W.S.M Diwyanjali",
-    role: "Family & Marriage Therapist",
+    role: "Medical Doctor",
     rating: 5,
     reviews: 147,
     image: profile2,
