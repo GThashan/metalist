@@ -8,7 +8,7 @@ import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import heroImage from "./assets/hero1.jpg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
-import profile1 from "./assets/profile3.jpeg";
+import profile1 from "./assets/profile7.jpeg";
 import profile2 from "./assets/profile4.jpeg";
 import {
   Menu,
