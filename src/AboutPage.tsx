@@ -339,7 +339,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                 key={index}
                 className="p-7 bg-brand-cream border  rounded-3xl hover:border-brand-primary/40 hover:shadow-xl hover:shadow-[#C76B3D]/10 hover:-translate-y-1 transition-all duration-300 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mb-5 group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300 hover:text-white">
+                <div className="w-14 h-14 rounded-2xl bg-[#C76B3D] flex items-center justify-center mb-5 group-hover:bg-brand-primary group-hover:scale-110 transition-all duration-300 hover:text-white">
                   <div className="group-hover:text-white transition-colors duration-300">{value.icon}</div>
                 </div>
                 <h4 className="font-serif text-xl text-[#333333] mb-3">{value.title}</h4>
