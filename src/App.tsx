@@ -64,12 +64,12 @@ const SPECIALISTS = [
   {
     id: "marcus-vance",
     name: "Dr. Gayan Jayawardana",
-    role: "Cognitive Neuropsychologist",
+    role: "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry NIMH",
     rating: 5,
     reviews: 98,
     image: profile1,
     specialties: [
-      "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry NIMH",
+      "Neurodevelopmental Conditions",
       "Physical Health Sync",
       "Sleep & Fatigue Disorders",
     ],
@@ -77,7 +77,7 @@ const SPECIALISTS = [
   },
   {
     id: "elena-rostova",
-    name: "Dr W.S.M Diwyanjali",
+    name: "Dr. W.S.M Diwyanjali",
     role: "Medical Doctor",
     rating: 5,
     reviews: 147,
@@ -602,7 +602,7 @@ function App() {
                   : "Submit Appointment Request"}
               </button>
               <div className="mt-4">
-  <p className="text-xs text-red-400 text-center mb-2 font-bold">
+  <p className="text-xs text-brand-primary text-center mb-2 font-bold">
      Or book instantly via WhatsApp
   </p>
   <a
@@ -2104,7 +2104,7 @@ function App() {
                         : "Submit Appointment Request"}
                     </button>
                        <div className="mt-4">
-  <p className="text-xs text-red-400 text-center mb-2 font-bold">
+  <p className="text-xs text-brand-primary text-center mb-2 font-bold">
      Or book instantly via WhatsApp
   </p>
   <a
