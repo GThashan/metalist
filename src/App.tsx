@@ -634,7 +634,7 @@ function App() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <MapPin className="w-4 h-4 text-brand-primary" />
-              House of Dr Gayan.Ragama/online
+              Sri Lanka
             </span>
             <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
               <Mail className="w-4 h-4 text-brand-primary" />
