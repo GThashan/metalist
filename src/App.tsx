@@ -190,7 +190,7 @@ function App() {
   const [formAge, setFormAge] = useState("");
   const [formTreatmentMode, setFormTreatmentMode] = useState("");
   const [formReceipt, setFormReceipt] = useState<File | null>(null);
-
+const [preferredLanguage, setPreferredLanguage] = useState("english");
   // Custom scrolling references
   const appointmentFormRef = useRef<HTMLDivElement>(null);
   const aboutSectionRef = useRef<HTMLDivElement>(null);
@@ -428,7 +428,7 @@ function App() {
               </div>
 
               {/* Phone + Age */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-3 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-600 block">
                     Phone Number *
@@ -456,6 +456,20 @@ function App() {
                     className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
                   />
                 </div>
+                       <div className="space-y-1.5">
+  <label className="text-xs font-semibold text-slate-600 block">
+    Preferred Language
+  </label>
+
+  <select
+    value={preferredLanguage}
+    onChange={(e) => setPreferredLanguage(e.target.value)}
+    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+  >
+    <option value="english">English</option>
+    <option value="sinhala">සිංහල</option>
+  </select>
+</div>
               </div>
 
               {/* Service + Treatment Mode */}
@@ -1201,9 +1215,9 @@ function App() {
                     data-delay="0.12"
                   >
                     <h1 className="max-w-3xl text-3xl font-extrabold  tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl font-serif">
-                      Confidential,
+                    Heal, 
                       <span className="block text-blue-600">
-                        Compassionate & Professional
+                        Grow &  Thrive
                       </span>
                     </h1>
 
@@ -2002,21 +2016,55 @@ function App() {
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-semibold text-slate-600 block">
-                          Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={formPhone}
-                          onChange={(e) => setFormPhone(e.target.value)}
-                          placeholder="(555) 000-0000"
-                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
-                        />
-                      </div>
+                     <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={formPhone}
+                    onChange={(e) => setFormPhone(e.target.value)}
+                    placeholder="07X XXX XXXX"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
+                  />
+                </div>
 
-                      <div className="space-y-1.5">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">
+                    Age *
+                  </label>
+                  <input
+                    type="number"
+                    required
+                    value={formAge}
+                    onChange={(e) => setFormAge(e.target.value)}
+                    placeholder="Enter your age"
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
+                  />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+  <label className="text-xs font-semibold text-slate-600 block">
+    Select Preferred Language *
+  </label>
+
+  <select
+    value={preferredLanguage}
+    onChange={(e) => setPreferredLanguage(e.target.value)}
+    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+  >
+    <option value="english">English</option>
+    <option value="sinhala">සිංහල</option>
+  </select>
+</div>
+
+                     
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                       <div className="space-y-1.5">
                         <label className="text-xs font-semibold text-slate-600 block">
                           Select Service category *
                         </label>
@@ -2032,9 +2080,6 @@ function App() {
                           ))}
                         </select>
                       </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-3 gap-4">
                       <div className="space-y-1.5 sm:col-span-1">
                         <label className="text-xs font-semibold text-slate-600 block">
                           Preferred Doctor *
