@@ -59,7 +59,7 @@ const SPECIALISTS = [
       "Cognitive Behavioral Therapy (CBT)",
       "Stress Management",
     ],
-    bio: "Dr. Sarah has over 12 years of clinical experience helper individuals find balance, relief, and peace in their daily lives.",
+    bio: "Compassionate, evidence-informed counseling to support emotional well-being, personal growth, and better coping with life's challenges.",
   },
   {
     id: "marcus-vance",
@@ -73,7 +73,7 @@ const SPECIALISTS = [
       "Physical Health Sync",
       "Sleep & Fatigue Disorders",
     ],
-    bio: "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry ",
+    bio: "Comprehensive, patient-centered medical guidance and health consultations delivered with compassion and professionalism.",
   },
   {
     id: "elena-rostova",
@@ -88,7 +88,7 @@ const SPECIALISTS = [
       "PTSD & Trauma Recovery",
       "Group Healing Sessions",
     ],
-    bio: "Dr. Elena helps families and couples resolve deep-seated conflict, build trust, and transition into supportive structures.",
+    bio: "Compassionate guidance to support childhood challenges, family concerns, and personal growth in a safe, supportive environment.",
   },
 ];
 
