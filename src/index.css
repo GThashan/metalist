@@ -217,4 +217,156 @@
       margin-left: 20%;
     }
   }
+
+  /* ── Navbar utilities ── */
+  .nav-link {
+    @apply relative flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-300;
+  }
+
+  .nav-link--active {
+    @apply bg-brand-primary/10 text-brand-primary;
+  }
+
+  .nav-link--idle {
+    @apply text-brand-charcoal hover:bg-brand-light hover:text-brand-primary;
+  }
+
+  .nav-dropdown {
+    @apply absolute left-0 mt-2 w-52 overflow-hidden rounded-2xl border border-brand-border bg-white/95 py-2 shadow-xl shadow-brand-shadow/30 backdrop-blur-xl z-50;
+    animation: nav-fade-in 0.2s ease-out;
+  }
+
+  .nav-dropdown--wide {
+    @apply w-60;
+  }
+
+  .nav-dropdown__item {
+    @apply flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm text-brand-charcoal transition-colors hover:bg-brand-light hover:text-brand-primary;
+  }
+
+  .animate-fadeIn {
+    animation: nav-fade-in 0.2s ease-out;
+  }
+
+  .animate-slideDown {
+    animation: nav-slide-down 0.25s ease-out;
+  }
+
+  @keyframes nav-fade-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes nav-slide-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Chat widget ── */
+  .chat-widget {
+    @apply fixed bottom-5 right-5 z-[90] flex flex-col items-end gap-4 sm:bottom-6 sm:right-6;
+  }
+
+  .chat-widget__panel {
+    @apply pointer-events-none flex w-[calc(100vw-2.5rem)] max-w-[380px] origin-bottom-right flex-col overflow-hidden rounded-2xl border border-brand-border bg-white shadow-2xl shadow-brand-shadow/50;
+    transform: scale(0.92) translateY(16px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+
+  .chat-widget__panel--open {
+    @apply pointer-events-auto;
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  .chat-widget__header {
+    @apply flex items-center justify-between bg-gradient-to-r from-brand-primary to-brand-secondary px-4 py-4;
+  }
+
+  .chat-widget__body {
+    @apply flex max-h-[340px] flex-col gap-4 overflow-y-auto bg-brand-background/50 px-4 py-4;
+  }
+
+  .chat-widget__timestamp {
+    @apply text-center text-[10px] font-medium uppercase tracking-widest text-brand-text/50;
+  }
+
+  .chat-widget__message {
+    @apply flex gap-2.5;
+  }
+
+  .chat-widget__message--bot {
+    @apply items-end;
+  }
+
+  .chat-widget__avatar {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-brand-border bg-white;
+  }
+
+  .chat-widget__bubble {
+    @apply max-w-[85%] rounded-2xl px-3.5 py-2.5;
+  }
+
+  .chat-widget__bubble--bot {
+    @apply rounded-bl-md border border-brand-border/60 bg-white shadow-sm;
+  }
+
+  .chat-widget__actions {
+    @apply flex flex-wrap gap-2 pl-10;
+  }
+
+  .chat-widget__action-btn {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-brand-primary/20 bg-white px-3 py-1.5 text-xs font-medium text-brand-primary shadow-sm transition-all hover:border-brand-primary hover:bg-brand-primary hover:text-white;
+  }
+
+  .chat-widget__footer {
+    @apply border-t border-brand-border bg-white px-4 py-3;
+  }
+
+  .chat-widget__input-wrap {
+    @apply flex items-center gap-2 rounded-xl border border-brand-border bg-brand-background/60 px-3 py-1.5 focus-within:border-brand-primary/40 focus-within:ring-2 focus-within:ring-brand-primary/10;
+  }
+
+  .chat-widget__input {
+    @apply flex-1 bg-transparent py-2 text-sm text-brand-charcoal placeholder:text-brand-text/50 focus:outline-none;
+  }
+
+  .chat-widget__send-btn {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-primary text-white transition-colors hover:bg-brand-secondary;
+  }
+
+  .chat-widget__bubble-btn {
+    @apply relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary shadow-lg shadow-brand-primary/30 transition-all duration-300 hover:scale-105 hover:bg-brand-secondary hover:shadow-xl hover:shadow-brand-primary/40;
+  }
+
+  .chat-widget__bubble-btn--open {
+    @apply rotate-0 bg-brand-charcoal shadow-brand-charcoal/20 hover:bg-brand-charcoal hover:scale-100;
+  }
+
+  .chat-widget__bubble-ring {
+    @apply absolute inset-0 rounded-full border-2 border-brand-primary/40;
+    animation: chat-ring-pulse 2s ease-out infinite;
+  }
+
+  .chat-widget__bubble-badge {
+    @apply absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white ring-2 ring-white;
+  }
+
+  @keyframes chat-ring-pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(1.45); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chat-widget__panel,
+    .chat-widget__bubble-ring {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .chat-widget__panel--open {
+      transform: none;
+    }
+  }
 }

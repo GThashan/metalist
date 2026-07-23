@@ -5,6 +5,7 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
 import LoadingScreen from "./components/LoadingScreen";
+import ChatWidget from "./components/ChatWidget";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import { usePageLoad } from "./hooks/usePageLoad";
 import heroImage from "./assets/hero2.jpeg";
@@ -645,78 +646,63 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
     </div>
   );
 
+  const navLinkClass = (isActive: boolean) =>
+    `nav-link ${isActive ? "nav-link--active" : "nav-link--idle"}`;
+
   return (
     <div className="min-h-screen bg-brand-cream text-brand-text antialiased font-sans">
       <LoadingScreen isVisible={isLoading} isFadingOut={isFadingOut} />
       {isBookingModalOpen && renderBookingModal()}
 
       {/* Top Header Bar */}
-      <div className="bg-brand-charcoal text-white py-2.5 px-6 text-sm hidden lg:block border-b border-stone-800">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="hidden lg:block border-b border-brand-secondary/30 bg-gradient-to-r from-brand-secondary via-brand-charcoal to-brand-secondary">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 text-sm text-white/90">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <MapPin className="w-4 h-4 text-brand-primary" />
+            <span className="flex items-center gap-1.5 transition-opacity hover:opacity-100">
+              <MapPin className="h-3.5 w-3.5 text-brand-accent" />
               Sri Lanka
             </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Mail className="w-4 h-4 text-brand-primary" />
+            <span className="flex items-center gap-1.5 transition-opacity hover:opacity-100">
+              <Mail className="h-3.5 w-3.5 text-brand-accent" />
               counsellinginsightdomain@gmail.com
             </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Phone className="w-4 h-4 text-brand-primary" />
+            <span className="flex items-center gap-1.5 transition-opacity hover:opacity-100">
+              <Phone className="h-3.5 w-3.5 text-brand-accent" />
               +94 (0) 7577629950
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-xs opacity-75">Follow Us:</span>
-            <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 text-xs text-white/60">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              Confidential & Licensed Care
+            </span>
+            <span className="h-3 w-px bg-white/20" aria-hidden="true" />
+            <span className="text-xs text-white/60">Follow Us</span>
+            <div className="flex items-center gap-2.5">
               <a
                 href="https://facebook.com"
                 aria-label="Facebook"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clipRule="evenodd"
-                  />
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
                 </svg>
               </a>
               <a
                 href="https://twitter.com"
                 aria-label="Twitter / X"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -725,19 +711,10 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               <a
                 href="https://linkedin.com"
                 aria-label="LinkedIn"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                    clipRule="evenodd"
-                  />
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
                 </svg>
               </a>
             </div>
@@ -746,96 +723,88 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
       </div>
 
       {/* Main Header / Navigation */}
-      <header className="sticky top-0 z-50 bg-white border-b border-[#E1D8CC]/60 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
+      <header className="sticky top-0 z-50 border-b border-brand-border/60 bg-white/90 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/80">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[4.5rem] sm:px-6">
           {/* Logo */}
           <div
-            className="flex items-center gap-2 cursor-pointer group"
+            className="group flex cursor-pointer items-center gap-3"
             onClick={() => navigateToPage("home")}
           >
-            {/* <div className="w-10 h-10 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:bg-[#843519] transition-colors">
-              
-            </div> */}
-            <img src={logoImage} alt="Insight Logo" className="w-10 h-10" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-border/60 bg-brand-light/50 p-1.5 shadow-sm transition-all duration-300 group-hover:border-brand-primary/30 group-hover:shadow-md">
+              <img src={logoImage} alt="Insight Logo" className="h-full w-full object-contain" />
+            </div>
             <div>
-              <span className="font-serif font-bold text-2xl tracking-tight text-[#333333] group-hover:text-brand-primary transition-colors">
+              <span className="font-serif text-xl font-bold tracking-tight text-brand-charcoal transition-colors group-hover:text-brand-primary sm:text-2xl">
                 Insight
               </span>
-              <span className="block text-[10px] uppercase tracking-widest text-brand-primary font-semibold -mt-1">
-                counseling
+              <span className="-mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.25em] text-brand-primary sm:text-[10px]">
+                Psychology & Counseling
               </span>
             </div>
           </div>
 
-          {/* Desktop Navigation links */}
-          <nav className="hidden lg:flex items-center gap-2">
-            {/* Home link */}
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
             <button
               onClick={() => navigateToPage("home")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className={navLinkClass(currentPage === "home")}
             >
-              <Home className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <Home className="h-4 w-4" />
               <span>Home</span>
             </button>
 
             {/* Pages Dropdown */}
-            <div className="relative py-2">
+            <div className="relative">
               <button
                 onMouseEnter={() => setActiveDropdown("pages")}
                 onClick={() =>
                   setActiveDropdown(activeDropdown === "pages" ? null : "pages")
                 }
-                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
+                className={`${navLinkClass(
+                  currentPage === "about" ||
+                    currentPage === "blog" ||
+                    activeDropdown === "pages",
+                )} focus:outline-none`}
+                aria-expanded={activeDropdown === "pages"}
               >
-                <Info className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                <Info className="h-4 w-4" />
                 <span>Pages</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === "pages" ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === "pages" ? "rotate-180" : ""}`}
                 />
               </button>
 
-              {/* Pages Menu */}
               {activeDropdown === "pages" && (
                 <div
                   onMouseLeave={() => setActiveDropdown(null)}
-                  className="absolute left-0 mt-3 w-48 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
+                  className="nav-dropdown"
                 >
-                  <button
-                    onClick={() => navigateToPage("about")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("about")} className="nav-dropdown__item">
+                    <Info className="h-4 w-4 text-brand-primary/70" />
                     About Us
                   </button>
-                  <button
-                    onClick={() => navigateToPage("blog")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("blog")} className="nav-dropdown__item">
+                    <BookOpen className="h-4 w-4 text-brand-primary/70" />
                     Blog
                   </button>
-                  <button
-                    onClick={() => navigateToPage("specialists")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("specialists")} className="nav-dropdown__item">
+                    <Users className="h-4 w-4 text-brand-primary/70" />
                     Our Team
                   </button>
-                  <button
-                    onClick={() => navigateToPage("contact")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("contact")} className="nav-dropdown__item">
+                    <Phone className="h-4 w-4 text-brand-primary/70" />
                     Contact Us
                   </button>
-                  <button
-                    onClick={() => navigateToHomeSection("reviews")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
-                    Client Review
+                  <button onClick={() => navigateToHomeSection("reviews")} className="nav-dropdown__item">
+                    <Heart className="h-4 w-4 text-brand-primary/70" />
+                    Client Reviews
                   </button>
                 </div>
               )}
             </div>
 
             {/* Services Dropdown */}
-            <div className="relative py-2">
+            <div className="relative">
               <button
                 onMouseEnter={() => setActiveDropdown("services")}
                 onClick={() =>
@@ -843,83 +812,81 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     activeDropdown === "services" ? null : "services",
                   )
                 }
-                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
+                className={`${navLinkClass(
+                  currentPage === "service" || activeDropdown === "services",
+                )} focus:outline-none`}
+                aria-expanded={activeDropdown === "services"}
               >
-                <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                <Sparkles className="h-4 w-4" />
                 <span>Services</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180" : ""}`}
                 />
               </button>
 
-              {/* Services Menu */}
               {activeDropdown === "services" && (
                 <div
                   onMouseLeave={() => setActiveDropdown(null)}
-                  className="absolute left-0 mt-3 w-56 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
+                  className="nav-dropdown nav-dropdown--wide"
                 >
                   <button
-                    onClick={() => {
-                      navigateToPage("service", "mental-health");
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    onClick={() => navigateToPage("service", "mental-health")}
+                    className="nav-dropdown__item"
                   >
+                    <Sparkles className="h-4 w-4 text-brand-primary/70" />
                     Mental Health
                   </button>
                   <button
-                    onClick={() => {
-                      navigateToPage("service", "physical-health");
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    onClick={() => navigateToPage("service", "physical-health")}
+                    className="nav-dropdown__item"
                   >
+                    <Activity className="h-4 w-4 text-brand-primary/70" />
                     Physical Health
                   </button>
                   <button
-                    onClick={() => {
-                      navigateToPage("service", "therapy");
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    onClick={() => navigateToPage("service", "therapy")}
+                    className="nav-dropdown__item"
                   >
-                    Therapy
+                    <Heart className="h-4 w-4 text-brand-primary/70" />
+                    Therapy & Counseling
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Specialist link */}
             <button
               onClick={() => navigateToPage("specialists")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className={navLinkClass(currentPage === "specialists")}
             >
-              <Users className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <Users className="h-4 w-4" />
               <span>Specialists</span>
             </button>
 
-            {/* Contact Link */}
             <button
               onClick={() => navigateToPage("contact")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className={navLinkClass(currentPage === "contact")}
             >
-              <Phone className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <Phone className="h-4 w-4" />
               <span>Contact</span>
             </button>
           </nav>
 
-          {/* Appointment button CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Desktop CTAs */}
+          <div className="hidden items-center gap-2.5 lg:flex">
             <a
               href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-border px-4 py-2.5 text-sm font-semibold text-brand-charcoal transition-all duration-300 hover:border-brand-success hover:text-brand-success"
             >
-              <MessageCircle className="h-4 w-4" />
-              <span>Chat on WhatsApp</span>
+              <MessageCircle className="h-4 w-4 text-brand-success" />
+              <span className="hidden xl:inline">WhatsApp</span>
             </a>
             <button
               onClick={() => navigateToHomeSection("booking")}
-              className="rounded-full bg-[#0D5ADB] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#C76B3D]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A3D91] hover:shadow-lg hover:shadow-[#843519]/25"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-secondary hover:shadow-lg hover:shadow-brand-primary/25"
             >
+              <Calendar className="h-4 w-4" />
               Book Appointment
             </button>
           </div>
@@ -932,14 +899,14 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                 return !open;
               });
             }}
-            className="lg:hidden p-2 text-[#333333] hover:text-brand-primary transition-colors focus:outline-none"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand-border/60 text-brand-charcoal transition-colors hover:border-brand-primary/30 hover:bg-brand-light hover:text-brand-primary focus:outline-none lg:hidden"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="h-5 w-5" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="h-5 w-5" />
             )}
           </button>
         </div>
@@ -2594,6 +2561,8 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
 
         {/* Legal bar */}
       </footer>
+
+      <ChatWidget />
     </div>
   );
 }
