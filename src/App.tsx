@@ -5,7 +5,7 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
-import heroImage from "./assets/hero1.jpg";
+import heroImage from "./assets/hero2.jpeg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
 import profile1 from "./assets/profile7.jpeg";
@@ -136,23 +136,23 @@ const SERVICES = [
 
 const REVIEWS = [
   {
-    name: "Arthur Pendelton",
-    location: "New York, NY",
-    text: "Reaching out to Insight was the best decision I ever made. Dr. Sarah Jenkins listend with absolute empathy and provided actual, structured coping strategies that transformed my morning anxiety loops.",
+    name: "Dilshan Navodya",
+    location: "Colombo, Sri Lanka",
+    text: "Connecting with Insight was one of the best decisions I made for my mental wellbeing. The sessions were supportive, professional, and helped me understand my thoughts while building better coping strategies for daily challenges.",
     rating: 5,
     date: "July 10, 2026",
   },
   {
-    name: "Sophia Martinez",
-    location: "Boston, MA",
-    text: "Dr. Elena Rostova helped my husband and me recover our connection after years of career-driven stress. Her couples sessions are peaceful, collaborative, and entirely devoid of judgment.",
+    name: "Piyathilaka Perera",
+    location: "Kandy, Sri Lanka",
+    text: "The counselling sessions helped me and my family improve our communication and relationships. The guidance was practical, respectful, and created a comfortable environment where we could openly discuss our concerns.",
     rating: 5,
     date: "June 28, 2026",
   },
   {
-    name: "Jonathan Miller",
-    location: "Seattle, WA",
-    text: "The physical health sync program helped me manage chronic insomnia that had plagued my career for five years. Dr. Vance looked at my entire sleep-wake neurology and changed my daily behaviors.",
+    name: "Navodya Fernando",
+    location: "Ratnapura, Sri Lanka",
+    text: "The wellness support program helped me overcome long-term stress and improve my daily habits. The professional approach and personalized guidance made a meaningful difference in my life.",
     rating: 5,
     date: "May 14, 2026",
   },
