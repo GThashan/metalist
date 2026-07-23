@@ -71,9 +71,10 @@ const BLOG_POSTS = [
 
 interface BlogPageProps {
   onBookAppointment: () => void
+  onNavigateHome?: () => void
 }
 
-export default function BlogPage({  }: BlogPageProps) {
+export default function BlogPage({ onBookAppointment, onNavigateHome }: BlogPageProps) {
   const featured = BLOG_POSTS[0]
   const rest = BLOG_POSTS.slice(1)
 
@@ -94,7 +95,7 @@ export default function BlogPage({  }: BlogPageProps) {
             Practical guidance on mental wellness, relationships, therapy, and everyday emotional balance from the Insight team.
           </p>
           <nav className="flex items-center justify-center gap-2 text-sm text-white/70">
-            <span>Home</span>
+            <span onClick={onNavigateHome} className="hover:text-white cursor-pointer transition-colors">Home</span>
             <span className="text-white/40">/</span>
             <span className="text-white font-medium">Blog</span>
           </nav>
@@ -138,7 +139,8 @@ export default function BlogPage({  }: BlogPageProps) {
               </p>
               <button
                 type="button"
-                className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-primary hover:text-brand-secondary transition-colors"
+                onClick={onBookAppointment}
+                className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-brand-primary hover:text-brand-secondary transition-colors cursor-pointer"
               >
                 Read article
                 <ArrowRight className="h-4 w-4" />
@@ -191,7 +193,8 @@ export default function BlogPage({  }: BlogPageProps) {
                   </p>
                   <button
                     type="button"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-primary hover:text-brand-secondary transition-colors pt-1"
+                    onClick={onBookAppointment}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-primary hover:text-brand-secondary transition-colors pt-1 cursor-pointer"
                   >
                     Read more
                     <ArrowRight className="h-3.5 w-3.5" />
