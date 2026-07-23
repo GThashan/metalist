@@ -4,7 +4,10 @@ import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
+import LoadingScreen from "./components/LoadingScreen";
+import ChatWidget from "./components/ChatWidget";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
+import { usePageLoad } from "./hooks/usePageLoad";
 import heroImage from "./assets/hero2.jpeg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
@@ -36,6 +39,9 @@ import {
   Upload,
   ArrowDown,
   BookOpen,
+  Activity,
+  UserCheck,
+  Stethoscope,
 } from "lucide-react";
 const message = `Hello,
 
@@ -159,6 +165,8 @@ const REVIEWS = [
 ];
 
 function App() {
+  const { isLoading, isFadingOut } = usePageLoad();
+
   // Navigation states
   const [activeDropdown, setActiveDropdown] = useState<
     "pages" | "services" | null
@@ -638,77 +646,63 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
     </div>
   );
 
+  const navLinkClass = (isActive: boolean) =>
+    `nav-link ${isActive ? "nav-link--active" : "nav-link--idle"}`;
+
   return (
     <div className="min-h-screen bg-brand-cream text-brand-text antialiased font-sans">
+      <LoadingScreen isVisible={isLoading} isFadingOut={isFadingOut} />
       {isBookingModalOpen && renderBookingModal()}
 
       {/* Top Header Bar */}
-      <div className="bg-brand-charcoal text-white py-2.5 px-6 text-sm hidden lg:block border-b border-stone-800">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="hidden lg:block border-b border-brand-secondary/30 bg-gradient-to-r from-brand-secondary via-brand-charcoal to-brand-secondary">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 text-sm text-white/90">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <MapPin className="w-4 h-4 text-brand-primary" />
+            <span className="flex items-center gap-1.5 transition-opacity hover:opacity-100">
+              <MapPin className="h-3.5 w-3.5 text-brand-accent" />
               Sri Lanka
             </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Mail className="w-4 h-4 text-brand-primary" />
+            <span className="flex items-center gap-1.5 transition-opacity hover:opacity-100">
+              <Mail className="h-3.5 w-3.5 text-brand-accent" />
               counsellinginsightdomain@gmail.com
             </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Phone className="w-4 h-4 text-brand-primary" />
+            <span className="flex items-center gap-1.5 transition-opacity hover:opacity-100">
+              <Phone className="h-3.5 w-3.5 text-brand-accent" />
               +94 (0) 7577629950
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-xs opacity-75">Follow Us:</span>
-            <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1.5 text-xs text-white/60">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              Confidential & Licensed Care
+            </span>
+            <span className="h-3 w-px bg-white/20" aria-hidden="true" />
+            <span className="text-xs text-white/60">Follow Us</span>
+            <div className="flex items-center gap-2.5">
               <a
                 href="https://facebook.com"
                 aria-label="Facebook"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clipRule="evenodd"
-                  />
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
                 </svg>
               </a>
               <a
                 href="https://twitter.com"
                 aria-label="Twitter / X"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -717,19 +711,10 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               <a
                 href="https://linkedin.com"
                 aria-label="LinkedIn"
-                className="hover:text-brand-primary transition-colors"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                    clipRule="evenodd"
-                  />
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
                 </svg>
               </a>
             </div>
@@ -738,96 +723,88 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
       </div>
 
       {/* Main Header / Navigation */}
-      <header className="sticky top-0 z-50 bg-white border-b border-[#E1D8CC]/60 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
+      <header className="sticky top-0 z-50 border-b border-brand-border/60 bg-white/90 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/80">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[4.5rem] sm:px-6">
           {/* Logo */}
           <div
-            className="flex items-center gap-2 cursor-pointer group"
+            className="group flex cursor-pointer items-center gap-3"
             onClick={() => navigateToPage("home")}
           >
-            {/* <div className="w-10 h-10 rounded-full bg-[#C76B3D] flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:bg-[#843519] transition-colors">
-              
-            </div> */}
-            <img src={logoImage} alt="Insight Logo" className="w-10 h-10" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-border/60 bg-brand-light/50 p-1.5 shadow-sm transition-all duration-300 group-hover:border-brand-primary/30 group-hover:shadow-md">
+              <img src={logoImage} alt="Insight Logo" className="h-full w-full object-contain" />
+            </div>
             <div>
-              <span className="font-serif font-bold text-2xl tracking-tight text-[#333333] group-hover:text-brand-primary transition-colors">
+              <span className="font-serif text-xl font-bold tracking-tight text-brand-charcoal transition-colors group-hover:text-brand-primary sm:text-2xl">
                 Insight
               </span>
-              <span className="block text-[10px] uppercase tracking-widest text-brand-primary font-semibold -mt-1">
-                counseling
+              <span className="-mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.25em] text-brand-primary sm:text-[10px]">
+                Psychology & Counseling
               </span>
             </div>
           </div>
 
-          {/* Desktop Navigation links */}
-          <nav className="hidden lg:flex items-center gap-2">
-            {/* Home link */}
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
             <button
               onClick={() => navigateToPage("home")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className={navLinkClass(currentPage === "home")}
             >
-              <Home className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <Home className="h-4 w-4" />
               <span>Home</span>
             </button>
 
             {/* Pages Dropdown */}
-            <div className="relative py-2">
+            <div className="relative">
               <button
                 onMouseEnter={() => setActiveDropdown("pages")}
                 onClick={() =>
                   setActiveDropdown(activeDropdown === "pages" ? null : "pages")
                 }
-                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
+                className={`${navLinkClass(
+                  currentPage === "about" ||
+                    currentPage === "blog" ||
+                    activeDropdown === "pages",
+                )} focus:outline-none`}
+                aria-expanded={activeDropdown === "pages"}
               >
-                <Info className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                <Info className="h-4 w-4" />
                 <span>Pages</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === "pages" ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === "pages" ? "rotate-180" : ""}`}
                 />
               </button>
 
-              {/* Pages Menu */}
               {activeDropdown === "pages" && (
                 <div
                   onMouseLeave={() => setActiveDropdown(null)}
-                  className="absolute left-0 mt-3 w-48 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
+                  className="nav-dropdown"
                 >
-                  <button
-                    onClick={() => navigateToPage("about")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("about")} className="nav-dropdown__item">
+                    <Info className="h-4 w-4 text-brand-primary/70" />
                     About Us
                   </button>
-                  <button
-                    onClick={() => navigateToPage("blog")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("blog")} className="nav-dropdown__item">
+                    <BookOpen className="h-4 w-4 text-brand-primary/70" />
                     Blog
                   </button>
-                  <button
-                    onClick={() => navigateToPage("specialists")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("specialists")} className="nav-dropdown__item">
+                    <Users className="h-4 w-4 text-brand-primary/70" />
                     Our Team
                   </button>
-                  <button
-                    onClick={() => navigateToPage("contact")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
+                  <button onClick={() => navigateToPage("contact")} className="nav-dropdown__item">
+                    <Phone className="h-4 w-4 text-brand-primary/70" />
                     Contact Us
                   </button>
-                  <button
-                    onClick={() => navigateToHomeSection("reviews")}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
-                  >
-                    Client Review
+                  <button onClick={() => navigateToHomeSection("reviews")} className="nav-dropdown__item">
+                    <Heart className="h-4 w-4 text-brand-primary/70" />
+                    Client Reviews
                   </button>
                 </div>
               )}
             </div>
 
             {/* Services Dropdown */}
-            <div className="relative py-2">
+            <div className="relative">
               <button
                 onMouseEnter={() => setActiveDropdown("services")}
                 onClick={() =>
@@ -835,105 +812,112 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     activeDropdown === "services" ? null : "services",
                   )
                 }
-                className="group flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary focus:outline-none"
+                className={`${navLinkClass(
+                  currentPage === "service" || activeDropdown === "services",
+                )} focus:outline-none`}
+                aria-expanded={activeDropdown === "services"}
               >
-                <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                <Sparkles className="h-4 w-4" />
                 <span>Services</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180" : ""}`}
                 />
               </button>
 
-              {/* Services Menu */}
               {activeDropdown === "services" && (
                 <div
                   onMouseLeave={() => setActiveDropdown(null)}
-                  className="absolute left-0 mt-3 w-56 bg-white border border-brand-border rounded-xl shadow-xl py-2 z-50 animate-fadeIn"
+                  className="nav-dropdown nav-dropdown--wide"
                 >
                   <button
-                    onClick={() => {
-                      navigateToPage("service", "mental-health");
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    onClick={() => navigateToPage("service", "mental-health")}
+                    className="nav-dropdown__item"
                   >
+                    <Sparkles className="h-4 w-4 text-brand-primary/70" />
                     Mental Health
                   </button>
                   <button
-                    onClick={() => {
-                      navigateToPage("service", "physical-health");
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    onClick={() => navigateToPage("service", "physical-health")}
+                    className="nav-dropdown__item"
                   >
+                    <Activity className="h-4 w-4 text-brand-primary/70" />
                     Physical Health
                   </button>
                   <button
-                    onClick={() => {
-                      navigateToPage("service", "therapy");
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-brand-cream hover:text-brand-secondary transition-colors"
+                    onClick={() => navigateToPage("service", "therapy")}
+                    className="nav-dropdown__item"
                   >
-                    Therapy
+                    <Heart className="h-4 w-4 text-brand-primary/70" />
+                    Therapy & Counseling
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Specialist link */}
             <button
               onClick={() => navigateToPage("specialists")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className={navLinkClass(currentPage === "specialists")}
             >
-              <Users className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <Users className="h-4 w-4" />
               <span>Specialists</span>
             </button>
 
-            {/* Contact Link */}
             <button
               onClick={() => navigateToPage("contact")}
-              className="group relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-[#333333] transition-all duration-300 hover:bg-brand-cream hover:text-brand-primary"
+              className={navLinkClass(currentPage === "contact")}
             >
-              <Phone className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <Phone className="h-4 w-4" />
               <span>Contact</span>
             </button>
           </nav>
 
-          {/* Appointment button CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Desktop CTAs */}
+          <div className="hidden items-center gap-2.5 lg:flex">
             <a
               href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-border px-4 py-2.5 text-sm font-semibold text-brand-charcoal transition-all duration-300 hover:border-brand-success hover:text-brand-success"
             >
-              <MessageCircle className="h-4 w-4" />
-              <span>Chat on WhatsApp</span>
+              <MessageCircle className="h-4 w-4 text-brand-success" />
+              <span className="hidden xl:inline">WhatsApp</span>
             </a>
             <button
               onClick={() => navigateToHomeSection("booking")}
-              className="rounded-full bg-[#0D5ADB] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#C76B3D]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0A3D91] hover:shadow-lg hover:shadow-[#843519]/25"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-secondary hover:shadow-lg hover:shadow-brand-primary/25"
             >
+              <Calendar className="h-4 w-4" />
               Book Appointment
             </button>
           </div>
 
-          {/* Mobile menu trigger */}
-          <button
-            onClick={() => {
-              setIsMobileMenuOpen((open) => {
-                if (open) setActiveDropdown(null);
-                return !open;
-              });
-            }}
-            className="lg:hidden p-2 text-[#333333] hover:text-brand-primary transition-colors focus:outline-none"
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Mobile actions — menu + phone */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen((open) => {
+                  if (open) setActiveDropdown(null);
+                  return !open;
+                });
+              }}
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all hover:bg-brand-secondary focus:outline-none"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </button>
+            <a
+              href="tel:+94757629950"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all hover:bg-brand-secondary"
+              aria-label="Call us"
+            >
+              <Phone className="h-5 w-5" />
+            </a>
+          </div>
         </div>
 
         {/* Mobile Navigation Drawer */}
@@ -1175,115 +1159,133 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
       ) : (
         <>
           {/* Hero Section */}
-          <section
-            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-12 sm:py-16 md:py-24"
-            style={{
-              backgroundImage: `
-      linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.15)100%,
-  rgba(255, 255, 255, 0.43) 100%,
-  rgba(255, 255, 255, 0) 100%
-      ),
-      url(${heroImage})
-    `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            {/* Soft background effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
-            <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
+          <section className="hero-section">
+            <img
+              src={heroImage}
+              alt=""
+              className="hero-section__photo"
+              aria-hidden="true"
+            />
+            <div className="hero-section__wash" aria-hidden="true" />
+            <div className="hero-section__mesh" aria-hidden="true" />
+            <div className="hero-section__blob hero-section__blob--1" aria-hidden="true" />
+            <div className="hero-section__blob hero-section__blob--2" aria-hidden="true" />
+            <div className="hero-section__blob hero-section__blob--3" aria-hidden="true" />
 
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
-              <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-                {/* Left Content */}
-                <div className="space-y-5 sm:space-y-6">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 md:py-20 lg:min-h-[88vh] lg:flex lg:items-center lg:py-24">
+              <div className="grid w-full items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12 xl:gap-14">
+                {/* Left — Primary content */}
+                <div className="space-y-5 sm:space-y-6 lg:space-y-7">
                   <div
-                    className="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm"
+                    className="inline-flex max-w-full items-center gap-2 rounded-full border border-brand-primary/12 bg-white/85 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-primary shadow-sm backdrop-blur-sm sm:px-4 sm:py-2 sm:text-xs"
                     data-animate="hero"
                   >
-                    <Heart className="h-3.5 w-3.5 shrink-0" />
+                    <Stethoscope className="h-3.5 w-3.5 shrink-0" />
                     <span className="truncate">
-                      Professional Mental Health Care
+                      Licensed Mental Health Professionals
                     </span>
                   </div>
 
                   <div
-                    className="space-y-4"
+                    className="space-y-4 sm:space-y-5"
                     data-animate="hero"
                     data-delay="0.12"
                   >
-                    <h1 className="max-w-3xl text-3xl font-extrabold  tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl font-serif">
-                    Heal, 
-                      <span className="block text-blue-600">
-                        Grow &  Thrive
+                    <h1 className="max-w-2xl font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-brand-charcoal sm:text-4xl md:text-5xl lg:text-[3.35rem]">
+                      Compassionate Care for{" "}
+                      <span className="block text-brand-primary">
+                        Your Mental Wellness
                       </span>
                     </h1>
 
-                    <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
-                      Compassionate, evidence-based counseling to help you
-                      overcome challenges and improve emotional well-being.
+                    <p className="max-w-xl text-sm leading-relaxed text-brand-text sm:text-base md:text-lg">
+                      Evidence-based psychology and counseling services in a
+                      safe, confidential environment — helping you heal, grow,
+                      and thrive at every stage of life.
                     </p>
                   </div>
 
-                  {/* Buttons */}
+                  {/* Trust metrics */}
                   <div
-                    className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2"
+                    className="grid grid-cols-3 gap-3 border-y border-brand-border/50 py-4 sm:flex sm:flex-wrap sm:gap-8 sm:py-5"
+                    data-animate="hero"
+                    data-delay="0.18"
+                  >
+                    {[
+                      { value: "100+", label: "Clients Supported" },
+                      { value: "10+", label: "Years Experience" },
+                      { value: "98%", label: "Satisfaction Rate" },
+                    ].map((stat) => (
+                      <div key={stat.label}>
+                        <p className="font-serif text-xl font-bold text-brand-primary sm:text-2xl md:text-3xl">
+                          {stat.value}
+                        </p>
+                        <p className="mt-0.5 text-[10px] font-medium leading-snug text-brand-text sm:text-xs md:text-sm">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTAs — single row on mobile */}
+                  <div
+                    className="flex flex-row items-stretch gap-2 sm:gap-4"
                     data-animate="hero"
                     data-delay="0.22"
                   >
-                    {/* Booking Button */}
                     <button
                       onClick={openBookingModal}
-                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                      className="inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full bg-brand-primary px-3 py-3 text-[11px] font-semibold leading-tight text-white shadow-lg shadow-brand-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-secondary sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm"
                     >
-                      <Calendar className="h-4 w-4" />
-                      <span>Book Your Session Now</span>
+                      <Calendar className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
+                      <span className="truncate">Book a Consultation</span>
                     </button>
-
-                    {/* WhatsApp Button */}
 
                     <a
                       href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+                      className="inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-brand-border bg-white px-3 py-3 text-[11px] font-semibold leading-tight text-brand-charcoal shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-success/40 hover:bg-white sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm"
                     >
-                      <MessageCircle className="h-4 w-4" />
-                      <span>Chat on WhatsApp</span>
+                      <MessageCircle className="h-3.5 w-3.5 shrink-0 text-brand-success sm:h-4 sm:w-4" />
+                      <span className="truncate">Chat on WhatsApp</span>
                     </a>
                   </div>
 
-                  {/* Feature Cards */}
+                  {/* Feature highlights — desktop only */}
                   <div
-                    className="grid gap-3 pt-2 sm:grid-cols-3"
+                    className="hidden gap-3 pt-1 lg:grid lg:grid-cols-3"
                     data-animate="stagger"
                     data-stagger="0.1"
                   >
                     {[
                       {
-                        title: "Emotional Wellness",
-                        text: "Develop emotional balance, manage stress, and build healthier coping skills.",
+                        icon: ShieldCheck,
+                        title: "Confidential Care",
+                        text: "Private sessions protected under strict ethical standards.",
                       },
                       {
-                        title: "Personal Growth",
-                        text: "Discover your strengths, improve self-awareness, and create positive life changes.",
+                        icon: UserCheck,
+                        title: "Licensed Experts",
+                        text: "Qualified psychologists and counselors you can trust.",
                       },
                       {
-                        title: "Professional Guidance",
-                        text: "Receive confidential psychological support in a safe and respectful environment.",
+                        icon: Activity,
+                        title: "Holistic Approach",
+                        text: "Mind-body wellness tailored to your unique needs.",
                       },
                     ].map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-md"
+                        className="group rounded-2xl border border-white/80 bg-white/85 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-primary/20 hover:shadow-md"
                       >
-                        <h3 className="text-sm font-semibold text-slate-800">
+                        <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-brand-light text-brand-primary transition-colors group-hover:bg-brand-primary group-hover:text-white">
+                          <item.icon className="h-4 w-4" />
+                        </div>
+                        <h3 className="text-sm font-semibold text-brand-charcoal">
                           {item.title}
                         </h3>
-
-                        <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
+                        <p className="mt-1 text-[11px] leading-relaxed text-brand-text">
                           {item.text}
                         </p>
                       </div>
@@ -1291,10 +1293,98 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   </div>
                 </div>
 
-                {/* Right Empty Space For Background Image Visibility */}
-                <div className="hidden md:block"></div>
+                {/* Right — Trust card (visible on mobile + desktop) */}
+                <div
+                  className="relative w-full"
+                  data-animate="hero"
+                  data-delay="0.28"
+                >
+                  <div className="hero-trust-card">
+                    <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-primary/5" />
+                    <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-brand-accent/10" />
+
+                    <div className="relative space-y-5 sm:space-y-6">
+                      <div>
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand-text/70 sm:text-xs">
+                          Why Choose Insight
+                        </p>
+                        <h2 className="mt-2 font-serif text-xl font-bold leading-tight text-brand-charcoal sm:text-2xl">
+                          Your Journey to Wellness Starts Here
+                        </h2>
+                      </div>
+
+                      <ul className="space-y-3.5 sm:space-y-4">
+                        {[
+                          "Personalized treatment plans for every individual",
+                          "Flexible in-person and online session options",
+                          "Support for anxiety, depression, trauma & more",
+                          "Family and couples counseling available",
+                        ].map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-3 text-sm leading-relaxed text-brand-text"
+                          >
+                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-primary/10">
+                              <Check className="h-3 w-3 text-brand-primary" />
+                            </span>
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="rounded-2xl border border-brand-border/70 bg-brand-light/40 p-4 sm:p-5">
+                        <div className="flex items-center gap-3">
+                          <div className="flex -space-x-2 shrink-0">
+                            {[profile, profile1, profile2].map((img, i) => (
+                              <img
+                                key={i}
+                                src={img}
+                                alt=""
+                                className="h-9 w-9 rounded-full border-2 border-white object-cover shadow-sm sm:h-10 sm:w-10"
+                              />
+                            ))}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-0.5">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className="h-3 w-3 fill-amber-400 text-amber-400 sm:h-3.5 sm:w-3.5"
+                                />
+                              ))}
+                            </div>
+                            <p className="mt-0.5 text-[11px] font-medium leading-snug text-brand-text sm:text-xs">
+                              Trusted by hundreds of clients across Sri Lanka
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => navigateToPage("specialists")}
+                        className="flex w-full items-center justify-center gap-2 rounded-full border border-brand-primary/15 bg-brand-primary/5 py-3 text-sm font-semibold text-brand-primary transition-all duration-300 hover:bg-brand-primary hover:text-white"
+                      >
+                        <Users className="h-4 w-4" />
+                        Meet Our Specialists
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* Scroll indicator — desktop only */}
+            <button
+              type="button"
+              onClick={() => scrollTo(aboutSectionRef)}
+              className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-brand-text/60 transition-colors hover:text-brand-primary lg:flex"
+              aria-label="Scroll to learn more"
+            >
+              <span className="text-[10px] font-medium uppercase tracking-widest">
+                Discover More
+              </span>
+              <ArrowDown className="h-4 w-4 animate-bounce" />
+            </button>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
           <section className="py-8 sm:py-6 bg-[#111844] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
@@ -2476,6 +2566,8 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
 
         {/* Legal bar */}
       </footer>
+
+      <ChatWidget />
     </div>
   );
 }
