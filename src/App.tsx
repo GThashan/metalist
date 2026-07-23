@@ -4,7 +4,9 @@ import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
+import LoadingScreen from "./components/LoadingScreen";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
+import { usePageLoad } from "./hooks/usePageLoad";
 import heroImage from "./assets/hero2.jpeg";
 import logoImage from "./assets/logo.png";
 import profile from "./assets/profiel.jpg";
@@ -36,6 +38,9 @@ import {
   Upload,
   ArrowDown,
   BookOpen,
+  Activity,
+  UserCheck,
+  Stethoscope,
 } from "lucide-react";
 const message = `Hello,
 
@@ -159,6 +164,8 @@ const REVIEWS = [
 ];
 
 function App() {
+  const { isLoading, isFadingOut } = usePageLoad();
+
   // Navigation states
   const [activeDropdown, setActiveDropdown] = useState<
     "pages" | "services" | null
@@ -640,6 +647,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
 
   return (
     <div className="min-h-screen bg-brand-cream text-brand-text antialiased font-sans">
+      <LoadingScreen isVisible={isLoading} isFadingOut={isFadingOut} />
       {isBookingModalOpen && renderBookingModal()}
 
       {/* Top Header Bar */}
@@ -1175,87 +1183,104 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
       ) : (
         <>
           {/* Hero Section */}
-          <section
-            className="relative overflow-hidden border-b border-[#E1D8CC]/40 py-12 sm:py-16 md:py-24"
-            style={{
-              backgroundImage: `
-      linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.15)100%,
-  rgba(255, 255, 255, 0.43) 100%,
-  rgba(255, 255, 255, 0) 100%
-      ),
-      url(${heroImage})
-    `,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            {/* Soft background effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),_transparent_40%)]" />
-            <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
+          <section className="relative min-h-[88vh] overflow-hidden border-b border-brand-border/60 bg-brand-background">
+            {/* Background image layer */}
+            <div className="absolute inset-0">
+              <img
+                src={heroImage}
+                alt=""
+                className="h-full w-full object-cover object-center"
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/97 to-white/55" />
+              <div className="absolute inset-0 bg-gradient-to-b from-brand-light/30 via-transparent to-brand-background/90" />
+            </div>
 
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
-              <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-                {/* Left Content */}
-                <div className="space-y-5 sm:space-y-6">
+            {/* Decorative accents */}
+            <div className="pointer-events-none absolute -right-20 top-20 h-80 w-80 rounded-full bg-brand-primary/8 blur-3xl" />
+            <div className="pointer-events-none absolute -left-16 bottom-10 h-64 w-64 rounded-full bg-brand-accent/10 blur-3xl" />
+
+            <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl items-center px-4 py-16 sm:px-6 sm:py-20 md:py-24">
+              <div className="grid w-full items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+                {/* Left — Primary content */}
+                <div className="space-y-6 sm:space-y-7">
                   <div
-                    className="inline-flex max-w-full items-center gap-2 rounded-full border border-blue-600/20 bg-white/80 px-3 py-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-[0.25em] text-blue-600 shadow-sm backdrop-blur-sm"
+                    className="inline-flex max-w-full items-center gap-2 rounded-full border border-brand-primary/15 bg-white/90 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-primary shadow-sm backdrop-blur-md sm:text-xs"
                     data-animate="hero"
                   >
-                    <Heart className="h-3.5 w-3.5 shrink-0" />
+                    <Stethoscope className="h-3.5 w-3.5 shrink-0" />
                     <span className="truncate">
-                      Professional Mental Health Care
+                      Licensed Mental Health Professionals
                     </span>
                   </div>
 
                   <div
-                    className="space-y-4"
+                    className="space-y-5"
                     data-animate="hero"
                     data-delay="0.12"
                   >
-                    <h1 className="max-w-3xl text-3xl font-extrabold  tracking-tight text-[#333333] sm:text-4xl md:text-5xl lg:text-6xl font-serif">
-                    Heal, 
-                      <span className="block text-blue-600">
-                        Grow &  Thrive
+                    <h1 className="max-w-2xl font-serif text-4xl font-bold leading-[1.08] tracking-tight text-brand-charcoal sm:text-5xl md:text-6xl lg:text-[3.5rem]">
+                      Compassionate Care for
+                      <span className="mt-1 block bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
+                        Your Mental Wellness
                       </span>
                     </h1>
 
-                    <p className="max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg">
-                      Compassionate, evidence-based counseling to help you
-                      overcome challenges and improve emotional well-being.
+                    <p className="max-w-xl text-base leading-relaxed text-brand-text sm:text-lg">
+                      Evidence-based psychology and counseling services in a
+                      safe, confidential environment — helping you heal, grow,
+                      and thrive at every stage of life.
                     </p>
                   </div>
 
-                  {/* Buttons */}
+                  {/* Trust metrics */}
                   <div
-                    className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-2"
+                    className="flex flex-wrap gap-6 border-y border-brand-border/70 py-5"
+                    data-animate="hero"
+                    data-delay="0.18"
+                  >
+                    {[
+                      { value: "100+", label: "Clients Supported" },
+                      { value: "10+", label: "Years Experience" },
+                      { value: "98%", label: "Satisfaction Rate" },
+                    ].map((stat) => (
+                      <div key={stat.label}>
+                        <p className="font-serif text-2xl font-bold text-brand-primary sm:text-3xl">
+                          {stat.value}
+                        </p>
+                        <p className="mt-0.5 text-xs font-medium text-brand-text sm:text-sm">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTAs */}
+                  <div
+                    className="flex flex-col flex-wrap items-stretch gap-3 pt-1 sm:flex-row sm:items-center sm:gap-4"
                     data-animate="hero"
                     data-delay="0.22"
                   >
-                    {/* Booking Button */}
                     <button
                       onClick={openBookingModal}
-                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-primary/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-secondary sm:w-auto"
                     >
                       <Calendar className="h-4 w-4" />
-                      <span>Book Your Session Now</span>
+                      <span>Book a Consultation</span>
                     </button>
-
-                    {/* WhatsApp Button */}
 
                     <a
                       href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-green-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-green-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-600"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-brand-border bg-white/90 px-7 py-3.5 text-sm font-semibold text-brand-charcoal shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-success hover:text-brand-success sm:w-auto"
                     >
-                      <MessageCircle className="h-4 w-4" />
+                      <MessageCircle className="h-4 w-4 text-brand-success" />
                       <span>Chat on WhatsApp</span>
                     </a>
                   </div>
 
-                  {/* Feature Cards */}
+                  {/* Feature highlights */}
                   <div
                     className="grid gap-3 pt-2 sm:grid-cols-3"
                     data-animate="stagger"
@@ -1263,27 +1288,32 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   >
                     {[
                       {
-                        title: "Emotional Wellness",
-                        text: "Develop emotional balance, manage stress, and build healthier coping skills.",
+                        icon: ShieldCheck,
+                        title: "Confidential Care",
+                        text: "Private sessions protected under strict ethical standards.",
                       },
                       {
-                        title: "Personal Growth",
-                        text: "Discover your strengths, improve self-awareness, and create positive life changes.",
+                        icon: UserCheck,
+                        title: "Licensed Experts",
+                        text: "Qualified psychologists and counselors you can trust.",
                       },
                       {
-                        title: "Professional Guidance",
-                        text: "Receive confidential psychological support in a safe and respectful environment.",
+                        icon: Activity,
+                        title: "Holistic Approach",
+                        text: "Mind-body wellness tailored to your unique needs.",
                       },
                     ].map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-md"
+                        className="group rounded-2xl border border-white/80 bg-white/85 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-brand-primary/20 hover:shadow-md"
                       >
-                        <h3 className="text-sm font-semibold text-slate-800">
+                        <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-brand-light text-brand-primary transition-colors group-hover:bg-brand-primary group-hover:text-white">
+                          <item.icon className="h-4 w-4" />
+                        </div>
+                        <h3 className="text-sm font-semibold text-brand-charcoal">
                           {item.title}
                         </h3>
-
-                        <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
+                        <p className="mt-1 text-[11px] leading-relaxed text-brand-text sm:text-xs">
                           {item.text}
                         </p>
                       </div>
@@ -1291,10 +1321,98 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   </div>
                 </div>
 
-                {/* Right Empty Space For Background Image Visibility */}
-                <div className="hidden md:block"></div>
+                {/* Right — Trust card */}
+                <div
+                  className="relative hidden lg:block"
+                  data-animate="hero"
+                  data-delay="0.28"
+                >
+                  <div className="relative overflow-hidden rounded-[2rem] border border-brand-border/80 bg-white/95 p-8 shadow-2xl shadow-brand-shadow/40 backdrop-blur-xl">
+                    <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-primary/5" />
+                    <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-brand-accent/10" />
+
+                    <div className="relative space-y-6">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-primary">
+                          Why Choose Insight
+                        </p>
+                        <h2 className="mt-2 font-serif text-2xl font-bold text-brand-charcoal">
+                          Your Journey to Wellness Starts Here
+                        </h2>
+                      </div>
+
+                      <ul className="space-y-4">
+                        {[
+                          "Personalized treatment plans for every individual",
+                          "Flexible in-person and online session options",
+                          "Support for anxiety, depression, trauma & more",
+                          "Family and couples counseling available",
+                        ].map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-3 text-sm text-brand-text"
+                          >
+                            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-primary/10">
+                              <Check className="h-3 w-3 text-brand-primary" />
+                            </span>
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="rounded-2xl border border-brand-border bg-brand-light/50 p-5">
+                        <div className="flex items-center gap-3">
+                          <div className="flex -space-x-2">
+                            {[profile, profile1, profile2].map((img, i) => (
+                              <img
+                                key={i}
+                                src={img}
+                                alt=""
+                                className="h-10 w-10 rounded-full border-2 border-white object-cover shadow-sm"
+                              />
+                            ))}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-1">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+                                />
+                              ))}
+                            </div>
+                            <p className="mt-0.5 text-xs font-medium text-brand-text">
+                              Trusted by hundreds of clients across Sri Lanka
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => navigateToPage("specialists")}
+                        className="flex w-full items-center justify-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/5 py-3 text-sm font-semibold text-brand-primary transition-all duration-300 hover:bg-brand-primary hover:text-white"
+                      >
+                        <Users className="h-4 w-4" />
+                        Meet Our Specialists
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* Scroll indicator */}
+            <button
+              type="button"
+              onClick={() => scrollTo(aboutSectionRef)}
+              className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-brand-text/60 transition-colors hover:text-brand-primary md:flex"
+              aria-label="Scroll to learn more"
+            >
+              <span className="text-[10px] font-medium uppercase tracking-widest">
+                Discover More
+              </span>
+              <ArrowDown className="h-4 w-4 animate-bounce" />
+            </button>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
           <section className="py-8 sm:py-6 bg-[#111844] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
