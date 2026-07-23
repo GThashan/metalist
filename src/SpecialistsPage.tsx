@@ -20,9 +20,10 @@ interface SpecialistItem {
 interface SpecialistsPageProps {
   specialists: SpecialistItem[]
   onBookAppointment: () => void
+  onNavigateHome?: () => void
 }
 
-export default function SpecialistsPage({ specialists, onBookAppointment }: SpecialistsPageProps) {
+export default function SpecialistsPage({ specialists, onBookAppointment, onNavigateHome }: SpecialistsPageProps) {
   return (
     <main className="bg-slate-50">
       <section className="relative overflow-hidden border-b border-[#E1D8CC]/50 bg-[#111844] py-20 md:py-24">
@@ -30,9 +31,16 @@ export default function SpecialistsPage({ specialists, onBookAppointment }: Spec
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="space-y-6" data-animate="hero">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-                <Heart className="w-3.5 h-3.5" />
-                <span>Meet the team</span>
+              <div className="flex items-center gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#C76B3D]/20 bg-white/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                  <Heart className="w-3.5 h-3.5" />
+                  <span>Meet the team</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-medium text-white/70">
+                  <span onClick={onNavigateHome} className="hover:text-white cursor-pointer transition-colors">Home</span>
+                  <span className="text-white/40">/</span>
+                  <span className="text-white">Specialists</span>
+                </div>
               </div>
               <div className="space-y-4">
                 <h1 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">

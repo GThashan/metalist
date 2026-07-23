@@ -99,9 +99,10 @@ const STATS = [
 
 interface AboutPageProps {
   onBookAppointment: () => void
+  onNavigateHome?: () => void
 }
 
-export default function AboutPage({ onBookAppointment }: AboutPageProps) {
+export default function AboutPage({ onBookAppointment, onNavigateHome }: AboutPageProps) {
   const [openFaq, setOpenFaq] = useState<string | null>('faq-1')
   const [showVideo, setShowVideo] = useState(false)
 
@@ -127,7 +128,7 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
           </p>
           {/* Breadcrumb */}
           <nav className="flex items-center justify-center gap-2 text-sm text-white/70">
-            <span className="hover:text-white cursor-pointer transition-colors">Home</span>
+            <span onClick={onNavigateHome} className="hover:text-white cursor-pointer transition-colors">Home</span>
             <span className="text-white/40">/</span>
             <span className="text-white font-medium">About Us</span>
           </nav>
@@ -299,7 +300,10 @@ export default function AboutPage({ onBookAppointment }: AboutPageProps) {
                 Book Appointment
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-[#000690] bg-white hover:border-[#000690] text-slate-700 hover:text-[#000690] font-semibold text-sm transition-all duration-300">
+              <button
+                onClick={onBookAppointment}
+                className="w-full sm:w-auto px-6 py-3.5 rounded-full border border-[#000690] bg-white hover:border-[#000690] text-slate-700 hover:text-[#000690] font-semibold text-sm transition-all duration-300 cursor-pointer"
+              >
                 Learn More
               </button>
             </div>

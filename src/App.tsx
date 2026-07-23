@@ -200,14 +200,14 @@ function App() {
   const [formReceipt, setFormReceipt] = useState<File | null>(null);
 const [preferredLanguage, setPreferredLanguage] = useState("english");
   // Custom scrolling references
-  const appointmentFormRef = useRef<HTMLDivElement>(null);
-  const aboutSectionRef = useRef<HTMLDivElement>(null);
-  const servicesSectionRef = useRef<HTMLDivElement>(null);
-  const specialistSectionRef = useRef<HTMLDivElement>(null);
-  const reviewSectionRef = useRef<HTMLDivElement>(null);
+  const appointmentFormRef = useRef<HTMLElement | HTMLDivElement | null>(null);
+  const aboutSectionRef = useRef<HTMLElement | HTMLDivElement | null>(null);
+  const servicesSectionRef = useRef<HTMLElement | HTMLDivElement | null>(null);
+  const specialistSectionRef = useRef<HTMLElement | HTMLDivElement | null>(null);
+  const reviewSectionRef = useRef<HTMLElement | HTMLDivElement | null>(null);
 
   // Scroll handler helper
-  const scrollTo = (ref: React.RefObject<HTMLDivElement | null>) => {
+  const scrollTo = (ref: React.RefObject<HTMLElement | HTMLDivElement | null>) => {
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
     if (ref.current) {
@@ -312,7 +312,8 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
 
   const renderBookingModal = () => (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 sm:p-6"
+      style={{ zIndex: 1000 }}
       onClick={() => setIsBookingModalOpen(false)}
     >
       <div
@@ -322,7 +323,8 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
         <button
           type="button"
           onClick={() => setIsBookingModalOpen(false)}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+          className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 border border-stone-200 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all duration-200 shadow-md cursor-pointer"
+          aria-label="Close booking modal"
         >
           <X className="w-5 h-5" />
         </button>
@@ -1125,11 +1127,11 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
       </header>
 
       {currentPage === "about" ? (
-        <AboutPage onBookAppointment={handleBookAppointment} />
+        <AboutPage onBookAppointment={handleBookAppointment} onNavigateHome={() => navigateToPage("home")} />
       ) : currentPage === "blog" ? (
-        <BlogPage onBookAppointment={handleBookAppointment} />
+        <BlogPage onBookAppointment={handleBookAppointment} onNavigateHome={() => navigateToPage("home")} />
       ) : currentPage === "contact" ? (
-        <ContactPage onBookAppointment={handleBookAppointment} />
+        <ContactPage onBookAppointment={handleBookAppointment} onNavigateHome={() => navigateToPage("home")} />
       ) : currentPage === "service" ? (
         <ServicePage
           service={
@@ -1150,11 +1152,13 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               : true;
           })}
           onBookAppointment={handleBookAppointment}
+          onNavigateHome={() => navigateToPage("home")}
         />
       ) : currentPage === "specialists" ? (
         <SpecialistsPage
           specialists={SPECIALISTS}
           onBookAppointment={handleBookAppointment}
+          onNavigateHome={() => navigateToPage("home")}
         />
       ) : (
         <>
@@ -1387,7 +1391,11 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
             </button>
           </section>
           {/* Founder's Message Section - Prasad Wijesundara */}
-          <section className="py-8 sm:py-6 bg-[#111844] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden">
+          <section
+            ref={aboutSectionRef}
+            id="about"
+            className="py-8 sm:py-6 bg-[#111844] border-b border-[#1a3a5c] mx-3 my-3 rounded-2xl sm:rounded-3xl shadow-lg relative overflow-hidden"
+          >
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               {/* 4-Part Grid Layout */}
               <div

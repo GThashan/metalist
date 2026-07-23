@@ -2,9 +2,10 @@ import { ArrowRight, CalendarDays, Mail, MapPin, Phone } from 'lucide-react'
 
 type ContactPageProps = {
   onBookAppointment: () => void
+  onNavigateHome?: () => void
 }
 
-function ContactPage({ onBookAppointment }: ContactPageProps) {
+function ContactPage({ onBookAppointment, onNavigateHome }: ContactPageProps) {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-700">
       <section className="relative overflow-hidden bg-[#111844] border-b border-[#E1D8CC]/40">
@@ -13,9 +14,11 @@ function ContactPage({ onBookAppointment }: ContactPageProps) {
 
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28" data-animate="hero">
           <div className="max-w-3xl space-y-6">
-            <span className="block text-xs font-bold uppercase tracking-[0.3em] text-white">
-              Contact Us
-            </span>
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-white">
+              <span onClick={onNavigateHome} className="hover:text-brand-accent cursor-pointer transition-colors">Home</span>
+              <span className="text-white/40">/</span>
+              <span>Contact Us</span>
+            </div>
             <h1 className="text-3xl font-serif font-bold leading-tight text-white sm:text-4xl md:text-5xl">
               We’re here to help you take the next step with confidence.
             </h1>
