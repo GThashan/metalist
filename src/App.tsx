@@ -40,8 +40,8 @@ import {
   ArrowDown,
   BookOpen,
   Activity,
-  UserCheck,
-  Stethoscope,
+  // UserCheck,
+  // Stethoscope,
 } from "lucide-react";
 const message = `Hello,
 
@@ -53,21 +53,7 @@ Thank you.`;
 
 // Mock Data
 const SPECIALISTS = [
-  {
-    id: "sarah-jenkins",
-    name: "Mr. Prasad Wijesundara",
-    role: "Psychotherapist & Psychological Counselor",
-    rating: 5,
-    reviews: 124,
-    image: profile,
-    specialties: [
-      "Anxiety & Depression",
-      "Cognitive Behavioral Therapy (CBT)",
-      "Stress Management",
-    ],
-    bio: "Compassionate, evidence-informed counseling to support emotional well-being, personal growth, and better coping with life's challenges.",
-  },
-  {
+   {
     id: "marcus-vance",
     name: "Dr. Gayan Jayawardana",
     role: "Medical Advisor",
@@ -81,6 +67,21 @@ const SPECIALISTS = [
     ],
     bio: "Comprehensive, patient-centered medical guidance and health consultations delivered with compassion and professionalism.",
   },
+   {
+    id: "sarah-jenkins",
+    name: "Mr. Prasad Wijesundara",
+    role: "Psychotherapist & Psychological Counselor",
+    rating: 5,
+    reviews: 124,
+    image: profile,
+    specialties: [
+      "Anxiety & Depression",
+      "Cognitive Behavioral Therapy (CBT)",
+      "Stress Management",
+    ],
+    bio: "Compassionate, evidence-informed counseling to support emotional well-being, personal growth, and better coping with life's challenges.",
+  },
+
   {
     id: "elena-rostova",
     name: "Dr. W.S.M Diwyanjali",
@@ -127,7 +128,7 @@ const SERVICES = [
   },
   {
     id: "therapy",
-    title: "Individual & Family Therapy",
+    title: "Therapy & Counseling",
     description:
       "Supportive therapeutic environments focused on navigating major life transitions, grief, relationships, and trauma.",
     bullets: [
@@ -676,13 +677,13 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-xs text-white/60">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-              Confidential & Licensed Care
+           Confidential & Professional
             </span>
             <span className="h-3 w-px bg-white/20" aria-hidden="true" />
             <span className="text-xs text-white/60">Follow Us</span>
             <div className="flex items-center gap-2.5">
               <a
-                href="https://facebook.com"
+                href="https://web.facebook.com/profile.php?id=61590277216399"
                 aria-label="Facebook"
                 className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
               >
@@ -690,15 +691,15 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
                 </svg>
               </a>
-              <a
-                href="https://twitter.com"
-                aria-label="Twitter / X"
-                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
-              >
-                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
+             <a
+  href="https://youtube.com"
+  aria-label="YouTube"
+  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
+>
+  <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.06 0 12 0 12s0 3.94.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.94 24 12 24 12s0-3.94-.502-5.814ZM9.75 15.568V8.432L15.75 12l-6 3.568Z" />
+  </svg>
+</a>
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
@@ -739,7 +740,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               <span className="font-serif text-xl font-bold tracking-tight text-brand-charcoal transition-colors group-hover:text-brand-primary sm:text-2xl">
                 Insight
               </span>
-              <span className="-mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.25em] text-brand-primary sm:text-[10px]">
+              <span className="-mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.25em] text-brand-primary sm:text-[10px] hidden lg:block">
                 Psychology & Counseling
               </span>
             </div>
@@ -879,10 +880,10 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-border px-4 py-2.5 text-sm font-semibold text-brand-charcoal transition-all duration-300 hover:border-brand-success hover:text-brand-success"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-border px-4 py-2.5 text-sm font-semibold text-brand-charcoal transition-all duration-300 hover:border-brand-success hover:text-brand-success bg-[#25D366]"
             >
-              <MessageCircle className="h-4 w-4 text-brand-success" />
-              <span className="hidden xl:inline">WhatsApp</span>
+              <MessageCircle className="h-4 w-4 text-white" />
+              <span className="hidden xl:inline text-white">WhatsApp</span>
             </a>
             <button
               onClick={() => navigateToHomeSection("booking")}
@@ -1184,9 +1185,9 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     className="inline-flex max-w-full items-center gap-2 rounded-full border border-brand-primary/12 bg-white/85 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-primary shadow-sm backdrop-blur-sm sm:px-4 sm:py-2 sm:text-xs"
                     data-animate="hero"
                   >
-                    <Stethoscope className="h-3.5 w-3.5 shrink-0" />
+                    <Heart className="h-3.5 w-3.5 shrink-0" />
                     <span className="truncate">
-                      Licensed Mental Health Professionals
+                      PROFESSIONAL MENTAL HEALTH CARE
                     </span>
                   </div>
 
@@ -1196,9 +1197,9 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     data-delay="0.12"
                   >
                     <h1 className="max-w-2xl font-serif text-[2rem] font-bold leading-[1.1] tracking-tight text-brand-charcoal sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-                      Compassionate Care for{" "}
+                      Compassionate Care {" "}
                       <span className="block text-brand-primary">
-                        Your Mental Wellness
+                        Supporting Your Mental Wellness
                       </span>
                     </h1>
 
@@ -1249,15 +1250,15 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                       href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-brand-border bg-white px-3 py-3 text-[11px] font-semibold leading-tight text-brand-charcoal shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-success/40 hover:bg-white sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm"
+                      className=" inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-full border border-brand-border bg-[#25D366] px-3 py-3 text-[11px] font-semibold leading-tight text-brand-charcoal shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-success/40  sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm hover:text-brand-success"
                     >
-                      <MessageCircle className="h-3.5 w-3.5 shrink-0 text-brand-success sm:h-4 sm:w-4" />
-                      <span className="truncate">Chat on WhatsApp</span>
+                      <MessageCircle className="h-3.5 w-3.5 shrink-0 text-white sm:h-4 sm:w-4 " />
+                      <span className="truncate text-white">Chat on WhatsApp</span>
                     </a>
                   </div>
 
                   {/* Feature highlights — desktop only */}
-                  <div
+                  {/* <div
                     className="hidden gap-3 pt-1 lg:grid lg:grid-cols-3"
                     data-animate="stagger"
                     data-stagger="0.1"
@@ -1294,11 +1295,11 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                         </p>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Right — Trust card (visible on mobile + desktop) */}
-                <div
+                {/* <div
                   className="relative w-full"
                   data-animate="hero"
                   data-delay="0.28"
@@ -1373,7 +1374,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                       </button>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
