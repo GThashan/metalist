@@ -56,7 +56,7 @@ function ContactPage({ onBookAppointment, onNavigateHome }: ContactPageProps) {
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-slate-800">Location</h3>
-                  <p className="mt-1 text-sm text-slate-600">Embilipitiya, New Town Road</p>
+                  <p className="mt-1 text-sm text-slate-600">Ragama, Western Province, Sri Lanka</p>
                 </div>
               </div>
 
@@ -120,14 +120,15 @@ function ContactPage({ onBookAppointment, onNavigateHome }: ContactPageProps) {
     <div className="px-5 py-4 sm:p-10">
      
       <p className="mt-3 text-sm text-slate-600">
-        Visit us at our clinic location in Embilipitiya.
+        Visit us at our clinic location in Ragama.
       </p>
     </div>
 
     <div className="h-[240px] sm:h-[320px] md:h-[400px] w-full">
       <iframe
         title="Clinic Location - Embilipitiya"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63449.707695963625!2d80.81843254011606!3d6.315279630478413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae4002f298e95e3%3A0x62e2b8bc9ea7a79b!2sEmbilipitiya!5e0!3m2!1sen!2slk!4v1784435075768!5m2!1sen!2slk"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15839.362091697563!2d79.91274009684803!3d7.028023921593456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f9cdbed9d9b1%3A0xedfad658ec11530!2sRagama!5e0!3m2!1sen!2slk!4v1785419473381!5m2!1sen!2slk"
+        
         width="100%"
         height="100%"
         style={{ border: 0 }}

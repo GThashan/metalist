@@ -3,9 +3,12 @@ import {
   Calendar,
   Heart,
   Star,
-  Users,
+  // Users,
 } from 'lucide-react'
-
+import profile from "./assets/profiel.jpg";
+import profile1 from "./assets/profile7.jpeg";
+import profile2 from "./assets/profile4.jpeg";
+// import Check from "lucide-react";
 interface SpecialistItem {
   id: string
   name: string
@@ -64,7 +67,7 @@ export default function SpecialistsPage({ specialists, onBookAppointment, onNavi
               </div>
             </div>
 
-            <div
+            {/* <div
               className="rounded-[1.5rem] sm:rounded-[2rem] border border-[#E1D8CC] bg-white/90 p-4 sm:p-6 shadow-xl"
               data-animate="fade-right"
             >
@@ -86,7 +89,85 @@ export default function SpecialistsPage({ specialists, onBookAppointment, onNavi
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">Therapy and guidance for couples, families, and young people navigating change.</p>
                 </div>
               </div>
-            </div>
+            </div> */}
+            
+
+               <div
+                  className="relative w-full"
+                  data-animate="hero"
+                  data-delay="0.28"
+                >
+                  <div className="hero-trust-card">
+                    <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-brand-primary/5" />
+                    <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-brand-accent/10" />
+
+                    <div className="relative space-y-5 sm:space-y-6">
+                      <div>
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-brand-text/70 sm:text-xs">
+                          Why Choose Insight
+                        </p>
+                        <h2 className="mt-2 font-serif text-xl font-bold leading-tight text-brand-charcoal sm:text-2xl">
+                          Your Journey to Wellness Starts Here
+                        </h2>
+                      </div>
+
+                      <ul className="space-y-3.5 sm:space-y-4">
+                        {[
+                          "Personalized treatment plans for every individual",
+                          "Flexible in-person and online session options",
+                          "Support for anxiety, depression, trauma & more",
+                          "Family and couples counseling available",
+                        ].map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-3 text-sm leading-relaxed text-brand-text"
+                          >
+                            {/* <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-primary/10">
+                              <Check className="h-3 w-3 text-brand-primary" />
+                            </span> */}
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="rounded-2xl border border-brand-border/70 bg-brand-light/40 p-4 sm:p-5">
+                        <div className="flex items-center gap-3">
+                          <div className="flex -space-x-2 shrink-0">
+                            {[profile, profile1, profile2].map((img, i) => (
+                              <img
+                                key={i}
+                                src={img}
+                                alt=""
+                                className="h-9 w-9 rounded-full border-2 border-white object-cover shadow-sm sm:h-10 sm:w-10"
+                              />
+                            ))}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-0.5">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className="h-3 w-3 fill-amber-400 text-amber-400 sm:h-3.5 sm:w-3.5"
+                                />
+                              ))}
+                            </div>
+                            <p className="mt-0.5 text-[11px] font-medium leading-snug text-brand-text sm:text-xs">
+                              Trusted by hundreds of clients across Sri Lanka
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+{/* 
+                      <button
+                        onClick={() => navigateToPage("specialists")}
+                        className="flex w-full items-center justify-center gap-2 rounded-full border border-brand-primary/15 bg-brand-primary/5 py-3 text-sm font-semibold text-brand-primary transition-all duration-300 hover:bg-brand-primary hover:text-white"
+                      >
+                        <Users className="h-4 w-4" />
+                        Meet Our Specialists
+                      </button> */}
+                    </div>
+                  </div>
+                </div>
           </div>
         </div>
       </section>
@@ -116,7 +197,7 @@ export default function SpecialistsPage({ specialists, onBookAppointment, onNavi
                   </div>
                   <div className="text-center">
                     <h3 className="text-lg font-bold text-slate-800">{spec.name}</h3>
-                    <p className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-[#C76B3D]">{spec.role}</p>
+                    <p className="mt-1 text-xs font-medium uppercase tracking-[0.2em] text-brand-primary">{spec.role}</p>
                     <div className="mt-2 flex items-center justify-center gap-1">
                       {[...Array(spec.rating)].map((_, index) => (
                         <Star key={index} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
