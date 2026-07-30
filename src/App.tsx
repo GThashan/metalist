@@ -1170,11 +1170,11 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               className="hero-section__photo"
               aria-hidden="true"
             />
-            <div className="hero-section__wash" aria-hidden="true" />
+            {/* <div className="hero-section__wash" aria-hidden="true" />
             <div className="hero-section__mesh" aria-hidden="true" />
             <div className="hero-section__blob hero-section__blob--1" aria-hidden="true" />
             <div className="hero-section__blob hero-section__blob--2" aria-hidden="true" />
-            <div className="hero-section__blob hero-section__blob--3" aria-hidden="true" />
+            <div className="hero-section__blob hero-section__blob--3" aria-hidden="true" /> */}
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 md:py-20 lg:min-h-[88vh] lg:flex lg:items-center lg:py-24">
               <div className="grid w-full items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12 xl:gap-14">
