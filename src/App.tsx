@@ -70,7 +70,7 @@ const SPECIALISTS = [
   {
     id: "marcus-vance",
     name: "Dr. Gayan Jayawardana",
-    role: "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry NIMH",
+    role: "Medical Advisor",
     rating: 5,
     reviews: 98,
     image: profile1,
