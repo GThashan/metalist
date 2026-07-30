@@ -5,7 +5,7 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
 import LoadingScreen from "./components/LoadingScreen";
-import ChatWidget from "./components/ChatWidget";
+// import ChatWidget from "./components/ChatWidget";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import { usePageLoad } from "./hooks/usePageLoad";
 import heroImage from "./assets/hero2.jpeg";
@@ -2575,7 +2575,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
         {/* Legal bar */}
       </footer>
 
-      <ChatWidget />
+      {/* <ChatWidget /> */}
     </div>
   );
 }
