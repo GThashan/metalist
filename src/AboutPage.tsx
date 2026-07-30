@@ -91,8 +91,8 @@ const FAQ_ITEMS = [
 
 // ── Stats ────────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: '12+', label: 'Years of Experience' },
-  { value: '3K+', label: 'Happy Clients' },
+  { value: '5+', label: 'Years of Experience' },
+  { value: '50+', label: 'Happy Clients' },
   { value: '99%', label: 'Success Rate' },
   { value: '1K+', label: 'Wellness Goals Met' },
 ]

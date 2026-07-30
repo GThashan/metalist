@@ -5,7 +5,7 @@ import SpecialistsPage from "./SpecialistsPage";
 import ContactPage from "./ContactPage";
 import BlogPage from "./BlogPage";
 import LoadingScreen from "./components/LoadingScreen";
-import ChatWidget from "./components/ChatWidget";
+// import ChatWidget from "./components/ChatWidget";
 import { useGsapAnimations } from "./hooks/useGsapAnimations";
 import { usePageLoad } from "./hooks/usePageLoad";
 import heroImage from "./assets/hero2.jpeg";
@@ -70,7 +70,7 @@ const SPECIALISTS = [
   {
     id: "marcus-vance",
     name: "Dr. Gayan Jayawardana",
-    role: "MD(URSS), PG Dip in Psychiatry (Colombo) Registrar in Psychiatry NIMH",
+    role: "Medical Advisor",
     rating: 5,
     reviews: 98,
     image: profile1,
@@ -1170,11 +1170,11 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               className="hero-section__photo"
               aria-hidden="true"
             />
-            <div className="hero-section__wash" aria-hidden="true" />
+            {/* <div className="hero-section__wash" aria-hidden="true" />
             <div className="hero-section__mesh" aria-hidden="true" />
             <div className="hero-section__blob hero-section__blob--1" aria-hidden="true" />
             <div className="hero-section__blob hero-section__blob--2" aria-hidden="true" />
-            <div className="hero-section__blob hero-section__blob--3" aria-hidden="true" />
+            <div className="hero-section__blob hero-section__blob--3" aria-hidden="true" /> */}
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 md:py-20 lg:min-h-[88vh] lg:flex lg:items-center lg:py-24">
               <div className="grid w-full items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12 xl:gap-14">
@@ -1210,7 +1210,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   </div>
 
                   {/* Trust metrics */}
-                  <div
+                  {/* <div
                     className="grid grid-cols-3 gap-3 border-y border-brand-border/50 py-4 sm:flex sm:flex-wrap sm:gap-8 sm:py-5"
                     data-animate="hero"
                     data-delay="0.18"
@@ -1229,7 +1229,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                         </p>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
 
                   {/* CTAs — single row on mobile */}
                   <div
@@ -2575,7 +2575,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
         {/* Legal bar */}
       </footer>
 
-      <ChatWidget />
+      {/* <ChatWidget /> */}
     </div>
   );
 }
