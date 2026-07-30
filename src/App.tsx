@@ -1210,7 +1210,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   </div>
 
                   {/* Trust metrics */}
-                  <div
+                  {/* <div
                     className="grid grid-cols-3 gap-3 border-y border-brand-border/50 py-4 sm:flex sm:flex-wrap sm:gap-8 sm:py-5"
                     data-animate="hero"
                     data-delay="0.18"
@@ -1229,7 +1229,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                         </p>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
 
                   {/* CTAs — single row on mobile */}
                   <div
