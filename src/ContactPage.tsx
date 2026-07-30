@@ -74,11 +74,18 @@ function ContactPage({ onBookAppointment, onNavigateHome }: ContactPageProps) {
 
               <div className="flex items-start gap-3 rounded-2xl border border-stone-200 bg-slate-50 p-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary text-white">
-                  <Phone className="h-5 w-5" />
+                   <a
+              href="tel:+94757629950"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all hover:bg-brand-secondary"
+              aria-label="Call us"
+            >
+              <Phone className="h-5 w-5" />
+            </a>
+                  {/* <Phone className="h-5 w-5" /> */}
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-slate-800">Appointment inquiries</h3>
-                  <p className="mt-1 text-sm text-slate-600">Please email us to request a consultation time.</p>
+                  <p className="mt-1 text-sm text-slate-600">Please whatsapp us to request a consultation time.</p>
                 </div>
               </div>
             </div>
@@ -94,7 +101,7 @@ function ContactPage({ onBookAppointment, onNavigateHome }: ContactPageProps) {
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#E1D8CC]">Support</p>
-                <h3 className="text-lg font-semibold">Need assistance right away?</h3>
+                <h3 className="text-lg font-semibold text-white">Need assistance right away?</h3>
               </div>
             </div>
 

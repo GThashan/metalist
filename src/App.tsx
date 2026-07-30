@@ -2392,7 +2392,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://facebook.com"
+                href="https://web.facebook.com/profile.php?id=61590277216399&sk=about"
                 aria-label="Facebook"
                 className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
               >
@@ -2409,20 +2409,15 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   />
                 </svg>
               </a>
-              <a
-                href="https://twitter.com"
-                aria-label="Twitter / X"
-                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
-              >
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
+             <a
+  href="https://youtube.com/@drgayanj?si=9XaAi4puwAoliAhK"
+  aria-label="YouTube"
+   className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
+>
+  <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.06 0 12 0 12s0 3.94.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.94 24 12 24 12s0-3.94-.502-5.814ZM9.75 15.568V8.432L15.75 12l-6 3.568Z" />
+  </svg>
+</a>
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
