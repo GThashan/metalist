@@ -262,6 +262,72 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── Mobile drawer (slides in from left - UI Card Design) ── */
+  .mobile-drawer-backdrop {
+    @apply fixed inset-0 z-[120] bg-black/0 pointer-events-none lg:hidden;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .mobile-drawer-backdrop--open {
+    @apply bg-black/50 opacity-100 pointer-events-auto backdrop-blur-sm;
+  }
+
+  .mobile-drawer {
+    @apply fixed top-0 left-0 bottom-0 z-[130] flex h-full h-[100dvh] w-[82vw] max-w-[330px] flex-col bg-white shadow-2xl lg:hidden;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    box-shadow: 16px 0 50px rgba(0, 0, 0, 0.35);
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .mobile-drawer--open {
+    transform: translateX(0);
+  }
+
+  /* Header card with rounded bottom right corner */
+  .mobile-drawer__header-card {
+    @apply relative bg-gradient-to-br from-brand-primary via-[#004bb0] to-brand-secondary px-5 pt-5 pb-6 text-white shadow-md shrink-0;
+    border-bottom-right-radius: 2rem;
+  }
+
+  /* Drawer link styling (on white background) */
+  .mobile-drawer__link {
+    @apply flex w-full items-center gap-3.5 px-4 py-3 text-left text-sm font-medium text-slate-700 transition-all duration-200 rounded-xl hover:bg-slate-100 hover:text-brand-primary;
+  }
+
+  .mobile-drawer__link--active {
+    @apply bg-brand-primary/10 text-brand-primary font-semibold;
+  }
+
+  .mobile-drawer__link-icon {
+    @apply h-[19px] w-[19px] shrink-0 text-slate-500 transition-colors;
+  }
+
+  .mobile-drawer__link--active .mobile-drawer__link-icon {
+    @apply text-brand-primary;
+  }
+
+  .mobile-drawer__sub-link {
+    @apply flex w-full items-center gap-3 px-7 py-2.5 text-left text-xs font-medium text-slate-600 transition-all duration-200 hover:text-brand-primary hover:bg-slate-50 rounded-lg;
+  }
+
+  .mobile-drawer__divider {
+    @apply mx-3 my-2 border-t border-slate-200;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-drawer-backdrop {
+      transition: none !important;
+    }
+    .mobile-drawer {
+      transition: none !important;
+    }
+  }
+
   /* ── Chat widget ── */
   .chat-widget {
     @apply fixed bottom-5 right-5 z-[90] flex flex-col items-end gap-4 sm:bottom-6 sm:right-6;
