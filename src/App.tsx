@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import AboutPage from "./AboutPage";
 import ServicePage from "./ServicePage";
 import SpecialistsPage from "./SpecialistsPage";
@@ -53,7 +53,7 @@ Thank you.`;
 
 // Mock Data
 const SPECIALISTS = [
-   {
+  {
     id: "marcus-vance",
     name: "Dr. Gayan Jayawardana",
     role: "Medical Advisor",
@@ -67,7 +67,7 @@ const SPECIALISTS = [
     ],
     bio: "Comprehensive, patient-centered medical guidance and health consultations delivered with compassion and professionalism.",
   },
-   {
+  {
     id: "sarah-jenkins",
     name: "Mr. Prasad Wijesundara",
     role: "Psychotherapist & Psychological Counselor",
@@ -173,6 +173,18 @@ function App() {
     "pages" | "services" | null
   >(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Prevent background scrolling when mobile menu drawer is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
   const [currentPage, setCurrentPage] = useState<
     "home" | "about" | "service" | "specialists" | "contact" | "blog"
   >("home");
@@ -199,7 +211,7 @@ function App() {
   const [formAge, setFormAge] = useState("");
   const [formTreatmentMode, setFormTreatmentMode] = useState("");
   const [formReceipt, setFormReceipt] = useState<File | null>(null);
-const [preferredLanguage, setPreferredLanguage] = useState("english");
+  const [preferredLanguage, setPreferredLanguage] = useState("english");
   // Custom scrolling references
   const appointmentFormRef = useRef<HTMLElement | HTMLDivElement | null>(null);
   const aboutSectionRef = useRef<HTMLElement | HTMLDivElement | null>(null);
@@ -467,20 +479,20 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
                   />
                 </div>
-                       <div className="space-y-1.5">
-  <label className="text-xs font-semibold text-slate-600 block">
-    Preferred Language
-  </label>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600 block">
+                    Preferred Language
+                  </label>
 
-  <select
-    value={preferredLanguage}
-    onChange={(e) => setPreferredLanguage(e.target.value)}
-    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
-  >
-    <option value="english">English</option>
-    <option value="sinhala">සිංහල</option>
-  </select>
-</div>
+                  <select
+                    value={preferredLanguage}
+                    onChange={(e) => setPreferredLanguage(e.target.value)}
+                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                  >
+                    <option value="english">English</option>
+                    <option value="sinhala">සිංහල</option>
+                  </select>
+                </div>
               </div>
 
               {/* Service + Treatment Mode */}
@@ -618,30 +630,29 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full bg-brand-primary hover:bg-[#000690] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${
-                  isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                }`}
+                className={`w-full bg-brand-primary hover:bg-[#000690] text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
               >
                 {isSubmitting
                   ? "Securing Slot..."
                   : "Submit Appointment Request"}
               </button>
               <div className="mt-4">
-  <p className="text-xs text-brand-primary text-center mb-2 font-bold">
-     Or book instantly via WhatsApp
-  </p>
-  <a
-    href={`https://wa.me/94757629950?text=${encodeURIComponent(
-      "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
-    )}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
-  >
-    <MessageCircle className="h-5 w-5" />
-    Book via WhatsApp
-  </a>
-</div>
+                <p className="text-xs text-brand-primary text-center mb-2 font-bold">
+                  Or book instantly via WhatsApp
+                </p>
+                <a
+                  href={`https://wa.me/94757629950?text=${encodeURIComponent(
+                    "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Book via WhatsApp
+                </a>
+              </div>
             </form>
           </div>
         </div>
@@ -656,6 +667,174 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
     <div className="min-h-screen bg-brand-cream text-brand-text antialiased font-sans">
       <LoadingScreen isVisible={isLoading} isFadingOut={isFadingOut} />
       {isBookingModalOpen && renderBookingModal()}
+
+      {/* Mobile Navigation Drawer — Left Side Card Layout */}
+      <div
+        className={`mobile-drawer-backdrop ${isMobileMenuOpen ? "mobile-drawer-backdrop--open" : ""}`}
+        onClick={() => { setIsMobileMenuOpen(false); setActiveDropdown(null); }}
+        aria-hidden="true"
+      />
+
+      <nav
+        className={`mobile-drawer ${isMobileMenuOpen ? "mobile-drawer--open" : ""}`}
+        aria-label="Mobile navigation"
+      >
+        {/* Blue Top Header Card */}
+        <div className="mobile-drawer__header-card">
+          {/* Top bar: Badge on left, Close X button on RIGHT */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-1.5 bg-white/15 px-2.5 py-1 rounded-full text-white/90">
+
+              <span className="text-[10px] font-bold uppercase tracking-wider">Insight Wellness</span>
+            </div>
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); setActiveDropdown(null); }}
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors cursor-pointer"
+              aria-label="Close menu"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* Profile / Brand Info */}
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigateToPage("home")}>
+            <div className="h-12 w-12 rounded-2xl bg-white p-1.5 shadow-md flex items-center justify-center shrink-0">
+              <img src={logoImage} alt="Insight Logo" className="h-full w-full object-contain" />
+            </div>
+            <div>
+              <h3 className="font-serif text-lg font-bold text-white leading-tight">Insight Counseling</h3>
+              <p className="text-xs text-white/80 font-medium">Psychology & Wellness Support</p>
+            </div>
+          </div>
+        </div>
+
+        {/* White Navigation Body */}
+        <div className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5 bg-white">
+          {/* Home */}
+          <button
+            onClick={() => navigateToPage("home")}
+            className={`mobile-drawer__link ${currentPage === "home" ? "mobile-drawer__link--active" : ""}`}
+          >
+            <Home className="mobile-drawer__link-icon" />
+            <span>Home</span>
+          </button>
+
+          {/* About */}
+          <button
+            onClick={() => navigateToPage("about")}
+            className={`mobile-drawer__link ${currentPage === "about" ? "mobile-drawer__link--active" : ""}`}
+          >
+            <Info className="mobile-drawer__link-icon" />
+            <span>About Us</span>
+          </button>
+
+          {/* Services accordion */}
+          <button
+            onClick={() =>
+              setActiveDropdown(
+                activeDropdown === "services" ? null : "services",
+              )
+            }
+            className={`mobile-drawer__link ${activeDropdown === "services" || currentPage === "service" ? "mobile-drawer__link--active" : ""}`}
+            aria-expanded={activeDropdown === "services"}
+          >
+            <Activity className="mobile-drawer__link-icon" />
+            <span className="flex-1">Services</span>
+            <ChevronDown
+              className={`h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 ${activeDropdown === "services" ? "rotate-180" : ""
+                }`}
+            />
+          </button>
+          {activeDropdown === "services" && (
+            <div className="py-1 space-y-0.5">
+              <button
+                onClick={() => navigateToPage("service", "mental-health")}
+                className={`mobile-drawer__sub-link ${currentPage === "service" && currentServiceId === "mental-health" ? "!text-brand-primary font-semibold bg-brand-primary/5" : ""}`}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-primary shrink-0" />
+                <span>Mental Health Support</span>
+              </button>
+              <button
+                onClick={() => navigateToPage("service", "physical-health")}
+                className={`mobile-drawer__sub-link ${currentPage === "service" && currentServiceId === "physical-health" ? "!text-brand-primary font-semibold bg-brand-primary/5" : ""}`}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-primary shrink-0" />
+                <span>Physical Health Sync</span>
+              </button>
+              <button
+                onClick={() => navigateToPage("service", "therapy")}
+                className={`mobile-drawer__sub-link ${currentPage === "service" && currentServiceId === "therapy" ? "!text-brand-primary font-semibold bg-brand-primary/5" : ""}`}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-primary shrink-0" />
+                <span>Therapy & Counseling</span>
+              </button>
+            </div>
+          )}
+
+          {/* Specialists */}
+          <button
+            onClick={() => navigateToPage("specialists")}
+            className={`mobile-drawer__link ${currentPage === "specialists" ? "mobile-drawer__link--active" : ""}`}
+          >
+            <Users className="mobile-drawer__link-icon" />
+            <span>Our Specialists</span>
+          </button>
+
+          {/* Blog */}
+          <button
+            onClick={() => navigateToPage("blog")}
+            className={`mobile-drawer__link ${currentPage === "blog" ? "mobile-drawer__link--active" : ""}`}
+          >
+            <BookOpen className="mobile-drawer__link-icon" />
+            <span>Articles & Blog</span>
+          </button>
+
+          {/* Client Reviews */}
+          <button
+            onClick={() => navigateToHomeSection("reviews")}
+            className="mobile-drawer__link"
+          >
+            <Heart className="mobile-drawer__link-icon" />
+            <span>Client Reviews</span>
+          </button>
+
+          {/* Contact */}
+          <button
+            onClick={() => navigateToPage("contact")}
+            className={`mobile-drawer__link ${currentPage === "contact" ? "mobile-drawer__link--active" : ""}`}
+          >
+            <Phone className="mobile-drawer__link-icon" />
+            <span>Contact Us</span>
+          </button>
+
+          <div className="mobile-drawer__divider" />
+
+          {/* Quick Action Button */}
+          <button
+            onClick={() => navigateToHomeSection("booking")}
+            className="flex w-full items-center gap-3.5 px-5 py-3 text-left text-sm font-semibold text-brand-primary bg-brand-primary/5 hover:bg-brand-primary/10 rounded-xl transition-all"
+          >
+            <Calendar className="h-[19px] w-[19px] shrink-0 text-brand-primary" />
+            <span>Book Appointment</span>
+          </button>
+        </div>
+
+        {/* Footer Card Section */}
+        <div className="px-5 py-4 border-t border-slate-100 bg-slate-50 flex flex-col gap-2">
+          <a
+            href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-green-600 py-2.5 text-xs font-bold text-white shadow-sm transition-all"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Chat on WhatsApp
+          </a>
+          <div className="text-center">
+            <p className="text-[10px] text-slate-400 font-medium">Insight Health & Support • v1.2.0</p>
+          </div>
+        </div>
+      </nav>
 
       {/* Top Header Bar */}
       <div className="hidden lg:block border-b border-brand-secondary/30 bg-gradient-to-r from-brand-secondary via-brand-charcoal to-brand-secondary">
@@ -677,7 +856,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-xs text-white/60">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-           Confidential & Professional
+              Confidential & Professional
             </span>
             <span className="h-3 w-px bg-white/20" aria-hidden="true" />
             <span className="text-xs text-white/60">Follow Us</span>
@@ -691,15 +870,15 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
                 </svg>
               </a>
-             <a
-  href="https://youtube.com"
-  aria-label="YouTube"
-  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
->
-  <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.06 0 12 0 12s0 3.94.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.94 24 12 24 12s0-3.94-.502-5.814ZM9.75 15.568V8.432L15.75 12l-6 3.568Z" />
-  </svg>
-</a>
+              <a
+                href="https://youtube.com"
+                aria-label="YouTube"
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-brand-primary hover:text-white"
+              >
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.06 0 12 0 12s0 3.94.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.94 24 12 24 12s0-3.94-.502-5.814ZM9.75 15.568V8.432L15.75 12l-6 3.568Z" />
+                </svg>
+              </a>
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
@@ -733,7 +912,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
             className="group flex cursor-pointer items-center gap-3"
             onClick={() => navigateToPage("home")}
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-border/60 bg-brand-light/50 p-1.5 shadow-sm transition-all duration-300 group-hover:border-brand-primary/30 group-hover:shadow-md">
+            <div className="flex h-11 w-11 items-center justify-center   duration-300 group-hover:border-brand-primary/30 group-hover:shadow-md">
               <img src={logoImage} alt="Insight Logo" className="h-full w-full object-contain" />
             </div>
             <div>
@@ -765,8 +944,8 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                 }
                 className={`${navLinkClass(
                   currentPage === "about" ||
-                    currentPage === "blog" ||
-                    activeDropdown === "pages",
+                  currentPage === "blog" ||
+                  activeDropdown === "pages",
                 )} focus:outline-none`}
                 aria-expanded={activeDropdown === "pages"}
               >
@@ -903,7 +1082,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   return !open;
                 });
               }}
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all hover:bg-brand-secondary focus:outline-none"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all hover:bg-brand-secondary focus:outline-none cursor-pointer"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
             >
@@ -922,209 +1101,6 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
             </a>
           </div>
         </div>
-
-        {/* Mobile Navigation Drawer */}
-        {isMobileMenuOpen && (
-          <nav
-            className="lg:hidden border-t border-brand-border bg-white animate-slideDown max-h-[calc(100dvh-4rem)] overflow-y-auto"
-            aria-label="Mobile navigation"
-          >
-            <div className="px-4 py-3 space-y-1">
-              {/* Home */}
-              <button
-                onClick={() => navigateToPage("home")}
-                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
-                  currentPage === "home"
-                    ? "bg-brand-primary/10 text-brand-primary"
-                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
-                }`}
-              >
-                <Home className="h-4 w-4 shrink-0" />
-                <span>Home</span>
-              </button>
-
-              {/* Pages accordion */}
-              <div className="rounded-xl overflow-hidden">
-                <button
-                  onClick={() =>
-                    setActiveDropdown(
-                      activeDropdown === "pages" ? null : "pages",
-                    )
-                  }
-                  className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
-                    activeDropdown === "pages"
-                      ? "bg-brand-cream text-brand-primary"
-                      : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
-                  }`}
-                  aria-expanded={activeDropdown === "pages"}
-                >
-                  <span className="flex items-center gap-3">
-                    <Info className="h-4 w-4 shrink-0" />
-                    <span>Pages</span>
-                  </span>
-                  <ChevronDown
-                    className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
-                      activeDropdown === "pages" ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {activeDropdown === "pages" && (
-                  <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
-                    <button
-                      onClick={() => navigateToPage("about")}
-                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
-                    >
-                      <Info className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>About Us</span>
-                    </button>
-                    <button
-                      onClick={() => navigateToPage("blog")}
-                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
-                    >
-                      <BookOpen className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Blog</span>
-                    </button>
-                    <button
-                      onClick={() => navigateToPage("specialists")}
-                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
-                    >
-                      <Users className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Our Team</span>
-                    </button>
-                    <button
-                      onClick={() => navigateToPage("contact")}
-                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
-                    >
-                      <Phone className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Contact Us</span>
-                    </button>
-                    <button
-                      onClick={() => navigateToHomeSection("reviews")}
-                      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-brand-cream hover:text-brand-primary"
-                    >
-                      <Heart className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Client Review</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Services accordion */}
-              <div className="rounded-xl overflow-hidden">
-                <button
-                  onClick={() =>
-                    setActiveDropdown(
-                      activeDropdown === "services" ? null : "services",
-                    )
-                  }
-                  className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
-                    activeDropdown === "services" || currentPage === "service"
-                      ? "bg-brand-cream text-brand-primary"
-                      : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
-                  }`}
-                  aria-expanded={activeDropdown === "services"}
-                >
-                  <span className="flex items-center gap-3">
-                    <Sparkles className="h-4 w-4 shrink-0" />
-                    <span>Services</span>
-                  </span>
-                  <ChevronDown
-                    className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
-                      activeDropdown === "services" ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {activeDropdown === "services" && (
-                  <div className="mt-1 ml-3 border-l-2 border-brand-primary/20 pl-3 space-y-0.5 pb-1">
-                    <button
-                      onClick={() => navigateToPage("service", "mental-health")}
-                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
-                        currentPage === "service" &&
-                        currentServiceId === "mental-health"
-                          ? "bg-brand-primary/10 text-brand-primary font-medium"
-                          : "text-slate-600"
-                      }`}
-                    >
-                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Mental Health Support</span>
-                    </button>
-                    <button
-                      onClick={() =>
-                        navigateToPage("service", "physical-health")
-                      }
-                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
-                        currentPage === "service" &&
-                        currentServiceId === "physical-health"
-                          ? "bg-brand-primary/10 text-brand-primary font-medium"
-                          : "text-slate-600"
-                      }`}
-                    >
-                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Physical Health Sync</span>
-                    </button>
-                    <button
-                      onClick={() => navigateToPage("service", "therapy")}
-                      className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-brand-cream hover:text-brand-primary ${
-                        currentPage === "service" &&
-                        currentServiceId === "therapy"
-                          ? "bg-brand-primary/10 text-brand-primary font-medium"
-                          : "text-slate-600"
-                      }`}
-                    >
-                      <Sparkles className="h-3.5 w-3.5 shrink-0 text-slate-400" />
-                      <span>Psychotherapy & Counseling</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Specialists */}
-              <button
-                onClick={() => navigateToPage("specialists")}
-                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
-                  currentPage === "specialists"
-                    ? "bg-brand-primary/10 text-brand-primary"
-                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
-                }`}
-              >
-                <Users className="h-4 w-4 shrink-0" />
-                <span>Specialists</span>
-              </button>
-
-              {/* Contact */}
-              <button
-                onClick={() => navigateToPage("contact")}
-                className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-colors ${
-                  currentPage === "contact"
-                    ? "bg-brand-primary/10 text-brand-primary"
-                    : "text-slate-700 hover:bg-brand-cream hover:text-brand-primary"
-                }`}
-              >
-                <Phone className="h-4 w-4 shrink-0" />
-                <span>Contact</span>
-              </button>
-            </div>
-
-            {/* Mobile CTAs */}
-            <div className="sticky bottom-0 border-t border-brand-border bg-white px-4 py-4 space-y-2.5">
-              <a
-                href={`https://wa.me/94757629950?text=${encodeURIComponent(message)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#1ebe57]"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Chat on WhatsApp
-              </a>
-              <button
-                onClick={() => navigateToHomeSection("booking")}
-                className="w-full rounded-xl bg-brand-primary py-3 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-secondary"
-              >
-                Book Appointment
-              </button>
-            </div>
-          </nav>
-        )}
       </header>
 
       {currentPage === "about" ? (
@@ -1146,7 +1122,7 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
             return service
               ? service.id === "therapy"
                 ? specialist.id === "elena-rostova" ||
-                  specialist.id === "sarah-jenkins"
+                specialist.id === "sarah-jenkins"
                 : service.id === "physical-health"
                   ? specialist.id === "marcus-vance"
                   : specialist.id === "sarah-jenkins"
@@ -1835,11 +1811,10 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                       setSelectedServiceTab(srv.id);
                       navigateToPage("service", srv.id);
                     }}
-                    className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${
-                      selectedServiceTab === srv.id
-                        ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
-                        : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
-                    }`}
+                    className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all duration-300 ${selectedServiceTab === srv.id
+                      ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
+                      : "bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all duration-300"
+                      }`}
                   >
                     {srv.title}
                   </button>
@@ -2115,55 +2090,55 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                     <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={formPhone}
-                    onChange={(e) => setFormPhone(e.target.value)}
-                    placeholder="07X XXX XXXX"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
-                  />
-                </div>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-slate-600 block">
+                            Phone Number *
+                          </label>
+                          <input
+                            type="tel"
+                            required
+                            value={formPhone}
+                            onChange={(e) => setFormPhone(e.target.value)}
+                            placeholder="07X XXX XXXX"
+                            className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
+                          />
+                        </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-600 block">
-                    Age *
-                  </label>
-                  <input
-                    type="number"
-                    required
-                    value={formAge}
-                    onChange={(e) => setFormAge(e.target.value)}
-                    placeholder="Enter your age"
-                    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
-                  />
-                </div>
-              </div>
-              <div className="space-y-1.5">
-  <label className="text-xs font-semibold text-slate-600 block">
-    Select Preferred Language *
-  </label>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-semibold text-slate-600 block">
+                            Age *
+                          </label>
+                          <input
+                            type="number"
+                            required
+                            value={formAge}
+                            onChange={(e) => setFormAge(e.target.value)}
+                            placeholder="Enter your age"
+                            className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-semibold text-slate-600 block">
+                          Select Preferred Language *
+                        </label>
 
-  <select
-    value={preferredLanguage}
-    onChange={(e) => setPreferredLanguage(e.target.value)}
-    className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
-  >
-    <option value="english">English</option>
-    <option value="sinhala">සිංහල</option>
-  </select>
-</div>
+                        <select
+                          value={preferredLanguage}
+                          onChange={(e) => setPreferredLanguage(e.target.value)}
+                          className="w-full bg-white border border-stone-200 focus:border-[#C76B3D] focus:outline-none px-4 py-2.5 rounded-xl text-sm transition-all"
+                        >
+                          <option value="english">English</option>
+                          <option value="sinhala">සිංහල</option>
+                        </select>
+                      </div>
 
-                     
+
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                       <div className="space-y-1.5">
+                      <div className="space-y-1.5">
                         <label className="text-xs font-semibold text-slate-600 block">
                           Select Service category *
                         </label>
@@ -2239,30 +2214,29 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full bg-brand-primary hover:bg-brand-secondary text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${
-                        isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                      }`}
+                      className={`w-full bg-brand-primary hover:bg-brand-secondary text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                        }`}
                     >
                       {isSubmitting
                         ? "Securing Slot..."
                         : "Submit Appointment Request"}
                     </button>
-                       <div className="mt-4">
-  <p className="text-xs text-brand-primary text-center mb-2 font-bold">
-     Or book instantly via WhatsApp
-  </p>
-  <a
-    href={`https://wa.me/94757629950?text=${encodeURIComponent(
-      "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
-    )}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
-  >
-    <MessageCircle className="h-5 w-5" />
-    Book via WhatsApp
-  </a>
-</div>
+                    <div className="mt-4">
+                      <p className="text-xs text-brand-primary text-center mb-2 font-bold">
+                        Or book instantly via WhatsApp
+                      </p>
+                      <a
+                        href={`https://wa.me/94757629950?text=${encodeURIComponent(
+                          "Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.",
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full bg-[#25D366] hover:bg-green-600 text-white py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2"
+                      >
+                        <MessageCircle className="h-5 w-5" />
+                        Book via WhatsApp
+                      </a>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -2343,27 +2317,27 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                     <strong>{bookingSuccessData.email}</strong>.
                   </div> */}
                   <div className="text-xs text-slate-400 leading-normal max-w-sm mx-auto">
-  <span className="text-red-600 font-semibold block">
-⚠️ To confirm your booking, please send your payment receipt via WhatsApp and then you can know additional details
-  </span>
-  
-</div>
+                    <span className="text-red-600 font-semibold block">
+                      ⚠️ To confirm your booking, please send your payment receipt via WhatsApp and then you can know additional details
+                    </span>
+
+                  </div>
 
                   <div className="pt-2">
-  <button
-    onClick={() => {
-      window.open(
-        `https://wa.me/94757629950?text=${encodeURIComponent("Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.")}`,
-        "_blank"
-      );
-      setBookingSuccessData(null);
-    }}
-    className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-3 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2"
-  >
-    <MessageCircle className="h-4 w-4" />
-    WhatsApp Yor Payment Reciept 
-  </button>
-</div>
+                    <button
+                      onClick={() => {
+                        window.open(
+                          `https://wa.me/94757629950?text=${encodeURIComponent("Hello Insight Counseling, I have attached my payment slip and would like to request an appointment. Thank you.")}`,
+                          "_blank"
+                        );
+                        setBookingSuccessData(null);
+                      }}
+                      className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-3 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      WhatsApp Yor Payment Reciept
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2409,15 +2383,15 @@ const [preferredLanguage, setPreferredLanguage] = useState("english");
                   />
                 </svg>
               </a>
-             <a
-  href="https://youtube.com/@drgayanj?si=9XaAi4puwAoliAhK"
-  aria-label="YouTube"
-   className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
->
-  <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.06 0 12 0 12s0 3.94.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.94 24 12 24 12s0-3.94-.502-5.814ZM9.75 15.568V8.432L15.75 12l-6 3.568Z" />
-  </svg>
-</a>
+              <a
+                href="https://youtube.com/@drgayanj?si=9XaAi4puwAoliAhK"
+                aria-label="YouTube"
+                className="w-8 h-8 rounded-full bg-stone-800 hover:bg-brand-primary text-[#f7f0e5] flex items-center justify-center transition-colors"
+              >
+                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.376.55A3.016 3.016 0 0 0 .502 6.186C0 8.06 0 12 0 12s0 3.94.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.5 12 20.5 12 20.5s7.505 0 9.376-.55a3.016 3.016 0 0 0 2.122-2.136C24 15.94 24 12 24 12s0-3.94-.502-5.814ZM9.75 15.568V8.432L15.75 12l-6 3.568Z" />
+                </svg>
+              </a>
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
