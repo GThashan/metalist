@@ -919,7 +919,7 @@ function App() {
               <span className="font-serif text-xl font-bold tracking-tight text-brand-charcoal transition-colors group-hover:text-brand-primary sm:text-2xl">
                 Insight
               </span>
-              <span className="-mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.25em] text-brand-primary sm:text-[10px] hidden lg:block">
+              <span className="-mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.25em] text-brand-primary sm:text-[10px]">
                 Psychology & Counseling
               </span>
             </div>
@@ -1092,13 +1092,13 @@ function App() {
                 <Menu className="h-5 w-5" />
               )}
             </button>
-            <a
+            {/* <a
               href="tel:+94757629950"
               className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary text-white shadow-md shadow-brand-primary/20 transition-all hover:bg-brand-secondary"
               aria-label="Call us"
             >
               <Phone className="h-5 w-5" />
-            </a>
+            </a> */}
           </div>
         </div>
       </header>
@@ -2541,11 +2541,22 @@ function App() {
             </div>
           </div>
         </div>
-
-        {/* Legal bar */}
       </footer>
 
-      {/* <ChatWidget /> */}
+      <a
+        href="tel:+94757629950"
+        className="group fixed bottom-5 right-5 z-[90] flex h-14 w-14 items-center justify-center 
+             rounded-2xl bg-brand-primary text-white shadow-lg shadow-brand-primary/35
+             transition-all duration-300 ease-out
+             hover:-translate-y-1 hover:scale-105 hover:bg-brand-secondary hover:shadow-xl
+             sm:bottom-6 sm:right-6"
+        aria-label="Call +94 (0) 7577629950"
+        title="Call +94 (0) 7577629950"
+      >
+        <span className="absolute inset-0 rounded-2xl bg-brand-primary opacity-40 animate-ping"></span>
+
+        <Phone className="relative h-6 w-6 text-white transition-transform duration-300 group-hover:rotate-12" />
+      </a>
     </div>
   );
 }
